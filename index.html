@@ -4,7 +4,7 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#131019"><meta name="description" content="Transforme suas atividades em prompts completos. Seus PTDs, referências e ideias, juntos e salvos no seu aparelho.">
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' blob: data:; media-src 'self' blob:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; worker-src 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' blob: data:; media-src 'self' blob:; connect-src 'self' https://api.github.com; object-src 'none'; base-uri 'self'; form-action 'none'; worker-src 'self'">
 <link rel="manifest" href="./manifest.webmanifest"><link rel="icon" href="./assets/icon-192.png"><link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
 <link rel="stylesheet" href="./src/styles.css"><title>CK Promptmaker</title>
 </head>
@@ -14,6 +14,7 @@
 <div id="toast" role="status" aria-live="polite"></div>
 <dialog id="dialog"></dialog>
 <input id="camera-input" class="visually-hidden" type="file" accept="image/*" capture="environment" tabindex="-1" aria-label="Fotografar atividade">
+<input id="transfer-input" class="visually-hidden" type="file" accept=".json,application/json" tabindex="-1" aria-label="Receber dados de outro aparelho">
 <input id="backup-input" class="visually-hidden" type="file" accept=".json,application/json" tabindex="-1" aria-label="Restaurar backup">
 <script type="module" src="./src/app.js"></script>
 <noscript>Ative o JavaScript para usar o CK Promptmaker. Seus dados ficam no seu aparelho.</noscript>

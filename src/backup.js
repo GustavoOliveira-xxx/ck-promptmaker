@@ -20,6 +20,8 @@ export function validateBackup(data){
   for(const key of ['repo','details'])if(!isText(a.website[key]))bad();
   if(typeof a.customSite!=='boolean')bad();
   a.includeManual=a.includeManual??true;
+  a.materialsReviewed=a.materialsReviewed??false;
+  if(typeof a.materialsReviewed!=='boolean')bad();
   if(typeof a.includeManual!=='boolean'||!Number.isFinite(a.updatedAt)||!Number.isFinite(a.createdAt))bad();
  }
  for(const s of data.subjects){

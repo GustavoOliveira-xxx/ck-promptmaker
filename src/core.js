@@ -14,8 +14,8 @@ export const CATEGORIES = [
  {id:'technical',name:'Entregável de T.I.',icon:'code',description:'Código, banco de dados ou um site.',formats:['SQL','HTML','SITE','PY','JS','JSON','MD']},
  {id:'other',name:'Outro formato',icon:'spark',description:'Você define o que precisa receber.',formats:['PERSONALIZADO']}
 ];
-export const DEFAULT_PROFILE = {name:'',school:'',course:'',className:'',level:'Ensino médio / técnico',language:'Português (Brasil)',style:'Natural, claro e adequado ao meu nível de estudo',sample:'',brand:'Conscious Knowledge',manualUrl:CPS_URL,extraRules:'',motion:true};
-export function newActivity() { return {id:uid(),title:'',date:today(),due:'',subjectId:'',professor:'',period:'1',mode:'individual',groupSize:2,members:[],description:'',objectives:'',criteria:'',length:'',observations:'',baseText:'',links:'',includeManual:true,deliveries:[],customFormat:'',customDescription:'',customSite:false,website:{identity:'original',interaction:'media',threeD:'baixa',hasMedia:false,github:false,repo:'',details:''},status:'draft',createdAt:Date.now(),updatedAt:Date.now()}; }
+export const DEFAULT_PROFILE = {name:'',school:'',course:'',className:'',level:'Ensino médio / técnico',language:'Português (Brasil)',style:'Natural, claro e adequado ao meu nível de estudo',sample:'',brand:'Conscious Knowledge',manualUrl:CPS_URL,extraRules:'',motion:true,publishRepo:''};
+export function newActivity() { return {id:uid(),title:'',date:today(),due:'',subjectId:'',professor:'',period:'1',mode:'individual',groupSize:2,members:[],description:'',objectives:'',criteria:'',length:'',observations:'',baseText:'',links:'',includeManual:true,materialsReviewed:false,deliveries:[],customFormat:'',customDescription:'',customSite:false,website:{identity:'original',interaction:'media',threeD:'baixa',hasMedia:false,github:false,repo:'',details:''},status:'draft',createdAt:Date.now(),updatedAt:Date.now()}; }
 export function hasSite(a) {return a.deliveries.some(d=>d.format==='SITE'||d.format==='HTML') || (a.customSite && a.deliveries.some(d=>d.category==='other'));}
 export function isAbnt(a) {return a.deliveries.some(d=>d.category==='abnt');}
 export function relevantFiles(a, files) { return files.filter(f=> (f.ownerType==='activity' && f.ownerId===a.id && (f.kind!=='media'||(hasSite(a)&&a.website.hasMedia))) || (f.ownerType==='subject' && f.ownerId===a.subjectId) || (f.ownerType==='profile' && ((f.kind==='manual'&&(a.includeManual||isAbnt(a))) || (f.kind==='brand'&&hasSite(a))))); }
@@ -66,7 +66,8 @@ export function buildPrompt(a, subject, profile, files=[]) {
  'Professor(a): '+a.professor,
  'Data da atividade: '+a.date+' | Entrega: '+a.due,
  'Bimestre atual: '+a.period,
- 'Modalidade: '+(a.mode==='group'?'Grupo de '+a.members.length+' integrantes: '+a.members.join('; '):'Individual'),
+ 'Modalidade: '+(a.mode==='group'?'Grupo de '+a.members.length+' integrantes: '+a.members.join('; '):'Individual — autoria: '+(profile.name.trim()||'não informada')),
+ a.mode==='individual'?'Identificação de autoria: use exatamente '+(profile.name.trim()||'[nome do perfil não informado]')+' como estudante/autor na capa, folha de rosto, créditos e demais identificações pertinentes. Não invente outros integrantes.':'Identifique todos os integrantes do grupo nos créditos e na capa quando aplicável.',
  'Idioma: '+profile.language,
  '',
  '## 2. Pedido principal',

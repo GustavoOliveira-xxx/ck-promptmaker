@@ -38,9 +38,13 @@ export async function exportBackup() {
  const [activities,subjects,files,settings]=await Promise.all(['activities','subjects','files','settings'].map(getAll));
  return runExport('backup',{app:'ck-promptmaker',version:1,exportedAt:new Date().toISOString(),activities,subjects,files,settings});
 }
-export async function restoreBackup(file) {
+export async function readBackup(file) {
  if(file.size>175*1024*1024)throw new Error('Backup muito grande.');
- const data=validateBackup(JSON.parse(await file.text()));
+ return validateBackup(JSON.parse(await file.text()));
+}
+export async function restoreBackup(file,{mode='replace',includeProfile=true}={}) {
+ const data=file instanceof Blob?await readBackup(file):validateBackup(file);
+ if(!['replace','merge'].includes(mode))throw new Error('Modo de importação inválido.');
  let total=0;
  const files=[];
  for(const f of data.files){
@@ -49,8 +53,13 @@ export async function restoreBackup(file) {
  if(binary.length>MAX_FILE||total>MAX_TOTAL)throw new Error('O backup ultrapassa o limite de anexos.');
  const blob=new Blob([Uint8Array.from(binary,c=>c.charCodeAt(0))],{type:f.mime||'application/octet-stream'});const {data:_,...meta}=f;files.push({...meta,size:blob.size,blob});
  }
- const operations=['activities','subjects','files','settings'].map(store=>({store,type:'clear'}));
- for(const store of ['activities','subjects','settings'])for(const value of data[store])operations.push({store,value});
+ const mergedFiles=new Map((mode==='merge'?await getAll('files'):[]).map(f=>[f.id,f]));
+ for(const f of files)mergedFiles.set(f.id,f);
+ if([...mergedFiles.values()].reduce((sum,f)=>sum+f.size,0)>MAX_TOTAL)throw new Error('A soma dos anexos ultrapassa 120 MB. Nenhum dado foi alterado.');
+ const keptProfile=mode==='replace'&&!includeProfile?(await getAll('settings')).find(s=>s.id==='profile'):null;
+ const operations=mode==='replace'?['activities','subjects','files','settings'].map(store=>({store,type:'clear'})):[];
+ for(const store of ['activities','subjects','settings'])for(const value of data[store]){if(store==='settings'&&value.id==='profile'&&!includeProfile)continue;operations.push({store,value});}
+ if(keptProfile)operations.push({store:'settings',value:keptProfile});
  for(const value of files)operations.push({store:'files',value});
  await batch(operations);
 }

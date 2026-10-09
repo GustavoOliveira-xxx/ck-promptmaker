@@ -1,6 +1,8 @@
 import {CATEGORIES, DEFAULT_PROFILE, CPS_URL, uid, today, esc, bytes, MAX_TOTAL, safeName, newActivity, hasSite, isAbnt, relevantFiles, pathForFile, validate, buildPrompt} from './core.js';
-import {getAll, put, batch, addFiles, removeOwner, exportBackup, restoreBackup} from './db.js';
+import {getAll, put, batch, addFiles, removeOwner, exportBackup, restoreBackup, readBackup} from './db.js';
 import {runExport} from './tasks.js';
+import {stageErrors,firstIncompleteStage} from './stages.js';
+import {initMotion,logoTransition} from './motion.js';
 
 const $ = s=>document.querySelector(s);
 const icons={
@@ -32,6 +34,7 @@ globe:'<circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><p
 };
 const icon=(name,cls='')=>'<svg class="icon '+cls+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(icons[name]||icons.spark)+'</svg>';
 let subjects=[], files=[], activities=[], profile={...DEFAULT_PROFILE}, activity=newActivity(), view='activity', step=0, saveTimer, saving=Promise.resolve(), installEvent, updatingWorker, editingSubjectId, libraryPeriod='1', busy=false, search='';
+let stageMessages=[],preparedPage=null,transferData=null;
 const steps=['Contexto','Entregas','Materiais','Seu prompt'];
 function toast(message){$('#toast').textContent=message;$('#toast').classList.add('visible');clearTimeout(toast.timer);toast.timer=setTimeout(()=>$('#toast').classList.remove('visible'),4300);}
 function fail(error){console.error(error);toast(error.name==='QuotaExceededError'?'Armazenamento cheio. Exporte um backup e libere espaço.':error.message||'Não foi possível concluir. Tente novamente.');}
@@ -62,15 +65,16 @@ function effectiveFiles(){
 function promptText(){return buildPrompt(activity,currentSubject(),profile,effectiveFiles());}
 function nav(){
  const items=[['activity','spark','Criar atividade'],['library','book','Matérias & PTDs'],['drafts','folder','Minhas atividades'],['profile','user','Meu perfil']];
- return '<aside class="sidebar"><a href="./" class="wordmark" aria-label="CK Promptmaker, início"><span class="brand-symbol">CK<span>✦</span></span><div>promptmaker<small>CONSCIOUS KNOWLEDGE</small></div></a><div class="sidebar-label">SEU ESPAÇO CRIATIVO</div><nav aria-label="Navegação principal">'+items.map(([id,ico,label])=>'<button class="nav-item '+(view===id?'active':'')+'" data-view="'+id+'" '+(view===id?'aria-current="page"':'')+'>'+icon(ico)+'<span>'+label+'</span>'+(view===id?'<i></i>':'')+'</button>').join('')+'</nav><div class="sidebar-bottom"><div class="local-note">'+icon('shield')+'<strong>Seu espaço. Seus dados.</strong><p>Tudo salvo no seu aparelho.<br>Sem conta, sem complicação.</p></div>'+button('Instalar aplicativo','install','download','ghost')+'<small class="version">CK PROMPTMAKER · 1.0</small></div></aside>';
+ return '<aside class="sidebar"><a href="./" class="wordmark" aria-label="CK Promptmaker, início"><span class="brand-symbol">CK<span>✦</span></span><div>promptmaker<small>CONSCIOUS KNOWLEDGE</small></div></a><div class="sidebar-label">SEU ESPAÇO CRIATIVO</div><nav aria-label="Navegação principal">'+items.map(([id,ico,label])=>'<button class="nav-item '+(view===id?'active':'')+'" data-view="'+id+'" '+(view===id?'aria-current="page"':'')+'>'+icon(ico)+'<span>'+label+'</span>'+(view===id?'<i></i>':'')+'</button>').join('')+'</nav><div class="sidebar-bottom"><div class="local-note">'+icon('shield')+'<strong>Seu espaço. Seus dados.</strong><p>Tudo salvo no seu aparelho.<br>Sem conta, sem complicação.</p></div>'+button('Instalar aplicativo','install','download','ghost')+'<small class="version">CK PROMPTMAKER · 1.1</small></div></aside>';
 }
 function render(){
+ if(view==='activity'&&step>0){const missing=firstIncompleteStage(activity,profile,files,step);if(missing){step=missing.stage;stageMessages=missing.errors;}}
  document.body.classList.toggle('no-motion',!profile.motion);
  $('#app').innerHTML=nav()+'<main id="main"><header class="topbar"><span class="breadcrumb">Workspace <span>/</span> '+({activity:'Nova atividade',library:'Biblioteca curricular',drafts:'Minhas atividades',profile:'Meu perfil'}[view])+'</span><div class="topbar-right"><span class="connection">'+(navigator.onLine?'<i></i> Pronto para criar':'<i class="offline"></i> Modo offline')+'</span><button class="avatar" data-view="profile" aria-label="Abrir meu perfil">'+esc(profile.name?profile.name.split(' ').map(s=>s[0]).slice(0,2).join('').toUpperCase():'CK')+'</button></div></header><div class="workspace">'+(view==='activity'?activityView():view==='library'?libraryView():view==='drafts'?draftsView():profileView())+'</div><footer class="app-footer"><span>FEITO PARA SUAS IDEIAS IREM ALÉM.</span><span>Conscious Knowledge <b>✦</b></span></footer></main><button class="camera-fab" data-action="camera" aria-label="Fotografar material da atividade" title="Fotografar material">'+icon('camera')+'</button>';
 }
 function activityView(){
  const a=activity;
- return '<section class="hero"><div><div class="eyebrow"><span></span> DA IDEIA À ENTREGA</div><h1>Sua ideia.<br><span>Um prompt completo.</span></h1><p>Organize a atividade. Conecte suas referências.<br>Leve o contexto certo para qualquer IA.</p><div class="hero-tags">'+tag(icon('shield')+' Dados locais')+tag(icon('wifi')+' Funciona offline')+'</div></div><div class="hero-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><span class="art-star star-one">✦</span><span class="art-star star-two">✧</span><img src="./assets/ck-logo.webp" alt="" width="250" height="250"><span class="art-caption">YOUR KNOWLEDGE. AMPLIFIED.</span></div></section><div class="activity-layout"><section class="editor"><div class="stepper" aria-label="Etapas da atividade">'+steps.map((s,i)=>'<button class="step '+(step===i?'current':step>i?'passed':'')+'" data-step="'+i+'" '+(step===i?'aria-current="step"':'')+'><span>'+(step>i?icon('check'):String(i+1).padStart(2,'0'))+'</span><b>'+s+'</b></button>').join('')+'</div><div class="editor-body"><div class="section-heading"><div><span class="overline">ETAPA '+String(step+1).padStart(2,'0')+' / 04</span><h2>'+['Vamos dar contexto.','Como vamos entregar?','As referências fazem a diferença.','Pronto para a próxima etapa.'][step]+'</h2><p>'+['Conte o que você precisa fazer. Os detalhes mudam o resultado.','Escolha um ou mais formatos. Nós cuidamos das instruções.','Enunciados, fotos, textos e seus PTDs. Tudo no mesmo lugar.','Confira o briefing e leve o pacote para a IA de sua escolha.'][step]+'</p></div>'+icon(['edit','package','folder','spark'][step],'heading-icon')+'</div>'+(step===0?contextForm():step===1?deliveryForm():step===2?materialsForm():reviewForm())+'</div><div class="editor-footer"><div class="save-status">'+icon('check')+'<span id="save-state">Salvo neste aparelho</span></div><div class="row">'+(step>0?button('Voltar','previous','back','ghost'):'')+(step<3?button('Continuar','next','arrow','primary'):button('Baixar pacote ZIP','export-zip','download','primary'))+'</div></div></section><aside class="brief-card"><div class="brief-top">'+icon('spark')+'<span>SEU BRIEFING, AO VIVO</span></div><div id="brief-content">'+briefContent()+'</div><div class="brief-tip"><span>✦</span><p>Um bom prompt começa<br>com um bom contexto.</p></div></aside></div>';
+ return '<section class="hero"><div><div class="eyebrow"><span></span> DA IDEIA À ENTREGA</div><h1>Sua ideia.<br><span>Um prompt completo.</span></h1><p>Organize a atividade. Conecte suas referências.<br>Leve o contexto certo para qualquer IA.</p><div class="hero-tags">'+tag(icon('shield')+' Dados locais')+tag(icon('wifi')+' Funciona offline')+'</div></div><div class="hero-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><span class="art-star star-one">✦</span><span class="art-star star-two">✧</span><img src="./assets/ck-logo.webp" alt="" width="250" height="250"><span class="art-caption">YOUR KNOWLEDGE. AMPLIFIED.</span></div></section><div class="activity-layout"><section class="editor"><div class="stepper" aria-label="Etapas da atividade">'+steps.map((s,i)=>'<button class="step '+(step===i?'current':step>i?'passed':'')+'" data-step="'+i+'" '+(step===i?'aria-current="step"':'')+' '+(i>step&&firstIncompleteStage(a,profile,files,i)?'aria-disabled="true"':'')+'><span>'+(step>i?icon('check'):String(i+1).padStart(2,'0'))+'</span><b>'+s+'</b></button>').join('')+'</div><div class="editor-body"><div class="section-heading"><div><span class="overline">ETAPA '+String(step+1).padStart(2,'0')+' / 04</span><h2>'+['Vamos dar contexto.','Como vamos entregar?','As referências fazem a diferença.','Pronto para a próxima etapa.'][step]+'</h2><p>'+['Conte o que você precisa fazer. Os detalhes mudam o resultado.','Escolha um ou mais formatos. Nós cuidamos das instruções.','Enunciados, fotos, textos e seus PTDs. Tudo no mesmo lugar.','Confira o briefing e leve o pacote para a IA de sua escolha.'][step]+'</p></div>'+icon(['edit','package','folder','spark'][step],'heading-icon')+'</div>'+stageFeedback()+(step===0?contextForm():step===1?deliveryForm():step===2?materialsForm():reviewForm())+'</div><div class="editor-footer"><div class="save-status">'+icon('check')+'<span id="save-state">Salvo neste aparelho</span></div><div class="row">'+(step>0?button('Voltar','previous','back','ghost'):'')+(step<3?button('Continuar','next','arrow','primary'):button('Baixar pacote ZIP','export-zip','download','primary'))+'</div></div></section><aside class="brief-card"><div class="brief-top">'+icon('spark')+'<span>SEU BRIEFING, AO VIVO</span></div><div id="brief-content">'+briefContent()+'</div><div class="brief-tip"><span>✦</span><p>Um bom prompt começa<br>com um bom contexto.</p></div></aside></div>';
 }
 function briefContent(){
  const a=activity,s=currentSubject(),n=relevantFiles(a,effectiveFiles()).length;
@@ -79,7 +83,7 @@ function briefContent(){
 function updateBrief(){const el=$('#brief-content');if(el)el.innerHTML=briefContent();}
 function contextForm(){
  const a=activity;
- return '<div class="form-grid">'+field('Título da atividade','title',a.title,{required:true,full:true,placeholder:'Ex.: Ecossistemas brasileiros e seus desafios'})+
+ return (a.mode==='individual'?'<div class="author-card">'+icon('user')+'<span><small>AUTORIA INDIVIDUAL</small><strong>'+esc(profile.name.trim()||'Cadastre seu nome no perfil')+'</strong></span><button class="btn ghost" data-view="profile">Editar perfil</button></div>':'')+'<div class="form-grid">'+field('Título da atividade','title',a.title,{required:true,full:true,placeholder:'Ex.: Ecossistemas brasileiros e seus desafios'})+
  field('Data da atividade','date',a.date,{type:'date',required:true})+field('Data de entrega','due',a.due,{type:'date',required:true})+
  '<div class="field"><label for="activity-subjectId">Matéria <span class="required">*</span></label><div class="input-action"><select id="activity-subjectId" data-field="subjectId"><option value="">Selecione a matéria</option>'+subjects.map(s=>'<option value="'+s.id+'" '+(a.subjectId===s.id?'selected':'')+'>'+esc(s.name)+'</option>').join('')+'</select><button class="icon-btn" data-action="add-subject" aria-label="Cadastrar matéria">'+icon('plus')+'</button></div></div>'+
  field('Professor(a)','professor',a.professor,{required:true,placeholder:'Nome do professor'})+
@@ -121,14 +125,14 @@ function fileList(list){
 }
 function materialsForm(){
  const s=currentSubject(),list=files.filter(f=>f.ownerType==='activity'&&f.ownerId===activity.id&&f.kind==='base');
- return '<label class="toggle manual-toggle"><input type="checkbox" data-field="includeManual" '+(activity.includeManual||isAbnt(activity)?'checked':'')+' '+(isAbnt(activity)?'disabled':'')+'><span>Incluir manual CPS completo<small>PDF original + transcrição integral. Obrigatório nas entregas ABNT.</small></span></label><div class="materials-actions">'+uploadBox('base','Solte aqui ou escolha seus materiais')+'<button class="camera-card" data-action="camera">'+icon('camera')+'<strong>Abrir câmera</strong><small>Fotografe o enunciado<br>em um toque</small></button></div>'+fileList(list)+'<div class="subsection form-grid">'+field('Texto-base','baseText',activity.baseText,{type:'textarea',full:true,rows:5,placeholder:'Cole textos, transcrições de imagens ou trechos de apoio. Textos colados ficam dentro do prompt.'})+field('Links de referência','links',activity.links,{type:'textarea',full:true,rows:2,placeholder:'Cole um link por linha. O acesso dependerá da IA que receber o prompt.'})+'</div><section class="ptd-connected"><div>'+icon('book')+'<div><h3>Seu contexto curricular</h3><p>'+(s?esc(s.name)+' · Todos os bimestres entram no pacote.':'Selecione uma matéria na primeira etapa para conectar os PTDs.')+'</p></div></div>'+(s?button('Gerenciar PTDs','edit-current-subject','arrow','ghost'):'')+'</section>'+(s?'<div class="period-status">'+[1,2,3,4].map(n=>{const count=files.filter(f=>f.ownerType==='subject'&&f.ownerId===s.id&&String(f.period)===String(n)).length;return '<div><strong>'+n+'º bimestre</strong><small>'+count+' arquivo'+(count!==1?'s':'')+(s.notes?.[n]?' + notas':'')+'</small></div>';}).join('')+'</div>':'')+'<div class="notice">'+icon('shield')+'<p>Seus arquivos ficam neste aparelho. Ao exportar o ZIP, eles seguem junto com o prompt. Copiar apenas o texto não envia fotos ou documentos.</p></div>';
+ return '<label class="toggle manual-toggle"><input type="checkbox" data-field="includeManual" '+(activity.includeManual||isAbnt(activity)?'checked':'')+' '+(isAbnt(activity)?'disabled':'')+'><span>Incluir manual CPS completo<small>PDF original + transcrição integral. Obrigatório nas entregas ABNT.</small></span></label><div class="materials-actions">'+uploadBox('base','Solte aqui ou escolha seus materiais')+'<button class="camera-card" data-action="camera">'+icon('camera')+'<strong>Abrir câmera</strong><small>Fotografe o enunciado<br>em um toque</small></button></div>'+fileList(list)+'<div class="subsection form-grid">'+field('Texto-base','baseText',activity.baseText,{type:'textarea',full:true,rows:5,placeholder:'Cole textos, transcrições de imagens ou trechos de apoio. Textos colados ficam dentro do prompt.'})+field('Links de referência','links',activity.links,{type:'textarea',full:true,rows:2,placeholder:'Cole um link por linha. O acesso dependerá da IA que receber o prompt.'})+'</div><section class="ptd-connected"><div>'+icon('book')+'<div><h3>Seu contexto curricular</h3><p>'+(s?esc(s.name)+' · Todos os bimestres entram no pacote.':'Selecione uma matéria na primeira etapa para conectar os PTDs.')+'</p></div></div>'+(s?button('Gerenciar PTDs','edit-current-subject','arrow','ghost'):'')+'</section>'+(s?'<div class="period-status">'+[1,2,3,4].map(n=>{const count=files.filter(f=>f.ownerType==='subject'&&f.ownerId===s.id&&String(f.period)===String(n)).length;return '<div><strong>'+n+'º bimestre</strong><small>'+count+' arquivo'+(count!==1?'s':'')+(s.notes?.[n]?' + notas':'')+'</small></div>';}).join('')+'</div>':'')+'<div class="notice">'+icon('shield')+'<p>Seus arquivos ficam neste aparelho. Ao exportar o ZIP, eles seguem junto com o prompt. Copiar apenas o texto não envia fotos ou documentos.</p></div><label class="toggle materials-review"><input type="checkbox" data-field="materialsReviewed" '+(activity.materialsReviewed?'checked':'')+'><span>Conferi os materiais e os PTDs desta atividade<small>Se não houver material adicional, confirme que o enunciado já tem o contexto necessário.</small></span></label>';
 }
 function reviewForm(){
- const errors=validate(activity),all=relevantFiles(activity,effectiveFiles()),ptds=all.filter(f=>f.ownerType==='subject');
+ const errors=[0,1,2].flatMap(n=>stageErrors(activity,profile,files,n)),all=relevantFiles(activity,effectiveFiles()),ptds=all.filter(f=>f.ownerType==='subject');
  return '<div class="review-status '+(errors.length?'pending':'ready')+'">'+icon(errors.length?'edit':'check')+'<div><strong>'+(errors.length?errors.length+' ajuste'+(errors.length>1?'s':'')+' antes de exportar':'Seu contexto está pronto')+'</strong><p>'+(errors.length?'Complete os campos abaixo para gerar o pacote.':'Prompt + '+all.length+' anexos, incluindo '+ptds.length+' PTDs.')+'</p></div></div>'+
  (errors.length?'<ul class="validation-list">'+errors.map(e=>'<li>'+esc(e)+'</li>').join('')+'</ul>':'')+
  (hasSite(activity)&&activity.website.hasMedia&&!files.some(f=>f.ownerId===activity.id&&f.kind==='media')?'<div class="notice">Você marcou um pacote de mídia, mas ainda não anexou o ZIP.</div>':'')+
- '<div class="export-grid">'+button('Copiar prompt','copy','copy','secondary')+button('Baixar .txt','export-txt','file','secondary')+button('Baixar .md','export-md','file','secondary')+button('Compartilhar pacote','share','upload','secondary')+'</div><details class="prompt-preview" open><summary>Prévia do prompt <span>'+promptText().length.toLocaleString('pt-BR')+' caracteres</span>'+icon('chevron')+'</summary><textarea id="prompt-preview" readonly aria-label="Prompt gerado">'+esc(promptText())+'</textarea></details><div class="notice">'+icon('package')+'<p><strong>Leve o pacote completo.</strong>Extraia o ZIP e envie PROMPT.md junto com os anexos para a IA. Se ela aceitar ZIP, envie o pacote diretamente. Os limites de anexos variam por IA.</p></div>'+button(activity.status==='done'?'Marcar como rascunho':'Marcar atividade como concluída','toggle-done','check','ghost');
+ '<div class="export-grid">'+button('Copiar prompt','copy','copy','secondary')+button('Baixar .txt','export-txt','file','secondary')+button('Baixar .md','export-md','file','secondary')+button('Compartilhar pacote','share','upload','secondary')+button('Página para IA','web-page','globe','secondary')+'</div><details class="prompt-preview" open><summary>Prévia do prompt <span>'+promptText().length.toLocaleString('pt-BR')+' caracteres</span>'+icon('chevron')+'</summary><textarea id="prompt-preview" readonly aria-label="Prompt gerado">'+esc(promptText())+'</textarea></details><div class="notice">'+icon('package')+'<p><strong>Leve o pacote completo.</strong>Extraia o ZIP e envie PROMPT.md junto com os anexos para a IA. Se ela aceitar ZIP, envie o pacote diretamente. Os limites de anexos variam por IA.</p></div>'+button(activity.status==='done'?'Marcar como rascunho':'Marcar atividade como concluída','toggle-done','check','ghost');
 }
 function pageHeading(eyebrow,title,description,action=''){return '<div class="page-heading"><div><div class="eyebrow">'+eyebrow+'</div><h1>'+title+'</h1><p>'+description+'</p></div>'+action+'</div>';}
 function libraryView(){
@@ -146,7 +150,7 @@ function profileView(){
  '<section class="settings-card"><div class="section-heading"><div><h2>Quem está criando?</h2><p>Esses dados ajudam a personalizar cada prompt.</p></div>'+icon('user','heading-icon')+'</div><div class="form-grid">'+
  field('Seu nome','name',p.name,{scope:'profile',placeholder:'Como você quer ser identificado(a)?'})+field('Instituição','school',p.school,{scope:'profile',placeholder:'Sua escola ou faculdade'})+field('Curso','course',p.course,{scope:'profile'})+field('Turma','className',p.className,{scope:'profile'})+field('Nível de estudo','level',p.level,{scope:'profile'})+field('Idioma das entregas','language',p.language,{scope:'profile'})+field('Estilo de escrita','style',p.style,{scope:'profile',full:true,placeholder:'Ex.: direto, com exemplos e sem palavras muito formais'})+field('Uma amostra da sua escrita','sample',p.sample,{scope:'profile',type:'textarea',full:true,rows:4,placeholder:'Cole um texto seu. A IA usará como referência de tom e vocabulário.'})+'</div></section>'+
  '<section class="settings-card"><div class="section-heading"><div><h2>Identidade & regras</h2><p>Adapte o app para você, sua turma ou sua marca.</p></div>'+icon('spark','heading-icon')+'</div><div class="form-grid">'+field('Nome da marca','brand',p.brand,{scope:'profile',full:true})+field('Link do manual de formatação','manualUrl',p.manualUrl,{scope:'profile',full:true,type:'url',hint:'O manual CPS que acompanha o app é a versão de 2015 fornecida pelo criador. Um arquivo enviado abaixo substitui o manual do pacote.'})+'</div><div class="settings-uploads"><div><h3>Manual da instituição</h3>'+uploadBox('manual','Anexar manual próprio','.pdf,.docx',false)+fileList(files.filter(f=>f.kind==='manual'))+'</div><div><h3>Logo da sua marca</h3>'+uploadBox('brand','Usar outra logo','image/png,image/jpeg,image/webp',false)+fileList(files.filter(f=>f.kind==='brand'))+'</div></div>'+field('Regras adicionais para os prompts','extraRules',p.extraRules,{scope:'profile',type:'textarea',rows:3,placeholder:'Preferências da escola, estrutura padrão, orientações recorrentes…'})+'<label class="toggle"><input type="checkbox" data-profile="motion" '+(p.motion?'checked':'')+'><span>Animações da interface<small>A preferência de movimento reduzido do aparelho também é respeitada.</small></span></label></section>'+
- '<section class="settings-card"><div class="section-heading"><div><h2>Seu aparelho, seu espaço</h2><p>Salvamento local, sem envio automático para servidores.</p></div>'+icon('shield','heading-icon')+'</div><div class="storage-row"><span>'+bytes(files.reduce((sum,f)=>sum+f.size,0))+' de 120 MB em anexos</span>'+button('Proteger armazenamento','persist','shield','ghost')+'</div><p class="muted">Faça backups regularmente. Limpar os dados do navegador, remover o app ou trocar de aparelho pode apagar seus materiais. O backup inclui atividades, perfil e arquivos.</p><div class="button-wrap">'+button('Exportar backup','backup','download','secondary')+button('Restaurar backup','restore','upload','secondary')+button('Instalar app','install','plus','primary')+(updatingWorker?button('Atualizar aplicativo','update','download','secondary'):'')+'</div></section>';
+ '<section class="settings-card"><div class="section-heading"><div><h2>Seu aparelho, seu espaço</h2><p>Salvamento local, sem envio automático para servidores.</p></div>'+icon('shield','heading-icon')+'</div><div class="storage-row"><span>'+bytes(files.reduce((sum,f)=>sum+f.size,0))+' de 120 MB em anexos</span>'+button('Proteger armazenamento','persist','shield','ghost')+'</div><p class="muted">Faça backups regularmente. Limpar os dados do navegador, remover o app ou trocar de aparelho pode apagar seus materiais. O backup inclui atividades, perfil e arquivos.</p><div class="button-wrap">'+button('Exportar backup','backup','download','secondary')+button('Restaurar backup','restore','upload','secondary')+button('Instalar app','install','plus','primary')+(updatingWorker?button('Atualizar aplicativo','update','download','secondary'):'')+'</div></section>'+transferSection();
 }
 function subjectDialog(id){
  editingSubjectId=id;const s=subjects.find(s=>s.id===id);if(!s)return;
@@ -159,7 +163,7 @@ function confirmDialog(title,message,onConfirm){
  const d=$('#dialog');d.innerHTML='<div class="dialog-head"><h2>'+esc(title)+'</h2></div><div class="dialog-body"><p>'+esc(message)+'</p></div><div class="dialog-footer">'+button('Cancelar','close-dialog',null,'secondary')+'<button class="btn primary" id="confirm-action">Confirmar</button></div>';if(!d.open)d.showModal();$('#confirm-action').onclick=async()=>{try{await onConfirm();d.close();}catch(e){fail(e);}};
 }
 function download(blob,name){const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),60000);}
-function requireValid(){const errors=validate(activity);if(errors.length){step=3;render();toast(errors[0]);return false;}return true;}
+function requireValid(){const missing=firstIncompleteStage(activity,profile,files);if(missing){step=missing.stage;stageMessages=missing.errors;render();showStageErrors();return false;}return true;}
 async function packageActivity(){
  const selected=relevantFiles(activity,effectiveFiles());const entries=[{name:'PROMPT.md',blob:new Blob([promptText()],{type:'text/markdown'})},{name:'LEIA-ME.txt',blob:new Blob(['CK Promptmaker\n\n1. Extraia este ZIP.\n2. Envie PROMPT.md e todos os anexos para a IA. Se ela aceitar ZIP, envie o pacote diretamente.\n3. Confira se a IA conseguiu ler os arquivos. Alguns serviços não abrem ZIPs ou têm limites de tamanho.\n4. Revise, compreenda e ajuste o resultado antes de entregar.\n\nO prompt não contém os bytes dos anexos. Os arquivos estão nas pastas deste pacote.\nO manual CPS, quando presente, pertence ao Centro Paula Souza. Fonte: '+CPS_URL+'\n'])}];
  for(let i=0;i<selected.length;i++){const f=selected[i];let blob=f.blob;if(f.url){const response=await fetch(f.url);if(!response.ok)throw new Error('Não foi possível carregar '+f.name+'. Abra o app online uma vez e tente novamente.');blob=await response.blob();}entries.push({name:pathForFile(f,i),blob});}
@@ -185,35 +189,36 @@ async function handleUpload(input){
  else await saveActivity();
  const records=await addFiles(list,ownerType,ownerId,opts);
  if(ownerType==='profile'){const old=files.filter(f=>f.kind===kind);await batch(old.map(f=>({store:'files',type:'delete',id:f.id})));files=files.filter(f=>f.kind!==kind);}
- files.push(...records);input.value='';render();if(kind==='ptd')subjectDialog(editingSubjectId);toast(records.length+' arquivo(s) salvo(s) no aparelho.');
+ files.push(...records);invalidateMaterials();scheduleSave();input.value='';render();if(kind==='ptd')subjectDialog(editingSubjectId);toast(records.length+' arquivo(s) salvo(s) no aparelho.');
 }
 function setPath(object,key,value){const parts=key.split('.');if(parts.length===2)object[parts[0]][parts[1]]=value;else object[key]=value;}
 async function handleField(target){
  if(target.dataset.field){
  const key=target.dataset.field;let value=target.type==='checkbox'?target.checked:target.value;
+ if(key!=='materialsReviewed')invalidateMaterials();
  if(key.startsWith('member-'))activity.members[Number(key.split('-')[1])]=value;
  else setPath(activity,key,value);
  if(key==='subjectId'){activity.professor=currentSubject()?.professor||'';render();}
  else if(['customSite','website.hasMedia','website.github','includeManual'].includes(key))render();
- scheduleSave();updateBrief();
+ scheduleSave();updateBrief();refreshStageLocks();
  } else if(target.dataset.profile){
  setPath(profile,target.dataset.profile,target.type==='checkbox'?target.checked:target.value);
  await put('settings',{...profile,id:'profile'});document.body.classList.toggle('no-motion',!profile.motion);
  }else if(target.dataset.subject){
- const s=subjects.find(s=>s.id===editingSubjectId);setPath(s,target.dataset.subject,target.value);await put('subjects',structuredClone(s));
+ const s=subjects.find(s=>s.id===editingSubjectId);setPath(s,target.dataset.subject,target.value);invalidateMaterials();scheduleSave();await put('subjects',structuredClone(s));
  }else if(target.id==='search'){search=target.value;$('#draft-list').innerHTML=draftItems();}
 }
 async function handleClick(event){
  const t=event.target.closest('button');if(!t)return;
- if(t.dataset.view){await saveActivity();view=t.dataset.view;render();window.scrollTo(0,0);return;}
- if(t.dataset.step!==undefined){await saveActivity();step=Number(t.dataset.step);render();$('.editor').scrollIntoView({behavior:'smooth',block:'start'});return;}
- if(t.dataset.mode){activity.mode=t.dataset.mode;await saveActivity();render();return;}
- if(t.dataset.category){const c=CATEGORIES.find(c=>c.id===t.dataset.category);if(activity.deliveries.some(d=>d.category===c.id))activity.deliveries=activity.deliveries.filter(d=>d.category!==c.id);else activity.deliveries.push({category:c.id,format:c.formats[0]});await saveActivity();render();return;}
- if(t.dataset.format){const i=activity.deliveries.findIndex(d=>d.category===t.dataset.cat&&d.format===t.dataset.format);if(i>=0)activity.deliveries.splice(i,1);else activity.deliveries.push({category:t.dataset.cat,format:t.dataset.format});await saveActivity();render();return;}
- if(t.dataset.websiteChoice){activity.website[t.dataset.websiteChoice]=t.dataset.value;await saveActivity();render();return;}
+ if(t.dataset.view){await saveActivity();view=t.dataset.view;stageMessages=[];render();logoTransition();window.scrollTo(0,0);return;}
+ if(t.dataset.step!==undefined){await goStep(Number(t.dataset.step));return;}
+ if(t.dataset.mode){invalidateMaterials();activity.mode=t.dataset.mode;await saveActivity();render();return;}
+ if(t.dataset.category){invalidateMaterials();const c=CATEGORIES.find(c=>c.id===t.dataset.category);if(activity.deliveries.some(d=>d.category===c.id))activity.deliveries=activity.deliveries.filter(d=>d.category!==c.id);else activity.deliveries.push({category:c.id,format:c.formats[0]});await saveActivity();render();return;}
+ if(t.dataset.format){invalidateMaterials();const i=activity.deliveries.findIndex(d=>d.category===t.dataset.cat&&d.format===t.dataset.format);if(i>=0)activity.deliveries.splice(i,1);else activity.deliveries.push({category:t.dataset.cat,format:t.dataset.format});await saveActivity();render();return;}
+ if(t.dataset.websiteChoice){invalidateMaterials();activity.website[t.dataset.websiteChoice]=t.dataset.value;await saveActivity();render();return;}
  if(t.dataset.editSubject){libraryPeriod='1';subjectDialog(t.dataset.editSubject);return;}
  if(t.dataset.period){libraryPeriod=t.dataset.period;subjectDialog(editingSubjectId);return;}
- if(t.dataset.deleteFile){const f=files.find(f=>f.id===t.dataset.deleteFile);await batch([{store:'files',type:'delete',id:f.id}]);files=files.filter(x=>x.id!==f.id);render();if(f.ownerType==='subject')subjectDialog(f.ownerId);toast('Arquivo removido.');return;}
+ if(t.dataset.deleteFile){invalidateMaterials();const f=files.find(f=>f.id===t.dataset.deleteFile);await batch([{store:'files',type:'delete',id:f.id}]);files=files.filter(x=>x.id!==f.id);render();if(f.ownerType==='subject')subjectDialog(f.ownerId);await saveActivity();toast('Arquivo removido.');return;}
  if(t.dataset.downloadFile){const f=files.find(f=>f.id===t.dataset.downloadFile);download(f.blob,f.name);return;}
  if(t.dataset.openActivity){await saveActivity();activity=structuredClone(activities.find(a=>a.id===t.dataset.openActivity));await put('settings',{id:'active',activityId:activity.id});view='activity';step=0;render();window.scrollTo(0,0);return;}
  if(t.dataset.duplicate){const original=activities.find(a=>a.id===t.dataset.duplicate);const clone={...structuredClone(original),id:uid(),title:original.title+' (cópia)',status:'draft',createdAt:Date.now(),updatedAt:Date.now()};const copies=files.filter(f=>f.ownerType==='activity'&&f.ownerId===original.id).map(f=>({...f,id:uid(),ownerId:clone.id}));if(files.reduce((n,f)=>n+f.size,0)+copies.reduce((n,f)=>n+f.size,0)>MAX_TOTAL)throw new Error('Não há espaço para duplicar os anexos. Exporte um backup e libere espaço.');await batch([{store:'activities',value:clone},...copies.map(value=>({store:'files',value}))]);activities.push(clone);files.push(...copies);render();toast('Atividade duplicada com os anexos.');return;}
@@ -221,7 +226,7 @@ async function handleClick(event){
  const action=t.dataset.action;
  if(['copy','export-txt','export-md','export-zip','share'].includes(action)){await exportAction(action);return;}
  switch(action){
- case 'next':case 'previous':await saveActivity();step+=action==='next'?1:-1;render();$('.editor').scrollIntoView({behavior:'smooth',block:'start'});break;
+ case 'next':case 'previous':await goStep(step+(action==='next'?1:-1));break;
  case 'confirm-group':{const count=Number(activity.groupSize);if(!Number.isInteger(count)||count<2||count>30){toast('O grupo deve ter entre 2 e 30 integrantes.');return;}activity.members=Array.from({length:count},(_,i)=>activity.members[i]||'');await saveActivity();render();break;}
  case 'add-subject':await createSubject();break;
  case 'edit-current-subject':libraryPeriod=activity.period;subjectDialog(activity.subjectId);break;
@@ -229,8 +234,14 @@ async function handleClick(event){
  case 'delete-subject':{const id=editingSubjectId;if(activities.some(a=>a.subjectId===id)){toast('Esta matéria está em uso. Troque a matéria das atividades antes de excluí-la.');return;}confirmDialog('Excluir matéria?','A matéria, os PTDs e as notas serão excluídos.',async()=>{await removeOwner('subject',id);subjects=subjects.filter(s=>s.id!==id);files=files.filter(f=>!(f.ownerType==='subject'&&f.ownerId===id));editingSubjectId=null;render();});break;}
  case 'new':await saveActivity();activity=newActivity();await put('settings',{id:'active',activityId:activity.id});view='activity';step=0;await saveActivity();render();window.scrollTo(0,0);break;
  case 'camera':$('#camera-input').click();break;
+ case 'transfer-out':await saveActivity();download(await exportBackup(),'CK-transferencia-'+today()+'.json');toast('Envie esse arquivo ao outro aparelho e use Receber dados.');break;
+ case 'transfer-in':$('#transfer-input').click();break;
+ case 'web-page':await openWebPage();break;
+ case 'page-download':await downloadWebPage();break;
+ case 'page-publish':await publishWebPage();break;
+ case 'copy-page-link':try{await navigator.clipboard.writeText($('#published-url').value);toast('Link copiado.');}catch{$('#published-url').select();toast('Selecione e copie o link.');}break;
  case 'toggle-done':activity.status=activity.status==='done'?'draft':'done';await saveActivity();render();toast(activity.status==='done'?'Atividade concluída.':'Atividade reaberta.');break;
- case 'backup':download(await exportBackup(),'CK-backup-'+today()+'.json');toast('Backup completo exportado. Guarde-o em um lugar seguro.');break;
+ case 'backup':await saveActivity();download(await exportBackup(),'CK-backup-'+today()+'.json');toast('Backup completo exportado. Guarde-o em um lugar seguro.');break;
  case 'restore':$('#backup-input').click();break;
  case 'persist':{const granted=await navigator.storage?.persist?.();toast(granted?'Armazenamento persistente concedido. Continue fazendo backups.':'O navegador decide a proteção do armazenamento. Mantenha seu backup em dia.');break;}
  case 'install':await installApp();break;
@@ -245,7 +256,7 @@ async function installApp(){
 document.addEventListener('click',event=>handleClick(event).catch(fail));
 document.addEventListener('input',event=>{if(event.target.matches('input:not([type=file]):not([type=checkbox]),textarea'))handleField(event.target).catch(fail);});
 document.addEventListener('change',event=>{const t=event.target;if(t.dataset.upload)handleUpload(t).catch(fail);else if(t.matches('select,input[type=checkbox]'))handleField(t).catch(fail);});
-$('#camera-input').addEventListener('change',async e=>{try{await saveActivity();const saved=await addFiles(e.target.files,'activity',activity.id,{kind:'base'});files.push(...saved);e.target.value='';view='activity';step=2;render();toast('Foto adicionada aos materiais.');}catch(error){fail(error);}});
+$('#camera-input').addEventListener('change',async e=>{try{await saveActivity();const saved=await addFiles(e.target.files,'activity',activity.id,{kind:'base'});files.push(...saved);invalidateMaterials();await saveActivity();e.target.value='';view='activity';if(!firstIncompleteStage(activity,profile,files,2))step=2;render();toast('Foto adicionada aos materiais.');}catch(error){fail(error);}});
 $('#backup-input').addEventListener('change',event=>{const file=event.target.files[0];event.target.value='';if(!file)return;confirmDialog('Restaurar backup?','Isso substitui os dados atuais deste aparelho. Exporte um backup antes, se quiser mantê-los.',async()=>{await saveActivity();await restoreBackup(file);await loadData();render();toast('Backup restaurado com sucesso.');});});
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')saveActivity().catch(()=>{});});
 window.addEventListener('beforeunload',()=>{if(saveTimer)saveActivity().catch(()=>{});});
@@ -259,12 +270,13 @@ async function loadData(){
  if(new URLSearchParams(location.search).has('new'))activity=newActivity();
  await put('settings',{id:'active',activityId:activity.id});await saveActivity();
 }
+initMotion(()=>profile.motion);
 async function init(){
  try{await loadData();render();}catch(error){$('#app').innerHTML='<div class="empty-state"><h1>Não foi possível abrir o armazenamento.</h1><p>Verifique se o navegador permite armazenamento local e tente recarregar. Seus dados existentes não foram apagados.</p></div>';fail(error);}
  const intro=$('#intro');
  if(sessionStorage.getItem('ck-intro')||!profile.motion||matchMedia('(prefers-reduced-motion: reduce)').matches)intro.remove();
  else{sessionStorage.setItem('ck-intro','1');setTimeout(()=>intro.remove(),1800);}
- if(new URLSearchParams(location.search).has('camera')){step=2;render();toast('Toque no botão de câmera para fotografar a atividade.');}
+ if(new URLSearchParams(location.search).has('camera')){if(!firstIncompleteStage(activity,profile,files,2))step=2;render();toast('Toque no botão de câmera para fotografar a atividade.');}
  history.replaceState(null,'',location.pathname);
  if('serviceWorker' in navigator){
  try{const reg=await navigator.serviceWorker.register('./sw.js');const showUpdate=()=>{if(reg.waiting&&navigator.serviceWorker.controller){updatingWorker=reg.waiting;if(view==='profile')render();toast('Nova versão disponível. Use Atualizar aplicativo no perfil.');}};
@@ -274,3 +286,73 @@ async function init(){
  }
 }
 init();
+
+function invalidateMaterials(){
+ activity.materialsReviewed=false;
+ const checkbox=$('[data-field="materialsReviewed"]');if(checkbox)checkbox.checked=false;
+}
+function stageFeedback(){
+ return stageMessages.length?'<div id="stage-errors" class="stage-errors" role="alert" tabindex="-1"><strong>Antes de continuar</strong><ul>'+stageMessages.map(e=>'<li>'+esc(e)+'</li>').join('')+'</ul></div>':'';
+}
+function showStageErrors(){const el=$('#stage-errors');if(el){el.focus({preventScroll:true});el.scrollIntoView({behavior:profile.motion?'smooth':'instant',block:'center'});}toast(stageMessages[0]);}
+function refreshStageLocks(){
+ for(const el of document.querySelectorAll('[data-step]')){const n=Number(el.dataset.step);el.setAttribute('aria-disabled',String(n>step&&!!firstIncompleteStage(activity,profile,files,n)));}
+}
+async function goStep(target){
+ if(target<0||target>3)return;
+ if(target>step){const missing=firstIncompleteStage(activity,profile,files,target);if(missing){step=missing.stage;stageMessages=missing.errors;render();showStageErrors();return;}}
+ await saveActivity();stageMessages=[];step=target;render();logoTransition();$('.editor').scrollIntoView({behavior:profile.motion?'smooth':'instant',block:'start'});
+}
+function transferSection(){
+ return '<section class="settings-card transfer-card"><div class="section-heading"><div><span class="overline">COMPUTADOR ↔ CELULAR</span><h2>Levar meus dados</h2><p>Atividades, matérias, PTDs, perfil e anexos em um arquivo.</p></div>'+icon('copy','heading-icon')+'</div><ol class="transfer-steps"><li>Neste aparelho, toque em <strong>Exportar transferência</strong>.</li><li>Envie o arquivo por cabo, AirDrop, Quick Share, Drive ou outro meio de sua preferência.</li><li>Abra o CK no outro aparelho e use <strong>Receber dados</strong>.</li></ol><p class="muted">Não precisa de banco de dados na nuvem nem de uma conta no app. A transferência é manual; depois de fazer novas alterações, exporte novamente. O arquivo contém seus dados pessoais e documentos.</p><div class="button-wrap">'+button('Exportar transferência','transfer-out','download','primary')+button('Receber dados','transfer-in','upload','secondary')+'</div></section>';
+}
+$('#transfer-input').addEventListener('change',async event=>{
+ const file=event.target.files[0];event.target.value='';if(!file)return;
+ try{
+  transferData=await readBackup(file);
+  const d=$('#dialog');d.innerHTML='<div class="dialog-head"><h2>Receber dados deste arquivo</h2></div><div class="dialog-body"><p>'+transferData.activities.length+' atividades · '+transferData.subjects.length+' matérias · '+transferData.files.length+' anexos</p><p>Atividades e matérias com a mesma identificação serão atualizadas com os dados do arquivo. Itens que só existem neste aparelho serão mantidos. Nenhum dado será apagado em bloco.</p><label class="toggle"><input id="transfer-profile" type="checkbox" checked><span>Trazer também o perfil do outro aparelho<small>Substitui meu nome e minhas preferências atuais.</small></span></label></div><div class="dialog-footer">'+button('Cancelar','close-dialog',null,'secondary')+'<button class="btn primary" id="transfer-confirm">Importar dados</button></div>';d.showModal();
+  $('#transfer-confirm').onclick=async()=>{
+   const control=$('#transfer-confirm');control.disabled=true;
+   try{await saveActivity();await restoreBackup(transferData,{mode:'merge',includeProfile:$('#transfer-profile').checked});await loadData();stageMessages=[];view='profile';render();d.close();transferData=null;logoTransition();toast('Dados recebidos. Os itens exclusivos deste aparelho foram mantidos.');}
+   catch(error){control.disabled=false;fail(error);}
+  };
+ }catch(error){fail(error);}
+});
+async function resolveActivityFiles(){
+ const selected=relevantFiles(activity,effectiveFiles()),resolved=[];
+ for(const f of selected){let blob=f.blob;if(!blob){const r=await fetch(f.url);if(!r.ok)throw new Error('Não foi possível ler '+f.name+'. Abra o app online e tente novamente.');blob=await r.blob();}resolved.push({...f,blob});}
+ return resolved;
+}
+function pageProgress(message){const el=$('#page-progress');if(el)el.textContent=message;}
+async function openWebPage(){
+ if(!requireValid()||busy)return;await saveActivity();
+ const d=$('#dialog');d.dataset.publishing='true';
+ d.innerHTML='<div class="dialog-head"><h2>Preparando sua página</h2></div><div class="dialog-body"><div class="page-loading"><img src="./assets/ck-logo.webp" alt=""><div class="orbit"></div></div><p id="page-progress" role="status">Preparando prompt e arquivos…</p></div>';
+ d.showModal();busy=true;
+ try{
+  const {preparePage}=await import('./page-export.js');
+  preparedPage=await preparePage({title:activity.title,prompt:promptText(),files:await resolveActivityFiles()},pageProgress);
+  const total=preparedPage.documents.reduce((n,f)=>n+f.blob.size,0);
+  d.innerHTML='<div class="dialog-head"><div><span class="overline">UM LINK COM TODO O CONTEXTO</span><h2>Página para IA</h2></div>'+button('Fechar','close-dialog','close','ghost')+'</div><div class="dialog-body"><p>O prompt e os textos dos documentos ficam visíveis no HTML da página, sem login ou JavaScript. Os arquivos originais acompanham a publicação.</p><div class="publication-files">'+preparedPage.documents.map(doc=>'<div><strong>'+esc(doc.name)+'</strong><small>'+esc(doc.status)+'</small>'+(doc.warning?'<p>'+esc(doc.warning)+'</p>':'')+'</div>').join('')+'</div><p class="muted">'+preparedPage.documents.length+' anexos · '+bytes(total)+'. Imagens não têm OCR automático. Nenhuma opção garante leitura por todas as IAs ou disponibilidade eterna.</p><div class="button-wrap">'+button('Baixar página HTML','page-download','download','secondary')+'</div><p class="muted">O HTML baixado funciona como arquivo, com os anexos embutidos. Para enviar apenas um link, publique abaixo.</p><hr><h3>Publicar no GitHub Pages</h3><p class="muted">Use um repositório público com Pages já ativo: o repositório deste CK (Actions), ou outro repositório com Pages a partir da raiz/“docs” de uma branch. Cada publicação cria uma cópia em um endereço novo.</p><label for="publish-repo">Repositório</label><input id="publish-repo" placeholder="usuario/repositorio" value="'+esc(profile.publishRepo||'')+'" autocomplete="off"><label for="publish-token">Token GitHub (somente nesta publicação)</label><input id="publish-token" type="password" autocomplete="off" spellcheck="false" placeholder="Token com Contents: Read and write e Pages: Read"><p class="muted"><a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener noreferrer">Criar token de acesso limitado</a>: selecione apenas o repositório de destino. O token vai diretamente ao GitHub, não é salvo no app, no backup ou na página.</p><label class="toggle"><input id="publish-consent" type="checkbox"><span>Quero tornar públicos este prompt e todos os anexos listados<small>Inclui nome, integrantes, documentos e materiais. Remover depois do site não apaga automaticamente o histórico do Git.</small></span></label><p id="page-progress" role="status"></p><p class="muted">O link não expira automaticamente, mas depende de você manter o repositório e a hospedagem. Aguarde o deploy antes de enviá-lo à IA.</p></div><div class="dialog-footer">'+button('Publicar e obter link','page-publish','globe','primary')+'</div>';
+ }catch(error){d.close();throw error;}finally{busy=false;d.dataset.publishing='false';}
+}
+async function downloadWebPage(){
+ if(!preparedPage||busy)return;busy=true;pageProgress('Montando HTML com os anexos completos…');
+ try{const {standalonePage}=await import('./page-export.js');download(await standalonePage(preparedPage),safeName(preparedPage.title)+'-briefing.html');pageProgress('HTML salvo. Esse arquivo ainda não é um link público.');}
+ finally{busy=false;}
+}
+async function publishWebPage(){
+ if(!preparedPage||busy)return;
+ if(!$('#publish-consent').checked){pageProgress('Confirme a publicação pública dos materiais antes de continuar.');return;}
+ const repo=$('#publish-repo').value.trim();let token=$('#publish-token').value;$('#publish-token').value='';
+ if(!token.trim()){pageProgress('Informe seu token GitHub. Ele não será salvo.');return;}
+ const d=$('#dialog');busy=true;d.dataset.publishing='true';for(const el of d.querySelectorAll('button,input'))el.disabled=true;
+ try{
+  const {publishPage}=await import('./github-publish.js');const result=await publishPage({repo,token,bundle:preparedPage},pageProgress);token='';
+  profile.publishRepo=result.repo;await put('settings',{...profile,id:'profile'});
+  d.innerHTML='<div class="dialog-head"><h2>Arquivos enviados ao GitHub</h2></div><div class="dialog-body"><p>Aguarde o deploy do GitHub Pages antes de compartilhar. O endereço abaixo é o destino da publicação; o app não consegue confirmar se o deploy terminou.</p><label for="published-url">Link da página</label><input id="published-url" readonly value="'+esc(result.url)+'"><div class="button-wrap">'+button('Copiar link','copy-page-link','copy','primary')+'<a class="btn secondary" href="'+esc(result.url)+'" target="_blank" rel="noopener">Abrir página</a></div><p><a href="https://github.com/'+esc(result.repo)+'/actions" target="_blank" rel="noopener">Acompanhar publicação no GitHub</a></p><p class="muted">Guarde este link. A página é uma cópia do briefing no momento da publicação.</p></div><div class="dialog-footer">'+button('Concluir','close-dialog','check','primary')+'</div>';logoTransition();
+ }catch(error){pageProgress(error.message);}
+ finally{token='';busy=false;d.dataset.publishing='false';for(const el of d.querySelectorAll('button,input'))el.disabled=false;}
+}
+$('#dialog').addEventListener('cancel',event=>{if($('#dialog').dataset.publishing==='true')event.preventDefault();});
+$('#dialog').addEventListener('close',()=>{preparedPage=null;transferData=null;});

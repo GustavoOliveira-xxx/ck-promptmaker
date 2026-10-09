@@ -2,7 +2,7 @@ import http from 'node:http';
 import {readFile,stat} from 'node:fs/promises';
 import {resolve,extname,sep} from 'node:path';
 const root=resolve(process.argv.includes('--dist')?'dist':'.');
-const types={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json','.webmanifest':'application/manifest+json','.png':'image/png','.webp':'image/webp','.svg':'image/svg+xml','.pdf':'application/pdf'};
+const types={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.mjs':'text/javascript; charset=utf-8','.txt':'text/plain; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json','.webmanifest':'application/manifest+json','.png':'image/png','.webp':'image/webp','.svg':'image/svg+xml','.pdf':'application/pdf'};
 const server=http.createServer(async(req,res)=>{try{
  const url=new URL(req.url,'http://localhost');let pathname=decodeURIComponent(url.pathname);
  if(pathname.startsWith('/ck-promptmaker/'))pathname=pathname.slice('/ck-promptmaker'.length);
