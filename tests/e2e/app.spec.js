@@ -3,7 +3,7 @@ import {readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 async function boot(page){await page.goto('/ck-promptmaker/');await expect(page.getByRole('heading',{name:'Vamos dar contexto.'})).toBeVisible();await expect(page.locator('#intro')).toHaveCount(0);}
 async function subject(page){await page.getByRole('button',{name:'Cadastrar matéria',exact:true}).click();await page.getByLabel('Nome da matéria').fill('Biologia');await page.getByLabel('Professor(a) padrão').fill('Profa. Ana');}
-async function fill(page){await page.getByLabel('Título da atividade').fill('Biomas brasileiros');await page.getByLabel('Data de entrega').fill('2027-10-20');await page.locator('#activity-professor').fill('Profa. Ana');await page.getByLabel('Enunciado da atividade').fill('Compare os biomas brasileiros com exemplos, ameaças e medidas de preservação.');}
+async function fill(page){await expect(page.locator('#dialog')).not.toBeVisible();await page.getByLabel('Título da atividade').fill('Biomas brasileiros');await page.getByLabel('Data de entrega').fill('2027-10-20');await page.locator('#activity-professor').fill('Profa. Ana');await page.getByLabel('Enunciado da atividade').fill('Compare os biomas brasileiros com exemplos, ameaças e medidas de preservação.');}
 function readZip(buf){const entries=new Map();let i=0;while(buf.readUInt32LE(i)===0x04034b50){const size=buf.readUInt32LE(i+18),len=buf.readUInt16LE(i+26),extra=buf.readUInt16LE(i+28);const name=buf.subarray(i+30,i+30+len).toString('utf8');const start=i+30+len+extra;entries.set(name,buf.subarray(start,start+size));i=start+size;}return entries;}
 test('complete mobile flow exports real PTDs, camera image, media, logo and CPS manual; persists offline',async({page,context})=>{
  test.setTimeout(60000);const errors=[];page.on('pageerror',e=>errors.push(e.message));
@@ -139,3 +139,16 @@ test('CK click animation never blocks input and respects reduced motion',async({
  await page.getByRole('button',{name:'Meu perfil',exact:true}).click();await expect(page.locator('.ck-burst')).toHaveCount(0);
 });
 
+
+test('closing a subject does not erase text entered while storage is still saving',async({page})=>{
+ await boot(page);await subject(page);
+ await page.evaluate(()=>{
+  const original=Object.getOwnPropertyDescriptor(IDBTransaction.prototype,'oncomplete');
+  Object.defineProperty(IDBTransaction.prototype,'oncomplete',{configurable:true,get:original.get,set(handler){original.set.call(this,handler?event=>setTimeout(()=>handler.call(this,event),250):handler);}});
+ });
+ await page.getByRole('button',{name:'Concluir',exact:true}).click();
+ await page.getByLabel('Título da atividade').fill('Digitado durante salvamento');
+ await expect.poll(()=>page.evaluate(async()=>{const {getAll}=await import('./src/db.js');return (await getAll('activities'))[0]?.title;})).toBe('Digitado durante salvamento');
+ await expect(page.getByLabel('Título da atividade')).toHaveValue('Digitado durante salvamento');
+ await page.reload();await expect(page.getByLabel('Título da atividade')).toHaveValue('Digitado durante salvamento');
+});
