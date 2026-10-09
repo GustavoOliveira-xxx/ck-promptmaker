@@ -31,7 +31,9 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
+          name: ck-pages-${{ github.run_id }}-${{ github.run_attempt }}
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
-
+        with:
+          artifact_name: ck-pages-${{ github.run_id }}-${{ github.run_attempt }}
