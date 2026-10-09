@@ -1,0 +1,2270 @@
+MANUAL CPS - PDF INTEGRAL FORNECIDO PELO CRIADOR (2015)
+Transcricao automatica: o PDF original prevalece para layout, figuras e tabelas.
+
+--- PAGINA 1 DE 65 ---
+ 
+ 
+ 
+______________________________________________________________________ 
+ 
+Administração Central 
+Unidade do Ensino Médio e Técnico – Cetec 
+ 
+ 
+Manual para a elaboração 
+do Trabalho de Conclusão 
+de Curso das Escolas 
+Técnicas do Centro Paula 
+Souza 
+ 
+ 
+ 
+ 
+ 
+ 
+São Paulo 
+2015 
+
+--- PAGINA 2 DE 65 ---
+ 
+ 
+Governador  
+Geraldo Alckmin 
+ 
+Vice-Governador  
+Márcio França 
+Secretário do Desenvolvimento Econômico, Ciência, Tecnologia e Inovação 
+Márcio França 
+ 
+ 
+CENTRO ESTADUAL DE EDUCAÇÃO TECNOLÓGICA PAULA SOUZA 
+ 
+ 
+Presidente do Conselho Deliberativo 
+Laura Laganá  
+ 
+Diretora Superintendente 
+Laura Laganá  
+ 
+Vice-Diretor Superintendente 
+César Silva  
+ 
+Chefe de Gabinete da Superintendência 
+Luiz Carlos Quadrelli 
+ 
+Coordenadora da Pós-Graduação, Extensão e 
+Pesquisa 
+Helena Gemignani Peterossi  
+ 
+Coordenador do Ensino Superior de Graduação 
+Mariluci Alves Martino 
+ 
+Coordenador do Ensino Médio e Técnico 
+Almério Melquíades de Araújo  
+ 
+Coordenador de Infraestrutura 
+Hamilton Pacífico da Silva 
+ 
+Coordenador de Gestão Administrativa e Financeira 
+Armando Natal Maurício 
+ 
+Coordenador de Recursos Humanos 
+Elio Lourenço Bolzani 
+ 
+Assessora de Comunicação 
+Gleise Santa Clara 
+ 
+Coordenador de Inovação Tecnológica 
+Oswaldo Massambani 
+ 
+Coordenadora de Formação Inicial e Educação 
+Continuada 
+Clara Maria de Souza Magalhães 
+ 
+MANUAL PARA A ELABORAÇÃO DO TRABALHO DE CONCLUSÃO DE CURSO DAS 
+ESCOLAS TÉCNICAS DO CENTRO PAULA SOUZA 
+ 
+Elaboração: 
+Área de Gestão Pedagógica - Geped/Gse/Cetec 
+Centro de Gestão Documental - CGD 
+Colaboração: 
+Centro de Capacitação Técnica, Pedagógica e de Gestão Cetec Capacitações - Ceteccap/Cetec e Grupo 
+de Formulação e Análises Curriculares - Gfac/Cetec 
+Revisão Ortográfica: 
+Yara Maria Denadai Golfi 
+Rua dos Andradas, 140 –Santa Ifigênia – São Paulo - SP 
+Brasil – 01208-000 
+http://www.centropaulasouza.sp.gov.br 
+___________________________ 
+Copyright © 2015 - 1º edição  
+
+--- PAGINA 3 DE 65 ---
+ 
+ 
+Prezado (a) Aluno (a), 
+  
+Com o objetivo de facilitar o desenvolvimento do Trabalho de Conclusão de Curso 
+no que se refere às normas de formatação, o Grupo de Supervisão Educacional, em 
+conjunto com o Centro de Gestão Do cumental e com a colaboração do Centro de 
+Capacitação Técnica, Pedagógica e de Gestão  e do Grupo de Formulação e 
+Análises Curriculares  disponibiliza este Manual, que traz orientações quanto ao 
+desenvolvimento, apresentação, formatação e estética de acordo com as Normas 
+Técnicas da ABNT (para trabalhos acadêmicos e publicação de artigos) e quanto 
+aos padrões estabelecidos pelo Grupo de Supervisão Educacional para os aspectos 
+não contemplados pelas normas da ABNT. 
+Inicialmente são apresentados alguns conceito s essenciais para a elaboração de 
+seu trabalho acadêmico e, em seguida, de forma resumida e exemplificada, cada um 
+dos aspectos que o compõe.  
+Um ponto importante é que este manual não dispensa a orientação do seu 
+professor quanto à metodologia e elaboraçã o do Trabalho de Conclusão de 
+Curso (TCC), pois embora o TCC seja um processo interdisciplinar, a orientação do 
+TCC é de responsabilidade do professor com aulas atribuídas nos componentes 
+curriculares Planejamento do Trabalho de Conclusão de Curso e Desenv olvimento 
+do Trabalho de Conclusão de Curso.   
+
+--- PAGINA 4 DE 65 ---
+ 
+ 
+SUMÁRIO 
+ 
+1 INTRODUÇÃO ................................ ................................ ................................ ............ 6 
+2 PRODUTOS DO TRABALHO DE CONCLUSÃO DE CURSO  ................................ . 10 
+2.1 Monografia ................................ ................................ ................................ ............ 10 
+2.1.1 Estrutura da monografia ................................ ................................ ................... 10 
+2.1.1.1 Capa (Elemento obrigatório) ................................ ................................ .......... 11 
+2.1.1.2 Folha de rosto (Elemento obrigatório) ................................ .......................... 12 
+2.1.1.3 Dedicatória (Elemento opcional) ................................ ................................ .... 14 
+2.1.1.4 Agradecimentos (Elemento opcional) ................................ ........................... 14 
+2.1.1.5 Epígrafe (Elemento opcional) ................................ ................................ ......... 14 
+2.1.1.6 Resumo de língua vernácula e resumo em língua estrangeira (Elementos 
+obrigatórios)................................ ................................ ................................ ................ 15 
+2.1.1.7 Lista de ilustrações (Elemento opcional) ................................ ...................... 16 
+2.1.1.8 Lista de tabelas (Elemento opcional) ................................ ............................ 16 
+2.1.1.9 Lista de abreviaturas e siglas (Elemento opcional) ................................ ...... 16 
+2.1.1.10 Lista de símbolos (Elemento opcional) ................................ ....................... 17 
+2.1.1.11 Sumário (Elemento obrigatório) ................................ ................................ ... 17 
+2.1.2 Elementos textuais ................................ ................................ ............................ 18 
+2.1.2.1 Introdução (Elemento obrigatório) ................................ ................................  18 
+2.1.2.2 Desenvolvimento (Elemento obrigatório) ................................ ..................... 18 
+2.1.2.3 Considerações finais ou conclusão (Elemento obrigatório)........................ 18 
+2.1.3 Formato e margens ................................ ................................ ............................ 19 
+2.1.4 Espacejamento ................................ ................................ ................................ ... 20 
+2.1.5 Notas de rodapé (Elemento opcional) ................................ ..............................  20 
+2.1.6 Indicação de seção ................................ ................................ ............................ 20 
+2.1.7 Títulos sem indicativo numérico ................................ ................................ ....... 21 
+2.1.8 Elementos sem título e sem indicativo numérico ................................ ............ 21 
+2.1.9 Paginação ................................ ................................ ................................ ........... 21 
+
+--- PAGINA 5 DE 65 ---
+ 
+ 
+2.1.10 Numeração progressiva ................................ ................................ .................. 22 
+2.1.11 Siglas ................................ ................................ ................................ ................ 22 
+2.1.12 Equações e fórmulas ................................ ................................ ....................... 22 
+2.1.13 Ilustrações ................................ ................................ ................................ ........ 23 
+2.1.13.1 Quadros ................................ ................................ ................................ ......... 23 
+2.1.13.2 Gráficos ................................ ................................ ................................ ......... 24 
+2.1.13.3 Tabelas ................................ ................................ ................................ .......... 25 
+2.1.14 Citações ................................ ................................ ................................ ............ 25 
+2.1.14.1 Citação direta ................................ ................................ ................................  26 
+2.1.14.2 Citações diretas com até 3 (três) linhas ................................ ...................... 26 
+2.1.14.3 Citações diretas com mais de 3 (três) linhas ................................ .............. 26 
+2.1.14.4 Citação indireta ................................ ................................ ............................. 28 
+2.1.14.5 Citação de citação ................................ ................................ ......................... 28 
+2.1.14.6 Tradução em citação ................................ ................................ .................... 29 
+2.1.14.7 Citação de documentos jurídicos ................................ ................................  29 
+2.1.14.8 Citação de informação verbal ................................ ................................ ...... 30 
+2.1.15 Sistema de chamada ................................ ................................ ........................ 30 
+2.1.15.1 Sistema autor-data (Elemento obrigatório) ................................ ................. 31 
+2.1.16 Referências (Elemento obrigatório) ................................ ................................  32 
+2.1.16.1 Elementos essenciais ................................ ................................ ................... 32 
+2.1.16.2 Modelos de referências ................................ ................................ ................ 32 
+2.1.16.3 Monografia................................ ................................ ................................ ..... 33 
+2.1.17 Glossário (Elemento opcional) ................................ ................................ ........ 39 
+2.1.18 Apêndice(s) (Elemento opcional) ................................ ................................ .... 39 
+2.1.19 Anexo(s) (Elemento opcional) ................................ ................................ ......... 39 
+2.2 Protótipo com Manual Técnico ................................ ................................ ............ 40 
+2.2.1 Estrutura do protótipo com manual técnico ................................ .................... 40 
+2.2.2 Elementos pré-textuais ................................ ................................ ...................... 40 
+2.2.2.1 Capa (Elemento obrigatório) ................................ ................................ .......... 40 
+
+--- PAGINA 6 DE 65 ---
+ 
+ 
+2.2.2.2 Apresentação (Elemento opcional) ................................ ...............................  41 
+2.2.2.3 Sumário (Elemento obrigatório) ................................ ................................ ..... 41 
+2.2.3 Elementos textuais ................................ ................................ ............................ 41 
+2.2.3.1 Introdução (Elemento obrigatório) ................................ ................................  41 
+2.2.3.2 Desenvolvimento (Elemento obrigatório) ................................ ..................... 41 
+2.2.4 Elementos pós-textuais ................................ ................................ ..................... 42 
+2.2.4.1 Referências (Elemento obrigatório) ................................ ...............................  42 
+2.2.4.2 Glossário (Elemento opcional) ................................ ................................ ....... 42 
+2.2.4.3 Anexos (Elemento opcional) ................................ ................................ .......... 42 
+2.3 Maquete com Memorial Descritivo ................................ ................................ ...... 42 
+2.4 Artigo científico................................ ................................ ................................ ..... 43 
+2.4.1 Estrutura do artigo científico ................................ ................................ ............ 44 
+2.4.2 Elementos pré-textuais ................................ ................................ ...................... 45 
+2.4.2.1 Título e subtítulo (se houver) ................................ ................................ ......... 45 
+2.4.2.2 Autores ................................ ................................ ................................ ............ 45 
+2.4.2.3 Resumo na língua do texto (Elemento obrigatório) ................................ ...... 45 
+2.4.2.4 Palavras-chave na língua do texto (Elemento obrigatório) .......................... 46 
+2.4.3 Elementos textuais ................................ ................................ ............................ 47 
+2.4.3.1 Introdução (Elemento obrigatório) ................................ ................................  47 
+2.4.3.2 Desenvolvimento (Elemento obrigatório) ................................ ..................... 47 
+2.4.3.3 Considerações finais ou conclusão (Elemento obrigatório)........................ 47 
+2.4.4 Elementos pós-textuais ................................ ................................ ..................... 48 
+2.4.4.1 Título e subtítulo em língua estrangeira (Elemento obrigatório) ................. 48 
+2.4.4.2 Resumo em língua estrangeira (Elemento obrigatório) ...............................  49 
+2.4.4.3 Palavras-chave em língua estrangeira (Elemento obrigatório) .................... 49 
+2.4.4.4 Nota(s) explicativa(s) (Elemento opcional) ................................ ................... 49 
+2.4.4.5 Referências (Elemento obrigatório) ................................ ...............................  50 
+2.4.4.6 Glossário (Elemento opcional) ................................ ................................ ....... 50 
+2.4.4.7 Anexos (Elemento opcional) ................................ ................................ .......... 50 
+
+--- PAGINA 7 DE 65 ---
+ 
+ 
+2.4.5 Indicativo de seção ................................ ................................ ............................ 50 
+2.4.6 Numeração progressiva ................................ ................................ .................... 50 
+2.4.7 Citações ................................ ................................ ................................ .............. 51 
+2.4.8 Sistema de chamada numérico ................................ ................................ ......... 51 
+2.4.9 Siglas ................................ ................................ ................................ .................. 52 
+2.4.10 Equações e fórmulas ................................ ................................ ....................... 52 
+2.4.11 Ilustrações ................................ ................................ ................................ ........ 52 
+2.4.12 Tabelas ................................ ................................ ................................ ............. 52 
+2.4.13 Orientação geral sobre a formatação  ................................ ............................ 52 
+2.5 Projeto de pesquisa ................................ ................................ ..............................  53 
+2.5.1 Estrutura do projeto de pesquisa ................................ ................................ ..... 53 
+2.5.2 Elementos pré-textuais ................................ ................................ ...................... 54 
+2.5.2.1 Capa (Elemento opcional) ................................ ................................ .............. 54 
+2.5.2.2 Folha de rosto (Elemento obrigatório) ................................ .......................... 54 
+2.5.2.3 Lista de ilustrações (Elemento opcional) ................................ ...................... 54 
+2.5.2.4 Lista de tabelas (Elemento opcional) ................................ ............................ 55 
+2.5.2.5 Lista de abreviaturas e siglas (Elemento opcional) ................................ ...... 55 
+2.5.2.6 Lista de símbolos (Elemento opcional) ................................ ......................... 55 
+2.5.2.7 Sumário (Elemento obrigatório) ................................ ................................ ..... 55 
+2.5.3 Elementos textuais ................................ ................................ ............................ 55 
+2.5.4 Elementos pós-textuais ................................ ................................ ..................... 56 
+2.5.4.1 Referências ................................ ................................ ................................ ..... 56 
+2.6 Relatório técnico ................................ ................................ ................................ ... 56 
+2.6.1 Estrutura do relatório técnico ................................ ................................ ........... 56 
+2.6.2 Elementos pré-textuais ................................ ................................ ...................... 57 
+2.6.2.1 Capa (Elemento opcional) ................................ ................................ .............. 57 
+2.6.2.2 Folha de rosto (Elemento obrigatório) ................................ .......................... 57 
+2.6.2.3 Resumo na língua vernácula (Elemento obrigatório)  ................................ .. 57 
+2.6.2.4 Lista de ilustrações (Elemento opcional)  ................................ ..................... 57 
+
+--- PAGINA 8 DE 65 ---
+ 
+ 
+2.6.2.5 Lista de tabelas (Elemento opcional)  ................................ ........................... 58 
+2.6.2.6 Lista de abreviaturas e siglas (Elemento opcional)  ................................ ..... 58 
+2.6.2.7 Lista de símbolos (Elemento opcional)  ................................ ........................ 58 
+2.6.2.8 Sumário (Elemento obrigatório)  ................................ ................................ .... 58 
+2.6.3 Elementos textuais ................................ ................................ ............................ 58 
+2.6.3.1 Introdução ................................ ................................ ................................ ....... 58 
+2.6.3.2 Desenvolvimento (Elemento obrigatório) ................................ ..................... 58 
+2.6.3.3 Considerações finais ou conclusão (Elemento obrigatório)........................ 59 
+2.6.4 Elementos pós-textuais ................................ ................................ ..................... 59 
+2.6.4.1 Referências ................................ ................................ ................................ ..... 59 
+2.7 Outros ................................ ................................ ................................ .................... 59 
+REFERÊNCIAS  ................................ ................................ ................................ ........... 61 
+
+--- PAGINA 9 DE 65 ---
+6 
+ 
+1 INTRODUÇÃO 
+ 
+Todos os cursos Técnicos Modulares e Técnicos Integrados ao Médio contemplam 
+os componentes relacionados ao Trabalho de Conclusão de Curso como uma 
+atividade que permite ao aluno articular os componentes curriculares, a partir das 
+experiências vivenciadas nos estudos teóricos e práticos, tanto na escola técnica 
+quanto em suas experiências cotidianas e nas organizações.  
+O Trabalho de Conclusão de Curso envolve dois componentes: Planejamento de 
+Trabalho de Conclusão de Curso (PTCC) e Desenvolvimento de Trabalho de 
+Conclusão de Curso (DTCC) que têm como objetivo sistematizar as competências 
+previstas no perfil de conclusão do curso técnico ou integrado, permitindo ao aluno 
+um maior contato com o seu campo de atuação profissional, suas demandas, 
+desafios e oportunidades. 
+A primeira etapa do trabalho de conclusão de curso, o PTCC, tem como principais 
+objetivos a definição do c ronograma de trabalho, formulação do problema de 
+pesquisa, construção das hipóteses e elaboração dos objetivos e da justificativa. 
+A segunda etapa do trabalho conclusão de curso, o DTCC, deverá envolver 
+necessariamente uma pesquisa empírica e pesquisa bibl iográfica. A pesquisa 
+empírica contempla a coleta de dados, que poderá ser realizada no local de 
+trabalho, estágio ou, quando for o caso, por meio de visitas técnicas e entrevistas 
+com profissionais da área.  
+De acordo com o artigo 1º, § 2º do Regulamento Geral do Trabalho de Conclusão de 
+Curso – TCC, “em todas as habilitações obrigatoriamente o TCC será composto de 
+uma apresentação escrita”  e, em regulamento específico da unidade será definido, 
+de acordo com a natureza e o perfil do técnico que pretende fo rmar, qual dos 
+produtos abaixo corresponderá à representação escrita do TCC: 
+a) Monografia; 
+b) Protótipo com Manual Técnico; 
+c) Maquete com Memorial Descritivo; 
+d) Artigo científico; 
+e) Projeto de pesquisa; 
+f) Relatório Técnico. 
+
+--- PAGINA 10 DE 65 ---
+7 
+ 
+No seu §3º - Poderão compor o TCC, os produto s abaixo descritos, desde que 
+associados a um dos produtos descritos nas alíneas 1 a 6 do parágrafo anterior: 
+ novas técnicas e procedimentos; 
+ preparações de pratos e alimentos; 
+ ficha técnica de alimentos e bebidas:  elementos e procedimentos 
+detalhados de elaboração de cardápio, com justificativa de cada elemento 
+componente e a base de pesquisa, bem como os efeitos que se visa obter 
+com o referido prato.; 
+ softwares, aplicativos e EULA (End Use License Agreement) : documento 
+online que explicita as regras de uso e licença sobre um software ou 
+aplicativo online. Similar a um contrato de uso virtual, define as relações 
+de consumo estabelecidas, protegendo os direitos do consumidor, os 
+direitos autorais e copyright dos produtores em âmbito nacional e 
+internacional; 
+ áreas de cultivo; 
+ áudios e vídeos; 
+ resenhas de vídeos ; 
+ apresentações musicais, de dança e teatrais; 
+ exposições fotográficas; 
+ memorial fotográfico: coleção de imagens com o propósito de 
+reconstituição ou evidência de certas características para as quais  se 
+pretende chamar atenção. Pode apontar para certo tipo de habitantes de 
+uma região, as características históricas da mesma, acompanhar um 
+memorial descritivo, dentre outras; 
+ desfiles ou exposições de roupas, calçados e acessórios; 
+ elaboração de manuais técnicos: documentos que visam descrever os 
+usos e procedimentos previstos para o objeto estudado, contendo 
+restrições de uso, especificações técnicas, problemas possíveis, 
+perguntas frequentes, dentre outros elementos;  
+ parecer técnico: pronunciamento por escrito de uma opinião técnica que 
+deve ser assinado e datado, sobre determinada situação que exija 
+conhecimentos técnicos. O parecer deve ser sustentado em bases 
+confiáveis e escrito com o objetivo de esclarecer, interpretar e explicar 
+certos fatos para um interlocutor  não tão especializado quanto o 
+
+--- PAGINA 11 DE 65 ---
+8 
+ 
+parecerista, de preferência usando como referências artigos científicos 
+comprovados ou leis que expliquem sua opinião; 
+ esquemas, diagramas : demonstrações gráficas de processos e 
+procedimentos, identificando c ada etapa de um determinado processo, 
+suas possíveis falhas, pontos de decisão, envolvimento de terceiros. 
+Constitui-se em um mapeamento processual que pode ser facilmente 
+visualizável e acompanhado por leigos ou especialistas ; Criação, 
+Diagramação Gráfica , Arte Final e Design Gráfico: conjunto de técnicas 
+responsáveis por materiais de divulgação e veiculação de produtos e 
+concepções artísticas, como adequação de textos e informações em 
+encartes de dvd, resenhas, sinopses, concepção gráfica, dentre outras; 
+ projeto técnico com memorial descritivo; 
+ portfólio: uma coleção de trabalhos realizados por uma empresa ou um 
+profissional. Demonstra um registro de evidências de trabalhos realizados 
+ou em andamento, de maneira organizada e evidenciando uma trajetória 
+definida pelo profissional; 
+ modelagem de Negócios: tipo de documento que reúne de maneira visual 
+e documental os elementos relacionais envolvidos em um novo modelo de 
+negócios. Em sua estrutura visual  há  nove blocos correlacionados que 
+podem ser descritos, e m sua forma documental, como: segmento de 
+clientes, proposta de valor, canais, relacionamentos, fontes de receita, 
+atividades-chave, recursos -chave, parcerias, estrutura de custos. A 
+maneira como se correlacionam é o principal a ser posto em evidência, 
+apresenta uma natureza mais dinâmica e menos linear do que o plano de 
+negócios; 
+ plano de negócios : também chamado "plano empresarial", é um 
+documento que especifica, em linguagem escrita, um negócio que se quer 
+iniciar ou que já está iniciado. Mais complexo d o que o modelo de 
+negócios, encontra-se dividido em: 
+o Capa e Sumário; 
+o Sumário Executivo; 
+o Planejamento estratégico do negócio; 
+o Descrição da Empresa/empreendimento; 
+
+--- PAGINA 12 DE 65 ---
+9 
+ 
+o Produtos e serviços; 
+o Análise de Mercado; 
+o Plano de Marketing; 
+o Plano Financeiro; 
+o Anexos. 
+
+--- PAGINA 13 DE 65 ---
+10 
+ 
+2 PRODUTOS DO TRABALHO DE CONCLUSÃO DE CURSO 
+ 
+A escolha do(s) produto(s) do Trabalho de Conclusão de Curso deve ser definida no 
+Regulamento Próprio da Unidade Escolar e deve considerar as especificidades dos 
+cursos existentes.  
+ 
+2.1 Monografia  
+ 
+Documento que apresenta  o resultado de uma pesquisa. Deve ser feito sob a 
+coordenação de um orientador. Trabalho de c onclusão de curso de graduação, 
+trabalho de graduação interdisciplinar, trabalho de conclusão de curso de 
+especialização e/ou aperfeiçoamento.  
+ 
+2.1.1 Estrutura da monografia  
+ 
+Elementos pré-textuais Obrigatório Opcional 
+Capa     
+Folha de rosto     
+Dedicatória     
+Agradecimentos     
+Epígrafe     
+Resumo em língua nacional     
+Resumo em língua estrangeira     
+Lista de ilustrações     
+Lista de tabelas     
+Lista de abreviaturas e siglas     
+Lista de símbolos     
+Sumário     
+   
+   
+
+--- PAGINA 14 DE 65 ---
+11 
+ 
+   
+Elementos textuais Obrigatório Opcional 
+Introdução     
+Desenvolvimento     
+Considerações finais ou Conclusão     
+Elementos pós-textuais     
+Referências     
+Glossário     
+Apêndices     
+Anexos     
+ 
+2.1.1.1 Capa (Elemento obrigatório) 
+ 
+Informações que devem conter na capa: 
+ 
+a) nome da instituição; 
+b) nome da unidade; 
+c) nome do curso;  
+d) nome do(s) autor(es); 
+e) título do trabalho; 
+f) subtítulo quando houver; 
+g) local (cidade) da instituição onde deve ser apresentado; 
+h) ano de entrega. 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGINA 15 DE 65 ---
+12 
+ 
+ 
+ 
+MODELO 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+2.1.1.2 Folha de rosto (Elemento obrigatório) 
+ 
+Os elementos devem ser apresentados na seguinte ordem: 
+ 
+a) nome do(s) autor(es); 
+NOME DA INSTITUIÇÃO 
+NOME DA UNIDADE  
+Nome do Curso 
+ 
+ 
+Nome completo dos alunos (Autores) 
+ 
+ 
+ 
+ 
+TITULO DO TRABALHO: subtítulo(se houver)  
+  
+ 
+ 
+ 
+ 
+São Paulo                           
+2015 
+ 
+ 
+ 
+Fonte Arial 14 
+Negrito em caixa alta 
+Alinhamento: Centralizado 
+ 
+Fonte Arial 14  
+Negrito 
+Alinhamento: Centralizado 
+ 
+ 
+Fonte Arial 14  
+Título negrito: em 
+caixa alta 
+Subtítulo: negrito 
+minúscula 
+Alinhamento: 
+Centralizado 
+ 
+Fonte Arial 14  
+Negrito minúscula 
+Alinhamento: Centralizado 
+ 
+Fonte Arial 14 
+Negrito em caixa baixa 
+(Minúscula) 
+Alinhamento: Centralizado 
+ 
+ 
+
+--- PAGINA 16 DE 65 ---
+13 
+ 
+b) título; 
+c) subtítulo (se houver); 
+d) nota explicativa: relata acerca do caráter acadêmico do documento (trabalho 
+acadêmico, trabalho de conclusão de curso, monografia, dissertação, etc), o 
+objetivo, o grau pretendido, a instituição onde foi apresentado, a disciplina ou 
+área, e o nome do orientador. Essa nota é transcrita com letra Arial 11, com 
+espaçamento simples e alinhada a partir do centro da página para a direita;  
+e) nome do orientador; 
+f) local (cidade) da instituição onde deve ser apresentado; 
+g) ano de entrega 
+ 
+Modelo de folha de rosto  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+[Digite uma citação do documento ou o resumo de um ponto 
+interessante. Você pode posicionar a caixa de texto em qualquer 
+lugar do documento. Use a guia Ferramentas de Desenho para 
+alterar a formatação da caixa de texto de citação.] 
+ 
+Nome completo dos alunos (Autores)  
+ 
+ 
+ 
+TITULO DO TRABALHO: subtítulo (se houver)  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+São Paulo                                            
+2015 
+ 
+ 
+Trabalho de Conclusão de Curso 
+apresentado ao Curso Técnico 
+em xxxxx da Etec xxxxxx, 
+orientado pelo Prof. xxxxxx, 
+como requisito parcial para 
+obtenção do título de técnico em 
+xxxxxxxx. 
+Fonte Arial 14  
+Negrito 
+Alinhamento: Centralizado 
+ 
+ Fonte Arial 14  
+Título Negrito: em caixa alta 
+Subtítulo negrito minúscula 
+Alinhamento: Centralizado 
+ 
+ 
+Fonte Arial 14  
+Título Negrito minúscula 
+Alinhamento: Centralizado 
+ 
+ 
+Fonte Arial 11 
+Alinhado à direita 
+Espaçamento simples 
+
+--- PAGINA 17 DE 65 ---
+14 
+ 
+2.1.1.3 Dedicatória (Elemento opcional) 
+  
+Espaço para que o(s) autor(es) preste(m)  homenagem a alguém. O tipo e o 
+tamanho da fonte ficam a critério do(s) autor(es). 
+ 
+2.1.1.4 Agradecimentos (Elemento opcional) 
+ 
+O(s) autor(es) pode(m) redigir um texto agradecendo àqueles que contribuíram na 
+elaboração do trabalho. O tipo e o tamanho da fonte ficam a critério do autor. 
+ 
+2.1.1.5 Epígrafe (Elemento opcional) 
+ 
+O autor pode apresentar uma citação, seguida de indicação de autoria, relacionada 
+com a matéria tratada no corpo do trabalho.   
+ 
+Modelo de Epígrafe 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+“Há duas formas para viver a vida: uma é 
+acreditar que não existe milagre, a outra é 
+acreditar que todas as coisas  são um 
+milagre.” 
+                                                             ALBERT EINSTEIN 
+ 
+ 
+
+--- PAGINA 18 DE 65 ---
+15 
+ 
+2.1.1.6 Resumo na língua vernácula  e resumo em língua estrangeira 
+(Elementos obrigatórios) 
+ 
+É a apresentação concisa dos pontos relevantes do documento. Deve-se ressaltar o 
+objetivo, o método, o s resultados e as conclusões do documento. Composto por 
+frases concisas, afirmativas  em parágrafo único  e sem enumeração de tópicos . 
+Deve-se usar o verbo na voz ativa e na terceira pessoa do singular. As palavras -
+chave devem estar localizadas no final do r esumo separadas  entre si por ponto  e 
+finalizadas também por ponto . As palavras -chave identificam os principais assuntos 
+que o trabalho aborda. O resumo deve seguir a ABNT, NBR 6028 (2003).  
+ 
+Modelo de resumo 
+ 
+ 
+ 
+ 
+
+--- PAGINA 19 DE 65 ---
+16 
+ 
+2.1.1.7 Lista de ilustrações (Elemento opcional) 
+ 
+Elaborada de acordo com a ordem apresentada no texto.  Cada item deve ser 
+designado por seu nome específico, travessão, título e respectivo número da folha 
+ou página. Quando necessário , recomenda-se a elaboração de lista própria para 
+cada tipo de ilu stração (desenhos, esquemas, fluxogramas, fotografias, gráficos, 
+mapas, organogramas, plantas, quadros, retratos e outras). Recomenda-se que seja 
+elaborada a lista quando o número de ilustrações ultrapasse  5 (cinco). 
+Modelo: 
+Quadro 1 – Título do quadro........................................................................................5 
+ 
+2.1.1.8 Lista de tabelas (Elemento opcional) 
+ 
+Elaborada de acordo com a ordem apresentada no texto. Cada item deve ser 
+designado por seu nome específico, título e respectivo número da folha ou página.  
+Modelo: 
+Tabela 1 – Título da tabela.........................................................................................65 
+ 
+2.1.1.9 Lista de abreviaturas e siglas (Elemento opcional) 
+ 
+Lista em ordem alfabética das abreviaturas e siglas utilizadas no texto, seguidas das 
+palavras ou expressões correspondentes grafadas por extenso.  
+Modelo: 
+Associação Brasileira de Normas Técnicas (ABNT) 
+ 
+ 
+ 
+ 
+
+--- PAGINA 20 DE 65 ---
+17 
+ 
+2.1.1.10 Lista de símbolos (Elemento opcional) 
+ 
+Elaborada de acordo com a ordem ap resentada no texto, seguidas do seu 
+significado. 
+Modelo: 
+O(n)  Ordem de um algoritmo 
+ 
+2.1.1.11  Sumário (Elemento obrigatório) 
+ 
+Enumeração das divisões, seções e outras partes de uma publicação, na mesma 
+ordem e grafia em que aparecem no texto . Deve ser el aborado conforme a ABNT 
+NBR 6027. 
+O sumário é o último elemento pré -textual, ou seja, antes da introdução. Segue m as 
+regras gerais e apresentação: 
+a) A palavra sumário deve estar centralizada, em negrito e caixa alta  
+(maiúscula). 
+b) A subordinação dos itens do s umário deve ser destacada pela apresentação 
+tipográfica utilizada no texto. 
+c) Os elementos pré-textuais não devem constar no sumário: 
+ 
+Modelo de sumário 
+ 
+ 
+ 
+ 
+ 
+SUMÁRIO 
+ 
+ 
+1      BIBLIOTECA...............................................................................................5 
+2      PAPEL DO PROFESSOR COMO MEDIADOR DA INFORMAÇÃO.........10 
+3      INCENTIVO À LEITURA............................................................................14  
+3.1   O que é ação cultural/ ação educativa....................................................17  
+3.1.1 Apresentação de projetos.......................................................................20  
+REFERÊNCIAS 
+
+--- PAGINA 21 DE 65 ---
+18 
+ 
+2.1.2 Elementos textuais  
+ 
+Parte do trabalho em que é exposto o seu conteúdo.  
+ 
+2.1.2.1 Introdução (elemento obrigatório) 
+ 
+Na introdução deve-se expor a finalidade e os objetivos do trabalho de modo que o 
+leitor tenha uma visão geral do tema abordado.  
+São elementos da introdução : o tema do  Trabalho de Conclusão de Curso  (TCC), 
+justificativas, problema de  pesquisa, hipóteses, objetivos do TCC (geral e 
+específicos), metodologia utilizada e principais autores pesquisados. 
+ 
+2.1.2.2 Desenvolvimento (elemento obrigatório) 
+ 
+É a parte principal do  trabalho e inclui o referencial teórico, conceitos relativos ao 
+tema do trabalho, recursos, apresentação e análise dos dados obtidos por meio de 
+pesquisa, resultados alcançados e discussão. Tópico que detalha a pesquisa ou 
+estudo. 
+ 
+2.1.2.3 Considerações finais ou conclusão (elemento obrigatório) 
+ 
+Parte final da monografi a na qual se apresentam as conclusões correspondentes 
+aos objetivos e hipóteses, apresentados na introdução.  
+Aqui serão apresentadas as respostas às hipóteses e objetivos do TCC. As opiniões 
+dos autores devidamente embasadas pelos dados, conceitos e infor mações 
+apresentados no desenvolvimento devem ser inseridas aqui. Podem ser incluídas 
+breves recomendações e sugestões para trabalhos futuros. 
+ 
+
+--- PAGINA 22 DE 65 ---
+19 
+ 
+2.1.3 Formato e margens  
+ 
+Os trabalhos devem ser digitados em papel branco ou reciclado A4 (210 mm x 297 
+mm), em uma só face da folha.  
+Para digitação, deverá ser utilizada fonte Arial, tamanho 12 para o texto e tamanho 
+menor para citações de mais de três linhas, notas de rodapé, paginação e legendas 
+das ilustrações e tabelas.  
+A configuração do espaçamento entre parágrafos deve ser: antes 0pt e depois 6pt e 
+entre linhas de 1,5. 
+Com relação às margens, a folha deve apresentar margem de 3cm à esquerda e na 
+parte superior, e de 2cm à direita e na parte inferior.  
+Modelo: 
+ 
+ 
+ 
+
+--- PAGINA 23 DE 65 ---
+20 
+ 
+2.1.4 Espacejamento  
+ 
+Espacejamento é o espaço entre as linhas e deve seguir as regras abaixo: 
+o texto deve ser digitado com 1,5 de espaço entrelinhas; 
+as citações longas com mais de 3 linhas, notas de rodapé, legendas das 
+ilustrações e das tabelas, natureza do trabalho, e os resumos em vernáculo e e m 
+língua estrangeira devem ser digitados em espaço simples; 
+para referências, o espaço entrelinhas é simples e devem ser separadas entre si 
+por um espaço simples em branco; 
+os títulos das seções devem ser separados do texto que os sucede  (vem depois) 
+por u m espaço entre linhas de 1,5. Da mesma forma, os títulos das subseções 
+devem ser separados do texto que os pr ecede (vem antes) e que os sucede por 
+um espaço entre as linhas de 1,5.  
+  
+2.1.5 Notas de rodapé (Elemento opcional) 
+ 
+Elemento opcional, mas quando  utilizada deve ser digitada dentro das margens, 
+ficando separadas d o texto por um espaço simples entre as linhas e por filete de 5 
+cm, a partir da margem esquerda. 
+Exemplo: 
+____________________ 
+1 Ney, João Luiz. Prontuário de Redação Oficial. 10 ed. Rio de Janeiro: Record, 2003. p. 73. 
+ 
+ 
+2.1.6 Indicação de seção  
+ 
+Cada seção (t ítulo de capítulo ) ou subseções  (subtítulo do capítulo)  deve ser 
+precedido por um indicativo numérico, em algarismo arábico, alinhado à esquerda, 
+separado por um espaço de caractere.  Os títulos das seções primárias devem ser 
+iniciados em uma nova página e devem ser separados do texto que os sucede por 
+
+--- PAGINA 24 DE 65 ---
+21 
+ 
+um espaço entre as linhas de 1,5. Os títulos das subseções devem ser separados do 
+texto que os precede e que os sucede por um espaço entre as linhas de 1,5.   
+Exemplo: 
+1 ESCRITA E LEITURA (Seção primária) 
+1.1 A importância da leitura (Subseção) 
+ 
+2.1.7 Títulos sem indicativo numérico 
+ 
+Os títulos sem indicativo numérico (errata, agradecimentos, lista de ilustrações, lista 
+de abreviaturas e siglas, lista de símbolos, resumos, sumário, referências, glossário, 
+apêndice(s), anexo(s) e índices(s)) devem ser centralizados. 
+ 
+2.1.8 Elementos sem título e sem indicativo numérico 
+ 
+Estão incluídos os elementos dedicatória e a(s) epígrafe(s). 
+ 
+2.1.9 Paginação 
+ 
+A partir da folha de rosto, todas as folhas devem ser contadas sequencialmente, 
+porém só será numerad a a partir da primeira folha da parte textual, ou seja, a 
+introdução, em algarismos arábicos, no canto superior direito da folha. 
+Modelo: 
+ 
+ 
+ 
+ 
+ 
+                                                                                                        5 
+1 INTRODUÇÃO 
+
+--- PAGINA 25 DE 65 ---
+22 
+ 
+2.1.10 Numeração progressiva 
+ 
+A numeração progressiva deve ser utilizada para evidenciar a sistematização do 
+conteúdo do trabalho. Destacam-se gradativamente os títulos das seções, utilizando-
+se o recurso negrito, no sumário e, de forma idêntica, no texto. 
+O CEETEP S definiu que nos trabalhos acadêmicos da instituição deve -se 
+utilizar letra maiúscula nas seções primárias e negrito em todas as seções. 
+ 
+Exemplo:  
+1 SEÇÃO PRIMÁRIA 
+1.1 Seção Secundária 
+1.1.1 Seção Terciária 
+1.1.1.1 Seção Quartenária 
+1.1.2.1.2 Seção Quinária 
+  
+2.1.11 Siglas 
+ 
+A sigla, quando mencionada pela primeira vez no texto, deve ser indicada entre 
+parênteses, precedida do nome completo. 
+Exemplo: 
+Centro Estadual de Educação Tecnológica Paula Souza (CEETEPS) 
+ 
+2.1.12 Equações e fórmulas 
+ 
+Aparecem destacadas no texto, de modo a facilitar sua leitura. Na sequência normal 
+do texto, é permitido o uso de uma  entrelinha maior que comporte seus elementos 
+(expoentes, índices e outros). Quando destacadas do parágrafo são  centralizadas e, 
+se necessário, deve -se num erá-las. Quando fragmentadas em mais de uma linha, 
+
+--- PAGINA 26 DE 65 ---
+23 
+ 
+por falta de espaço,  devem ser interrompidas antes do sinal de igualdade ou depois 
+dos sinais de adição, subtração, multiplicação e divisão. 
+Exemplo: 
+x2 + y2 = z2 (1) 
+(x2 + y2)/5 = n (2) 
+ 
+2.1.13 Ilustrações 
+ 
+Todas as ilustrações devem ter sua identificação na parte superior, precedida da 
+palavra designativa (desenho, esquema, fluxograma, fotografia, gráfico, mapa, 
+organograma, planta, quadro, retrato, figura, imagem, entre outros) seguida de seu 
+número de o rdem de ocorrência no texto. Na parte inferior deve -se indicar a fonte 
+consultada (obrigatória, mesmo que a ilustração seja produção do próprio autor). Em 
+caso de ilustração adaptada , informe “adaptado de” seguido d a citação da fonte. A 
+ilustração deve ser  citada no texto e inserida o mais próximo possível do trecho a 
+que se refere. 
+  
+2.1.13.1 Quadros 
+ 
+As informações aparecem em forma textual e não contém dados estatísticos. Possui 
+como objetivo simplificar o entendimento do texto.  
+
+--- PAGINA 27 DE 65 ---
+24 
+ 
+Exemplo: 
+Quadro 1 – Indicadores Epidemiológicos e operacionais –  
+Estado de São Paulo, 1998 e 1999  
+ 
+Fonte: (SÃO PAULO, 2000) 
+ 
+2.1.13.2 Gráficos 
+ 
+O gráfico deve ser utilizado de maneira que sua interpretação não necessite de 
+outras explicações. 
+Exemplo: 
+ 
+  Gráfico 1- Frequência de usuário por período 
+ 
+  
+  Fonte: Do próprio autor, 2014. 
+ 
+ 
+
+--- PAGINA 28 DE 65 ---
+25 
+ 
+2.1.13.3 Tabelas 
+ 
+Forma não discursiva de apresentar informações, nas quais o dado numérico se 
+destaca como informação central. As tabelas não são fechadas lateralmente e 
+também não t êm divisão entre linhas e colunas.  Devem ser citadas no texto, 
+inseridas o mais próximo possível do trecho a que se referem e padronizadas 
+conforme o Instituto Brasileiro de Geografia e Estatística (IBGE). 
+ 
+Exemplo: 
+ 
+Tabela 1 – Pessoas residentes em domicílios partic ulares, por sexo e situação do domicílio – 
+Brasil – 1980 
+ 
+Fonte: (IBGE, 1981) 
+ 
+ 
+2.1.14 Citações 
+ 
+Citações são trechos transcritos ou informações retiradas das publicações 
+consultadas para a realização do trabalho, ou seja, é a menção, no corpo do texto, 
+de uma informação extraída de outra fonte. As citações podem ser representadas 
+pelos sistemas numérico ou autor -data, devendo, o sistema escolhido, ser mantido 
+ao longo de todo o trabalho. Em casos omissos, neste manual, deve -se consultar a 
+ABNT 10520:2002 – Citações em documentos.  
+O CEETEPS definiu que nos trabalhos acadêmicos da instituição deve -se 
+utilizar o sistema autor-data. 
+ 
+ 
+
+--- PAGINA 29 DE 65 ---
+26 
+ 
+2.1.14.1 Citação direta 
+ 
+Transcrição textual de parte da obra do autor consultado, sem alteração. Deve-se 
+mencionar o número da página. 
+  
+2.1.14.2 Citações direta com até 3 (três) linhas 
+ 
+As citações diretas com até 3 linhas são inseridas no texto, entre aspas duplas, 
+como aparece no original, com indicação da fonte. Caso existam aspas no texto 
+original, substitua-as, na citação, por aspas simples. 
+Após a citação, a fonte aparece de forma simplificada, mencionando -se o 
+sobrenome do autor, seguido da data de publicação da obra citada e a página de 
+onde foi retirada a citação, entre parênteses. A fonte completa deve constar na Lista 
+de Referências no final do trabalho.  
+Exemplo: 
+No texto:  
+"Às vezes a falácia se revela apenas quando o locutor é questionado." 
+(CARRAHER, 1999, p. 12). 
+Na lista de referência: 
+CARRAHER, D. W. Senso crítico: do dia-a-dia às crenças humanas. São Paulo: 
+Pioneira, 1999.  
+ 
+2.1.14.3 Citações diretas com mais de 3 (três) linhas:    
+ 
+As citações diretas com mais de três linhas deverão ser apresentadas em destaque, 
+separadas do texto com um recuo de 4 cm da margem   esquerda, com letra menor   
+que a utilizada no texto e sem aspas.  
+O espacejamento entre linhas deverá ser simples.  
+ 
+
+--- PAGINA 30 DE 65 ---
+27 
+ 
+Exemplo: 
+para compreender o desencadeamento da abundante retórica que 
+fez com que a AIDS se construísse como 'fenômeno social', tem -se 
+frequentemente atribuído o principal papel à própria natureza dos 
+grupos mais atingidos e aos mecanismos de transmissão. Foi 
+construído então o discurso doravante estereotipado, sobre o sexo, o 
+sangue e a morte. (HERZLIC, 1992, p.30). 
+ 
+As citações diretas podem ser indicadas: 
+ Supressões: indicam interrupção ou omissão da citação sem alterar o sentido 
+do texto. São indicadas   pelo uso de reticências entre colchetes, no início, 
+meio ou final da citação.     
+Exemplo:  
+Segundo Bottomore (1987, p. 72) assinala “[...] a Sociologia , embora não pretenda 
+ser mais a ciência  capaz  de incluir  toda a sociedade  [...] pretende ser sinóptica”.  
+ Comentários: são indicados entre colchetes [  ], no inicio, meio ou final da 
+citação. 
+ 
+Exemplo: 
+Segundo Guajardo (2004, p. 33), a classificação da obesidade infantil, a qual está 
+em aumento em grande parte do mundo, apresenta uma serie de dificuldades que 
+relaciona a estatura com peso corporal [IMC - índice de massa corporal] já que estes 
+dois fatores são flutuantes por processos de crescimento e desenvolvimento.  
+ Ênfase ou destaqu e: as palavras ou expressões destacadas no texto, devem 
+ser indicadas usando a expressão “grifo nosso” entre parênteses após a 
+chamada da citação, ou “grifo do autor” caso o destaque já esteja na obra 
+consultada.   
+ 
+Exemplo: 
+"Caracterizada como formadora d e pessoal para apoio ao progresso social, a 
+universidade se objetiva [...]" (SOUZA, 1997, p. 9, grifo nosso).  
+ 
+
+--- PAGINA 31 DE 65 ---
+28 
+ 
+[...] desejo de criar uma literatura independente, diversa, de vez que, aparecendo o 
+classicismo como manifestação de passado colonial [...] (CANDIDO, 1993, v.2, p. 12, 
+grifo do autor) 
+ 
+2.1.14.4 Citação indireta 
+ 
+Texto baseado na obra do autor consultado, citação do conteúdo do autor com 
+alterações. A indicação da página é facultativa, podendo ou não ser mencionada. 
+Neste caso, as aspas não devem ser usadas.  
+Exemplo: 
+Como lembra Martins (1980), o futuro desenvolvimento da informação está cada dia 
+mais dependente de uma normalização. 
+Observação: 
+No final do trabalho, na listagem de referências, relaciona -se o documento 
+consultado de forma completa. 
+ 
+2.1.14.5 Citação de citação 
+ 
+Transcrição direta ou indireta   de um texto   em que não se teve acesso ao original, 
+ou seja, retirada de fonte citada  pelo autor da obra consultada.  
+Indicar o sobrenome do autor do texto original, seguido do termo “apud” (q ue 
+significa citado por, conforme, segundo) e do sobrenome do autor em cuja obra a 
+citação foi feita. Na Lista de Referências indica-se somente a obra consultada.  
+
+--- PAGINA 32 DE 65 ---
+29 
+ 
+Exemplo: 
+No texto:  
+Autor do material              Autores da obra  
+     Original                        consultada  
+ 
+Marinho (1980 apud MARCONI; LAKATOS, 1982) apresenta a formulação do 
+problema como uma fase de pesquisa que, sendo bem delimitado, simplifica e 
+facilita a maneira de conduzir a investigação.  
+ 
+Na lista de referências (somente a obra consultada): 
+MARCONI, M. A.; LAKATOS, E. M. Técnicas de pesquisa. São Paulo: Atlas, 1982.  
+ 
+2.1.14.6 Tradução em citação 
+ 
+O autor pode traduzir o trecho da citação, para isso deve -se incluir, após a chamada 
+da citação, a expressão tradução nossa, entre parênteses. 
+Exemplo: 
+“ao fazê -lo pode estar envolto em culpa, perversão, ódio de si mesmo [...] pode 
+julgar-se pecador e identificar -se com seu pecado.” (RAHNER, 1962, v.4, p.463, 
+tradução nossa). 
+ 
+2.1.14.7 Citação de documentos jurídicos 
+ 
+Citação de le gislação, jurisprudência e doutrina nacionais. Inclui também citação de 
+tratados internacionais. 
+
+--- PAGINA 33 DE 65 ---
+30 
+ 
+Exemplo: 
+No texto: 
+Conforme o art. 1º da Lei nº7.766, de 11 de maio de 1989: 
+ 
+Art. 1º O ouro em qualquer estado de pureza, em bruto ou refinado, 
+quando destinado ao mercado financeiro ou à execução da política 
+cambial do País, em operações realizadas com a interveniência de 
+instituições integrantes do Sistema Financeiro Nacional, na forma e 
+condições autorizadas pelo Banco Central do Brasil, será, desde a 
+extração, inclusive, considerado ativo financeiro ou instrumento 
+cambial. (BRASIL, 1989, p. 304). 
+ 
+Em referências: 
+ 
+BRASIL. Lei nº 7.766, de 11 de maio de 1989. Dispõe sobre o ouro, ativo financeiro 
+e sobre seu tratamento tributário. Lex: legislação federal e marginalia, São Paulo, v. 
+53, p. 304-306, 2. trim. 1989. 
+ 
+2.1.14.8 Citação de informação verbal  
+ 
+As informações obtidas de forma verbal (palestras, debates, comunicações etc.) 
+podem ser citadas, indicando entre parênteses a expressão informação verbal, 
+mencionando-se os dados disponíveis em nota de rodapé.  
+Exemplo: 
+No texto:  
+O entendimento, ou compreensão, é a base da leitura e do aprendizado desta 
+(informação verbal)¹  
+ 
+Em nota de rodapé:  
+___________________________  
+¹ Notícia fornecida por Gloria Esteves no Congresso Brasileiro de Leitura. 
+ 
+2.1.15 Sistema de chamada 
+ 
+Sistema de chamada é c omo a citação é mencionada no texto, ou seja, o  formato 
+que a citação é mencionada. 
+
+--- PAGINA 34 DE 65 ---
+31 
+ 
+Em toda citação deve ser indicado a fonte de onde foi extraída a inform ação, 
+respeitando os direitos autorais. Existem dois sistemas de chamada: autor -data e 
+numérico. Qualquer que seja o método adotado deve ser seguido constantemente 
+ao longo de todo o trabalho. Porém, o CEETEPS definiu que nos trabalhos 
+acadêmicos da instituição deve-se utilizar o sistema autor-data. 
+A referência das obras citadas ao longo do texto deve figurar em Referências, no 
+final do trabalho, ordenada alfabeticamente pelo sobrenome do autor da obra, para o 
+sistema autor-data. 
+ 
+2.1.15.1Sistema autor-data (Elemento obrigatório)  
+ 
+No sistema autor-data, a indicação da fonte deve apresentar: 
+a) autoria da informação citada: se autor ia for de um autor pessoa , deve 
+figurar o sobrenome; se autor -entidade, deve figurar o nome da instituição 
+responsável; se de autoria desconhecida, deve figurar o título da publicação; 
+b) ano de publicação; 
+c) número da página, quando citação direta. 
+Exemplo:  
+No texto: 
+A chamada “pandectística havia sido a forma particular pela qual o direito romano 
+fora integrado no século XIX na Alemanha em particular”. (LOPES, 2000, p. 225).  
+  
+Na lista de referências: 
+LOPES, José Reinaldo de Lima. O direito na história. São Paulo: Max Limonad, 
+2000.  
+
+--- PAGINA 35 DE 65 ---
+32 
+ 
+2.1.16 Referências (Elemento Obrigatório) 
+ 
+Elemento obrigatório, onde se encontra a relação de todos os d ocumentos citados 
+pelo autor, ou seja, obras efetivamente utilizadas na elaboração do trabalho. 
+Em casos omissos, neste manual, deve -se consultar a ABNT 6023:2002 – 
+Referências - Elaboração 
+O título da seção “REFERÊNCIAS” deve ser centralizado e não deve ser numerado. 
+É importante salientar que todas as citações diretas e indiretas incluídas no texto 
+devem constar em Referências (elemento pós -textual). As referências, que 
+identificarão a fonte das citações, deverão estar devidam ente normalizadas, 
+padronizadas. No corpo do texto, as citações serão identificadas pelo sistema autor -
+data.  
+As referências bibliográficas devem ser alinhadas à esquerda e digitadas utilizando 
+espaço simples entre suas linhas. Devem ser separadas entre si por um espaço 
+simples em branco.  
+A ordem de apresentação das referências é alfabética de acordo com a entrada 
+estabelecida, ou seja, sobrenome do autor, ou na falta desse, título do documento. 
+As referências em formato eletrônico ou de “sites” devem fazer parte da mesma 
+ordem alfabética. 
+ 
+2.1.16.1 Elementos essenciais  
+ 
+São os elementos indispensáveis para à identificação do documento: autor(es), 
+título, edição (quando tem), local da editora, nome da editora e data de publicação. 
+ 
+2.1.16.2 Modelos de referências 
+ 
+Serão apresentado alguns modelos de referência.  Para casos omissos consultar a 
+NBR 6023:2002 – Referências – Elaboração. 
+
+--- PAGINA 36 DE 65 ---
+33 
+ 
+ 
+2.1.16.3 Monografia 
+  
+Inclui livros, folhetos, trabalhos acadêmicos (dissertações, teses entre outros), 
+manuais, guias, catálogos, enciclopédias, dicionários etc. 
+ Com um autor: 
+SOBRENOME DO AUTOR, Nome do autor. Título do livro. Edição. Local de 
+publicação: Editora, data de publicação. Total de páginas. 
+Exemplo:  
+CHIAVENATO, Idalberto. Administração: teoria, processo e prática. São Paulo: 
+McGraw-Hill, 1985. 381 p. 
+ 
+ Com 2 ou 3 autores 
+SOBRENOME DO 1º AUTOR, Nome do autor; SOBRENOME DO 2º AUTOR, Nome 
+do autor. Título do livro. Edição. Local de publicação: Editora, data de publicação. 
+Total de páginas. 
+Exemplo 2 autores: 
+YOUSSEF, Antonio Nicolau; FERNANDEZ, Vicente Paz. Informática e sociedade. 
+São Paulo: Ática, 1988. 61 p.  
+ 
+ Com mais de 3 autores 
+Neste caso, indica-se o primeiro autor seguido da expressão et al. 
+SOBRENOME DO 1º AUTOR, Nome do autor et al. Título do livro. Edição. Local de 
+publicação: Editora, data de publicação. Total de páginas. 
+Exemplo:  
+BERGER, John et al. Modos de ver. São Paulo: Martins Fontes, 1972. 167 p. 
+ 
+ Com indicação explícita de responsabilidade pelo conjunto da obra 
+(Coordenador, Organizador, Editor, etc.) 
+
+--- PAGINA 37 DE 65 ---
+34 
+ 
+Exemplo:                         
+          Abreviação do responsável 
+COSTA, Vera Lúcia Cabral (Org.). Descentralização da educação: novas formas 
+de coordenação e financiamento. São Paulo: FUNDAP, 1999. 
+ 
+ Autoria de sociedades, associações, empresas, entidades públicas ou 
+Similares. 
+Deve-se utilizar o nome da entidade responsável pela obra, por extenso e em caixa 
+alta (maiúscula). 
+Exemplo: 
+ORGANIZAÇÃO PAN-AMERICANA DA SAÚDE. Doenças crônico-degenerativas 
+e obesidade: estratégia mundial sobre alimentação saudável, atividade física e 
+saúde. Brasília: DF, 2003.  
+ 
+ Autor não identificado 
+A referência deve iniciar pelo título da obra, sendo a primeira palavra em maiúscula.  
+Exemplo: 
+PASSAPORTE: guia de conversação. São Paulo: WMF Martins Fontes, 2009. 314 p. 
+ 
+ Órgão governamental como autor 
+PAÍS. Nome do órgão governamental. Título do documento. Edição. Local de 
+publicação: Editora, data de publicação. Total de páginas. 
+Exemplo: 
+BRASIL. Ministério da Saúde. Secretaria de Atenção à Saúde, Política Nacional de 
+Humanização da Atenção e Gestão do SUS. Acolhimento e classificação de risco 
+nos serviços de urgência. Brasília: Ministério da Saúde, 2009. 
+ 
+ Parte da monografia (Capítulo de livro) 
+Trata-se de capítulo, volume e outras partes de uma obra, com autor(es) e/ou títulos. 
+
+--- PAGINA 38 DE 65 ---
+35 
+ 
+SOBRENOME DO AUTOR, Nome do autor da parte. Título da parte. In: 
+SOBRENOME DO AUTOR, Nome do autor da obra. Título da obra. Edição. Local 
+de publicação: Editora, data de publicação. Nome e nº da parte, página inicial – 
+página final da parte. 
+Exemplo: 
+FARAH, Marta Ferreira Santos. Estratégias de adaptação à crise: tendências de 
+mudança no processo de trabalho na construção habitacional. In: RIBEIRO, Luiz 
+Cezar de Queiroz; AZEVEDO, Sergio de. A crise da moradia nas grandes 
+cidades: da questão da habitação à reforma urbana. Rio de Janeiro: Editora da 
+UFRJ, 1996. cap. 3, p. 49-71. 
+ 
+ Quando o autor da parte for o mesmo da obra no todo 
+SOBRENOME DO AUTOR, Nome do autor da parte. Título da parte. In: ______. 
+Título da obra. Edição. Local de publicação: Editora, data de publicação. Nome e nº 
+da parte, página inicial – página final da parte. 
+Exemplo: 
+HERKENHOFF, J. B. Dever jurídico. In: ______. Introdução ao estudo do direito: 
+a partir de perguntas e respostas. Campinas: Julex, 1987. cap. 13, p. 179–185. 
+ 
+ Trabalhos acadêmicos (Trabalho de Conclusão de Curso, Dissertação, 
+Tese) 
+SOBRENOME DO AUTOR, Nome do autor. Título da trabalho. Ano de defesa. 
+Total de folhas. Tipo do documento (Grau e área) – Vinculação acadêmica, Local de 
+defesa, ano de publicação. 
+Exemplo: 
+RIBEIRO, Ricardo Luiz Mendes. Crescimento e distribuição de renda. 1994. 78 f. 
+Dissertação (Mestrado em Economia e Finanças Públicas) – Escola de 
+Administração de Empresas de São Paulo da Fundação Getúlio Vargas, São Paulo, 
+1994. 
+ 
+ Publicação periódica no todo (Revistas) 
+TÍTULO DA PUBLICAÇÃO. Local de publicação: Editora, Data de início – Data de 
+encerramento (se houver). 
+Exemplo: 
+RAE: Revista de Administração de Empresas. São Paulo: FGV-EAESP, 1961- 
+ 
+
+--- PAGINA 39 DE 65 ---
+36 
+ 
+ Publicação periódica em parte (Artigo de revista) 
+Inclui fascículo ou número de revist a, jornal etc., ou a matéria existente em um 
+número, volume ou fascículo de periódico (artigos científicos de revistas, editoriais, 
+matérias jornalísticas, seções, reportagens, etc). 
+SOBRENOME DO AUTOR, Nome do autor. Título do artigo. Título do periódico (em 
+negrito), Local, Volume, Número, Páginas, Mês public. Ano public. 
+Exemplo: 
+ROCHA, Marisa Perrone Campos. A questão cidadania na sociedade da informação. 
+Ciência da Informação, Brasília, DF, v. 29, n. 1, p. 40-45, jan./abr. 2000. 
+ 
+ Artigo de jornal 
+SOBRENOME, Prenome. Título do artigo. Título do Jornal, local, dia , mês, ano. 
+Seção, caderno ou parte do jornal, Páginas inicial-final. 
+Exemplo: 
+WATANABE, Marta. Aumenta uso de incentivo ao terceiro setor. Gazeta Mercantil, 
+São Paulo, 14 jan. 2000. Caderno A, p. 10. 
+ 
+ Evento 
+Inclui os trabalhos  apresentados em congressos, simpósios, seminários e outros 
+eventos científicos. (atas, anais, resultados, proceedings, etc.)  
+ Evento considerado no todo 
+NOME DO EVENTO, Número do evento., Ano realização, Local de realização. Título 
+(em negrito)... Local publicação: Editora, Data. Total páginas. 
+Exemplo: 
+ENCONTRO ANUAL DA ASSOCIAÇÃO NACIONAL DE PÓSGRADUAÇÃO EM 
+ADMINISTRAÇÃO, 20., 1996, Angra dos Reis. Anais .... Angra dos Reis: ANPAD, 
+1996. 105 p. 
+ Trabalho apresentado em evento 
+SOBRENOME DO AUTOR, Nome do autor. Título do trabalho. In: NOME DO 
+EVENTO, Número do evento., Ano realização, Local de realização. Título... (em 
+negrito). Local de publicação: Editora, Data. Página inicial-página final. 
+
+--- PAGINA 40 DE 65 ---
+37 
+ 
+Exemplo: 
+CARVALHO NETO, Antonio Moreira de. Novas formas de organização no setor 
+público e as mudanças na natureza do trabalho. In: ENCONTRO ANUAL DA 
+ASSOCIAÇÃO NACIONAL DOS PROGRAMAS DE PÓS-GRADUAÇÃO EM 
+ADMINISTRAÇÃO, 20., 1996, Angra dos Reis. Anais... Angra dos Reis: ANPAD, 
+1996. p. 89-100. 
+ 
+ Legislação 
+Inclui a constituição, emendas constitucionais, decretos, medidas provisórias, 
+resoluções do Senado e normas internas de entidades públicas e privadas 
+(portarias, instrução normativa, comunicado etc). 
+JURISDIÇÃO ou ENTIDADE. Título e numeração, Data. Título da publicação, 
+dados da publicação. 
+ 
+Exemplos: 
+ Lex 
+SÃO PAULO (Estado). Decreto nº 42.822, de 20 de janeiro de 1998. Lex: coletânea 
+de legislação e jurisprudência, São Paulo, v. 62, n. 3, p. 217-220, 1998. 
+ 
+ Diário Oficial 
+SÃO PAULO (Município). Lei nº 11.102, de 29 de outubro de 1991. Dispõe sobre o 
+afastamento de servidor público municipal para frequentar curso de graduação ou 
+pós-graduação em Administração Pública. Diário Oficial do Município de São 
+Paulo, São Paulo, 30 out. 1991. Seção 1, p.1. 
+ 
+ Constituição 
+BRASIL. Constituição (1988). Emenda constitucional nº 9, de 9 de novembro de 
+1995. Lex: legislação federal e marginalia, São Paulo, v. 59, p. 1996, out./dez. 1995. 
+ 
+ Publicação em formato eletrônico 
+Materiais que estão disponíveis on-line e/ou são criados em formato digital. 
+
+--- PAGINA 41 DE 65 ---
+38 
+ 
+ Monografia 
+MACHADO DE ASSIS, José Maria. A mão e a luva [Internet]. Rio de Janeiro: 
+Fundação Biblioteca Nacional, [200-?]. Disponível em: 
+<http://www.dominiopublico.gov.br/pesquisa/DetalheObraForm.do?select_action=&c
+o _obra=2039>. Acesso em: 12 ago. 2014. 
+ 
+ Publicação periódica em parte (Artigo de revista) 
+KEMMER, Lígia Fahl; SILVA, Maria Júlia Paes da. Como escolher o que não se 
+conhece?: um estudo da imagem do enfermeiro por alunos do ensino médio. Acta 
+Paulista de Enfermagem, São Paulo, v. 20, n. 2, p. 125-130, abr./jun. 2007. 
+Disponível em: <http://www.scielo.br/pdf/ape/v20n2/a03v20n2.pdf>. Acesso em: 6 
+nov. 2007. 
+ 
+ Documentos de acesso exclusivo em meio eletrônico 
+Inclui base de dados, lista de discussão, site, arquivo em disco rígido, programas, 
+conjunto de programas, mensagem eletrônica entre outros. 
+São elementos essenciais: autor(es), título do serviço ou produto, versão (se houver)  
+e descrição física do meio eletrônico.  
+No caso de arquivos eletrônicos, a crescentar a respectiva extensão à denominação 
+atribuída ao arquivo. 
+A ABNT recomenda que mensagens trocadas por e -mail, por terem caráter pessoal, 
+informal e efêmero, não sejam utilizadas como fonte científica ou técnica de 
+pesquisa. 
+Exemplos: 
+ Programa (Software) 
+MICROSOFT Project for Windows 95, version 4.1: project planning software. [S.l.]: 
+Microsoft Corporation, 1995. Conjunto de programas. 1 CD-ROM. 
+ 
+ Base de dados 
+ÁCAROS no Estado de São Paulo. In: FUNDAÇÃO TROPICAL DE PESQUISAS E 
+TECNOLOGIA “ANDRÉ TOSELLO”. Base de Dados Tropical. 1985. Disponível em: 
+<http://www.bdt.fat.org.br/acarol/sp/>. Acesso em: 30 maio 2002. 
+ 
+
+--- PAGINA 42 DE 65 ---
+39 
+ 
+2.1.17 Glossário (Elemento opcional) 
+ 
+Lista em ordem alfabética de palavras ou express ões técnicas de uso restrito ou de 
+sentido obscuro, utilizadas no texto, acompanhadas das respectivas definições. 
+ 
+2.1.18 Apêndice(s) (Elemento opcional) 
+ 
+Texto ou documento elaborado pelo autor, a fim de complementar sua 
+argumentação, sem prejuízo da unid ade nuclear do trabalho. O(s) apêndice(s) é 
+identificado por letras maiúsculas consecutivas, travessão e pelos respectivos 
+títulos. Excepcionalmente utilizam -se letras maiúsculas dobradas, na identificação 
+dos apêndices, quando esgotadas as 23 letras do alfabeto. 
+ 
+Exemplo: 
+APÊNDICE A – Avaliação numérica de células inflamatórias totais aos quatro 
+dias de evolução 
+APÊNDICE B – Avaliação de células musculares presentes nas caudas em 
+regeneração 
+ 
+2.1.19 Anexo(s) (Elemento opcional) 
+ 
+Texto ou documento não elab orado pelo autor, que serve de fundamentação, 
+comprovação e ilustração. O(s) anexo(s) é identificado por letras maiúsculas 
+consecutivas, travessão e pelos respectivos títulos. Excepcionalmente utilizam -se 
+letras maiúsculas dobradas, na identificação dos an exos, quando esgotadas as 23 
+letras do alfabeto. 
+Exemplo: 
+ANEXO A – Representação gráfica de contagem de células inflamatórias 
+presentes nas caudas em regeneração – Grupo de controle I (Temperatura...) 
+
+--- PAGINA 43 DE 65 ---
+40 
+ 
+ANEXO B – Representação gráfica de contagem de células inflamatórias 
+presentes nas caudas em regeneração – Grupo de controle II (Temperatura... ) 
+ 
+2.2  Protótipo com Manual Técnico 
+ 
+O protótipo é um modelo em tamanho real ou em escala (reduzida ou ampliada) de 
+um produto, sistema ou equipamento inédito apresentado com seu manual técnico.  
+ 
+2.2.1 Estrutura do protótipo com manual técnico 
+ 
+Elementos pré-textuais Obrigatório Opcional 
+Capa     
+Apresentação     
+Sumário     
+Elementos textuais     
+Introdução     
+Desenvolvimento     
+Elementos pós-textuais     
+Referências     
+Glossário      
+Anexo(s)     
+ 
+2.2.2 Elementos pré-textuais 
+ 
+2.2.2.1 Capa (Elemento obrigatório) 
+ 
+Para confecção da capa deve-se consultar o item 2.1.1.1 deste manual  
+ 
+
+--- PAGINA 44 DE 65 ---
+41 
+ 
+2.2.2.2 Apresentação (Elemento opcional) 
+ 
+Deve-se descrever a finalidade e objetivos do protótipo. 
+ 
+2.2.2.3 Sumário (Elemento obrigatório) 
+ 
+Para confecção do sumário deve-se consultar a ABNT NBR 6027 ou o item 2.1.1.12 
+deste manual. 
+ 
+2.2.3 Elementos textuais 
+ 
+2.2.3.1 Introdução (Elemento obrigatório) 
+Na introdução deverão conter os objetivos da criação do protótipo e as instruções 
+sobre o manuseio do manual. 
+ 
+2.2.3.2 Desenvolvimento (Elemento obrigatório) 
+ 
+Nesta etapa deve  constar, a descrição do produto, lista dos componentes do 
+protótipo, características técnicas, funcionalidades, riscos de manuseio do protótipo, 
+montagem e desmontagem e benefícios do produto.  
+Imagens, figuras e diagramas sempre que possível devem ser utilizados para 
+melhorar o entendimento do leitor. 
+
+--- PAGINA 45 DE 65 ---
+42 
+ 
+2.2.4 Elementos pós-textuais 
+ 
+2.2.4.1 Referências (Elemento obrigatório) 
+ 
+Para confecção das referências deve-se consultar a NBR 6023 ou os itens 2.1.15 ao 
+2.1.15.2 deste manual. 
+ 
+2.2.4.2 Glossário (Elemento opcional) 
+ 
+Para confecção do glossário deve-se consultar o item 2.1.16 deste manual. 
+ 
+2.2.4.3 Anexos (Elemento opcional) 
+ 
+Para confecção do apêndice deve-se consultar o item 2.1.17 deste manual. 
+ 
+2.3 Maquete com Memorial Descritivo 
+ 
+A maquete é o modelo físico de escala reduzida do que está sendo projetado, com a 
+vantagem de possibilitar a manipulação da terceira dimensão do que é real. 
+Segundo Belezia e Ramos (2011 , p.113) “as maquetes podem ser topográficas (de 
+terreno, de paisagem e de jardim), de edificações (urbanísticas, de edifícios, de 
+estruturas, de interiores) e específicas (de design de móveis e objetos).” O memorial 
+descritivo é o detalham ento de todos os procedimentos e materiais utilizados para a 
+confecção e construção do projeto.  
+Toda formatação do memorial descritivo deve  seguir a formatação do relatório 
+técnico, conforme os itens 2.6.1 até 2.6.4.1 deste manual. 
+ 
+
+--- PAGINA 46 DE 65 ---
+43 
+ 
+2.4 Artigo científico 
+ 
+De acordo com a ABNT (NBR 6022, 2003, p.2), são apresentadas as seguinte s 
+definições para um artigo: 
+ 
+Publicação periódica científica impressa é um dos tipos de publicações 
+seriadas, que se apresenta sob a forma de revista, boletim, anuário etc., 
+editada em fascículos com designação numérica e/ou cronológica, em 
+intervalos prefixados (periodicidade), por tempo indeterminado, com a 
+colaboração, em geral, de diversas pessoas, tratando de assuntos diversos, 
+dentro de uma política editorial definida, e que é obje to de Número 
+Internacional Normalizado (ISSN). 
+Artigo científico: Parte de uma publicação com autoria declarada, que 
+apresenta e discute ideias, métodos, técnicas, processos e resultados nas 
+diversas áreas do conhecimento. 
+Artigo de revisão: Parte de uma p ublicação que resume, analisa e discute 
+informações já publicadas. 
+Artigo original: Parte de uma publicação que apresenta temas ou 
+abordagens originais. 
+ 
+Conforme Azevedo (2001, p.82)  o artigo científico “é um texto escrito para ser 
+publicado em um periódico especializado e tem o objetivo de comunicar os dados de 
+uma pesquisa, seja ela experimental ou documental”. 
+Para as autoras Lakatos e Marconi (1991)  os artigos científicos são publicações em 
+revistas ou periódicos, não se constituindo em matéria de um l ivro e por serem 
+completos, permitem ao leitor, repetir a experiência. 
+No entanto, o presente manual visa orientar a normalização d os elementos que 
+constituem o artigo em publicação periódica cientifica para trabalhos acadêmicos do 
+Ceeteps. Caso o discente  tenha interesse de publicar seu trabalho em versão para 
+eventos ou revistas  deverá submetê -lo as diretrizes e norma s d a 
+organização/Instituição, pois possuem formatação/normalização diferenciada.  
+ 
+
+--- PAGINA 47 DE 65 ---
+44 
+ 
+2.4.1 Estrutura do artigo científico  
+ 
+A estrutura de um  artigo é constituída dos seguintes elementos , conforme NBR 
+6022:2003: 
+Elementos pré-textuais Obrigatório Opcional 
+Título e subtítulo (se houver)     
+Nome(s) do(s) autor(es)     
+Resumo na língua do texto     
+Palavras-chave na língua do texto     
+Elementos textuais     
+Introdução     
+Desenvolvimento     
+Conclusão     
+Elementos pós-textuais     
+Título e subtítulo (se houver) em 
+língua estrangeira     
+Resumo em língua estrangeira     
+Palavras-chave em língua estrangeira     
+Nota(s) explicativa(s)    
+Referências     
+Glossário      
+Apêndice(s)     
+Anexo(s)     
+ 
+ 
+
+--- PAGINA 48 DE 65 ---
+45 
+ 
+2.4.2 Elementos pré-textuais 
+ 
+2.4.2.1 Título e subtítulo (se houver) 
+ 
+Devem figurar na página de abertura do artigo, diferenciados tipograficamente ou 
+separados por dois-pontos (:) e na língua do texto. 
+A escolha do título é fundamental para a visibilidade e recuperação do artigo.   
+ [...] deve ser redigido com exatidão, revelando objetivamente o que o 
+restante do texto está trazendo. Apesar da especificidade que deve ter, não 
+deve ser longo a  ponto de tornar -se confuso, utilizando -se tanto quanto 
+possível de termos simples, numa ordem em que a abordagem temática 
+principal seja facilmente captada. [...] são portas de entrada do artigo 
+científico; é por onde a leitura começa, assim como o intere sse pelo texto 
+(TEIXEIRA, 2005) 
+ 
+2.4.2.2 Autor(es) 
+ 
+Nome(s) do(s) autor(es), acompanhado(s) de breve currículo que o(s) qualifique na 
+área de conhecimento do artigo.  
+O currículo, bem como os endereços postal e eletrônico, devem aparecer em rodapé 
+indicado por asterisco na página de abertura ou, opcionalmente, no final dos 
+elementos pós -textuais, onde também devem ser colocados os agradecimentos 
+do(s) autor(es) e a data de entrega dos originais à redação do periódico. 
+ 
+2.4.2.3 Resumo na língua do texto (Elemento obrigatório) 
+ 
+Apresentação concisa dos pontos relevantes de um documento, deve -se usar o 
+verbo na voz ativa e na terceira pessoa do singular, constituído de uma sequência 
+de frases concisas e objetivas e não de uma simples enumeração de tópicos, não 
+ultrapassando 250 palavras, seguido, logo abaixo, das palavras representativas do 
+conteúdo do trabalho, isto é, palavras -chave e/ou descritores, conforme 
+esclarecimento no item 2.1.1.7. 
+ 
+
+--- PAGINA 49 DE 65 ---
+46 
+ 
+2.4.2.4 Palavras-chave na língua do texto (Elemento obrigatório) 
+ 
+As palavras-chave devem figurar logo abaixo do resumo, antecedidas da expressão 
+Palavras-chave: separadas entre si por ponto e finalizadas também por ponto. Usar 
+a mesma formatação do resumo. 
+Exemplo:  
+Palavras-chave: Referências. Documentação. Artigo Científico. 
+Estas palav ras serão utilizadas posteriormente para permitir que o artigo seja 
+encontrado por sistemas de busca eletrônicos. Por isso, é importante que o discente 
+escolha palavras -chave abrangentes, mas que ao mesmo tempo identifiquem o 
+artigo.  
+ 
+Figura 1 – Modelo dos elementos pré-textuais do Artigo Científico 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+TÍTULO DO SEU ARTIGO: insira o subtítulo, se houver 
+ 
+João Silva e Silva* 
+Maria Silva e Silva** 
+ 
+Resumo: Apresentação concisa dos pontos relevantes de um documento. Constituído 
+de uma sequência de frases concisas e objetivas e não de uma simples enumeração 
+de tópicos, não ultrapassando 250 palavras, seguido, logo abaixo, das palavras 
+representativas do conteúdo do tra balho, isto é, palavras -chave e/ou descritores, 
+conforme a NBR 6028. 
+ 
+Palavras-chave: Referências. Documentação. Artigo Científico. 
+ 
+1 INTRODUÇÃO 
+Parte inicial do artigo, onde devem constar a delimitação do assunto tratado, os 
+objetivos da pesquisa e outros elementos necessários para situar o tema do artigo. 
+ 
+_______________________ 
+* Técnico em Administração, na Etec xxxxxxx – joaoss@email.com.br 
+** Técnico em Administração, na Etec xxxxxxx – mariass@email.com.br 
+ 
+  
+Fonte 12: Arial Título: negrito 
+em caixa alta subtítulo: somente 
+negrito 
+Alinhamento: Centralizado 
+ 
+Fonte 12: Arial Espaçamento: 
+1,5 
+Alinhamento: Centralizado 
+ 
+Fonte 12: Arial Espaçamento: 
+simples 
+Alinhamento: Justificado 
+ 
+Fonte 12: Arial Espaçamento: 
+simples 
+Alinhamento: Justificado 
+ 
+Fonte 10: Arial Espaçamento: 
+simples 
+Alinhamento: Esquerda 
+ 
+Fonte 12: Arial Espaçamento: 
+1,5 
+Alinhamento: Justificado 
+ 
+Nome da Instituição 
+Nome da Unidade 
+Nome do Curso 
+
+--- PAGINA 50 DE 65 ---
+47 
+ 
+2.4.3 Elementos textuais 
+ 
+2.4.3.1 Introdução (Elemento obrigatório) 
+ 
+Parte inicial do artigo, onde devem constar a delimitação do assunto tratado, os 
+objetivos da pesquisa e outros elementos necessários para situar o tema do artigo. 
+Na introdução deve -se expor a finalidade e os objetivos do artigo  de modo que o 
+leitor tenha uma visão geral do tema abordado. São elementos da introdução o tema  
+justificativas, problema de pesquisa, hipóteses e objetivos (geral e específicos)  do   
+artigo.  
+ 
+2.4.3.2 Desenvolvimento (Elemento obrigatório) 
+ 
+Divide-se em seções e subseções, conforme a NBR 6024, que variam em função da 
+abordagem do tema e do método. 
+É a parte principal do artigo, e inclui a metodologi a, fundamentação teórica, dados 
+obtidos por meio de pesquisas, resultados alcançados e discussão. Divide -se em 
+seções e subseções, conforme a NBR 6024, que variam em função da abordagem 
+do tema e do método. 
+ 
+2.4.3.3 Considerações finais ou conclusão (Elemento obrigatório) 
+ 
+Parte final do artigo, na qual se apresentam as conclusões correspondentes aos 
+objetivos e hipóteses, apresentados na introdução.  
+Aqui serão apresentadas as respostas às hipóteses e objetivos do TCC. As opiniões 
+dos autores, devidamente embasadas pelos dados, conceitos e informações 
+apresentados no desenvolvimento, devem ser inseridas aqui. Podem ser incluídas 
+breves recomendações e sugestões para trabalhos futuros. 
+
+--- PAGINA 51 DE 65 ---
+48 
+ 
+2.4.4 Elementos pós-textuais 
+Figura 2 – Modelo dos elementos pós-textuais do Artigo Científico 
+ 
+ 
+2.4.4.1 Título e subtítulo em língua estrangeira (Elemento obrigatório) 
+ 
+O título, e subtítulo (se houver) em língua estrangeira, diferenciados 
+tipograficamente ou separados por dois pontos (:), precedem o resumo em língua 
+estrangeira. 
+ 
+ 
+TÍTULO DO SEU ARTIGO: insira o subtítulo, se houver  
+(em língua estrangeira) 
+ 
+ 
+Abstract: (em língua estrangeira) Concise presentation of relevant points of a 
+document. Consists of a sequence of sentences concise and objective and not a 
+mere list of topics, not exceeding 250 words, followed just below the 
+representative words of the work content, ie keywords and / or descriptors, 
+according to NBR 6028. 
+ 
+Keywords: References. Documentation. Scientific article. 
+ 
+ 
+REREFÊNCIA 
+ 
+SOBRENOME, Prenome . Título: subtítulo (se houver). Edição. Local: Editora, 
+data.   
+ 
+ 
+APÊNDICE A – Avaliação numérica de células inflamatórias totais aos quatro 
+dias de evolução 
+ 
+Texto ou documento elaborado pelo autor, a fim de complementar sua 
+argumentação, sem prejuízo da  unidade nuclear do trabalho.  O(s) apêndice(s) 
+são identificados por letras maiúsculas consecutivas, travessão e pelos 
+respectivos títulos.    
+ 
+ 
+ANEXO A – Representação gráfica de contagem de células inflamatórias 
+presentes nas caudas em regeneração – Grupo de controle I (Temperatura...) 
+ 
+Texto ou documento NÃO elaborado pelo autor, a fim de complementar sua 
+argumentação, sem prejuízo da unidade nuclear do trabalho.  O(s) anexo(s) são 
+identificados por letras maiúsculas consecutivas, travessão e pelos respec tivos 
+títulos.    
+Fonte 12: Arial Título: negrito 
+em caixa alta subtítulo: somente 
+negrito 
+Alinhamento: Centralizado 
+ 
+Fonte 12: Arial Espaçamento: 
+simples 
+Alinhamento: Justificado 
+ 
+Fonte 12 negrito: Arial 
+Alinhamento: Centralizado 
+ 
+Fonte 12: Arial Espaçamento: 
+1,5 
+Alinhamento: Justificado 
+Ou 
+Conforme documento original 
+ 
+Fonte 12: Arial Espaçamento: 
+simples 
+Espaçamento entre linhas: 
+duplo 
+Alinhamento: Esquerdo 
+ 
+Fonte 12 negrito: Arial 
+Alinhamento: Centralizado 
+ 
+Fonte 12 negrito: Arial 
+Alinhamento: Centralizado 
+ 
+Fonte 12: Arial Espaçamento: 
+1,5 
+Alinhamento: Justificado 
+Ou 
+Conforme documento original 
+ 
+
+--- PAGINA 52 DE 65 ---
+49 
+ 
+2.4.4.2 Resumo em língua estrangeira (Elemento obrigatório) 
+ 
+Elemento obrigatório, versão do resumo na língua do texto, para idioma de 
+divulgação internacional, com as mesmas características (em inglês Abstract, em 
+espanhol Resumen, em francês Résumé, por exemplo). 
+ 
+2.4.4.3 Palavras-chave em língua estrangeira (Elemento obrigatório) 
+ 
+Elemento obrigatório, versão das palavras -chave na língua do texto para a mesma 
+língua do resumo em língua estrangeira (em inglês Keywords, em espanhol Palabras 
+clave, em francês Mots-clés, por exemplo). 
+ 
+2.4.4.4 Nota(s) explicativa(s) (Elemento opcional) 
+ 
+A numeração das notas explicativas é feita em algarismos arábicos, devendo ser 
+única e consecutiva para cada artigo. Não se inicia a numeração a cada página. 
+Exemplo 1: No texto 
+Os pais estão sempre confrontados diante das duas alternativas: 
+vinculação escolar ou vinculação profissional1. 
+ Na nota explicativa 
+1 Sobre essa opção dramática, ver também Morice (1996, p. 269-290). 
+ 
+Exemplo 2: No texto 
+O comportamento liminar correspondente à adolescência vem se 
+constituindo numa das conquistas universais, como está, por exemplo, 
+expresso no Estatuto da Criança e do Adolescente 2. 
+  
+
+--- PAGINA 53 DE 65 ---
+50 
+ 
+Na nota explicativa 
+2  Se a tendência à universalização das representações sobre a 
+periodização dos ciclos de vida desrespeita a especificidade dos 
+valores culturais de vários grupos, ela é condição para a constituição 
+de adesões e grupos de pressão integrados à moralização de tais 
+formas de inserção de crianças e de jovens. 
+ 
+2.4.4.5 Referências (Elemento obrigatório) 
+ 
+Para confecção das referências d eve-se consultar a NBR 6023 ou os itens 2.1.15 e 
+2.1.15.2 deste manual. 
+ 
+2.4.4.6 Glossário (Elemento opcional) 
+Para confecção do glossário deve-se consultar o item 2.1.16 deste manual. 
+ 
+2.4.4.7 Anexos (Elemento opcional) 
+ 
+Para confecção dos anexos deve-se consultar o item 2.1.17 deste manual. 
+ 
+2.4.5 Indicativo de seção 
+ 
+Deve-se consultar o item 2.1.6 deste manual. 
+ 
+2.4.6 Numeração progressiva 
+ 
+A numeração progressiva deve ser apresentada conforme a NBR 6024 ou o item 
+2.1.10 deste manual. 
+
+--- PAGINA 54 DE 65 ---
+51 
+ 
+2.4.7 Citações 
+ 
+Menção de uma informação extraída de outra fonte. Todo material que for citado 
+deverá constar na lista de Referência ao final do artigo. As citações devem ser 
+apresentadas conforme a NBR 10520 ou item 2.1.13 deste manual. 
+ 
+2.4.8 Sistema de chamada numérico 
+ 
+Neste sistema, a indicação da fonte é feita por uma numeração única e consecutiva, 
+em algarismos arábicos, remetendo à lista de referências ao final do trabalho, do 
+capítulo ou da parte, na mesma ordem em que aparecem no texto.  
+A indicação da numeração pode ser feita entre parênteses, alinhada ao texto, ou 
+situada pouco acima da linha do texto em expoente à linha do mesmo, após a 
+pontuação que fecha a citação. 
+Exemplo: 
+No texto:   
+O  Banco  Mundial  desconsidera  as  particularidades das  nações  e  define  um  
+único  “pacote”  aos  países  em desenvolvimento. ¹ 
+ 
+Diz Rui Barbosa: "Tudo é viver, previvendo." (15) 
+ 
+Nas referências:  
+1 CASTRO, N. A. Qualificação, mercados e processos de trabalho.  
+Salvador: [s.n], 1995. 
+2 SAHLINS, Marshall. Cultura e razão prática. Rio de Janeiro: Zahar, 1979. 
+3 AUGÉ, Marc. O sentido dos outros. Petrópolis: Vozes, 1999. 
+4 BOURDIEU, Pierre. A economia das trocas simbólicas. São Paulo: 
+Perspectiva, 1987. 
+
+--- PAGINA 55 DE 65 ---
+52 
+ 
+2.4.9  Siglas 
+ 
+Deve-se consultar o item 2.1.11 deste manual. 
+ 
+2.4.10  Equações e fórmulas 
+ 
+Para mais informações deve-se consultar o item 2.1.12 deste manual.  
+ 
+2.4.11  Ilustrações 
+ 
+Para mais informações deve-se consultar o item 2.1.1.8 deste manual.  
+ 
+2.4.12  Tabelas 
+ 
+Para confecção das tabelas deve-se consultar o item 2.1.1.9 deste manual. 
+ 
+2.4.13 Orientação geral sobre a formatação 
+ 
+Artigos dispensam Folha de Rosto ou Capa. A primeira folha já contém todos os 
+dados de identificação necessários, como título, nome do autor, instituição e 
+Unidade de Ensino à qual o(s) discente(s) esta(ão) vinculado(s).  
+Os artigos não devem ser muito extensos, variando de 5 a, no máximo, 30 páginas 
+impressos em papel de tamanho A4, com margens esquerda e superior de 3 cm, 
+margens direita e inferior de 2 cm. Fonte Arial, tamanho 1 2 pt para o texto e 10 pt 
+para citações diretas longas, notas de rodapé, fontes e legendas. 
+A paginação/ numeração é inserida em todas as folhas do artigo, em algarismos 
+arábicos, no canto superior direito da folha.  Havendo apêndice e anexo, as suas 
+folhas devem ser numeradas de maneira contínua e sua paginação deve dar 
+seguimento à do texto principal. 
+
+--- PAGINA 56 DE 65 ---
+53 
+ 
+O alinhamento das partes textuais deverão seguir as orientações abaixo: 
+ Justificado: Resumo, Palavras Chave, introdução, desenvolvimento e 
+conclusão; 
+ Centralizado: os títulos e subtítulos não enumerados; 
+ Esquerdo: Referências. 
+ 
+Conforme NBR 14724, todo texto deve ser digitado com espaçamento 1,5 entre as 
+linhas, exceto as citações de mais de três linhas, notas de rodapé, referências, 
+legendas das ilustrações e  das tabelas, que devem ser digitados em espaço 
+simples.  
+ 
+2.5 Projeto de pesquisa 
+ 
+Compreende uma das fases da pesquisa. É a descrição da estrutura de um 
+empreendimento a ser realizado. 
+Toda formatação deve seguir os itens 2.1.3 até 2.1.15.3 deste manual.  
+ 
+2.5.1 Estrutura do projeto de pesquisa 
+ 
+Elementos pré-textuais Obrigatório Opcional 
+Capa    
+Folha de rosto     
+Lista de ilustrações     
+Lista de tabelas     
+Lista de abreviaturas e siglas     
+Lista de símbolos     
+Sumário     
+   
+
+--- PAGINA 57 DE 65 ---
+54 
+ 
+   
+Elementos textuais Obrigatório Opcional 
+Introdução     
+Desenvolvimento     
+Considerações finais ou Conclusão     
+Elementos pós-textuais     
+Referências     
+Glossário     
+Apêndices     
+Anexos     
+Índice     
+ 
+2.5.2 Elementos pré-textuais 
+ 
+2.5.2.1 Capa (Elemento opcional) 
+ 
+Deve-se seguir o item 2.1.1.1 deste manual. 
+ 
+2.5.2.2 Folha de rosto (Elemento obrigatório) 
+ 
+Deve-se seguir o item 2.1.1.2 deste manual. 
+ 
+2.5.2.3 Lista de ilustrações (Elemento opcional) 
+ 
+Deve-se seguir o item 2.1.1.8 deste manual. 
+
+--- PAGINA 58 DE 65 ---
+55 
+ 
+2.5.2.4 Lista de tabelas (Elemento opcional) 
+ 
+Deve-se seguir o item 2.1.1.9 deste manual. 
+2.5.2.5 Lista de abreviaturas e siglas (Elemento opcional) 
+ 
+Deve-se seguir o item 2.1.1.10 deste manual. 
+ 
+2.5.2.6 Lista de símbolos (Elemento opcional) 
+ 
+Deve-se seguir o item 2.1.1.11 deste manual. 
+ 
+2.5.2.7 Sumário (Elemento obrigatório) 
+ 
+Deve-se seguir o item 2.1.1.12 deste manual. 
+ 
+2.5.3 Elementos textuais 
+ 
+São elementos textuais obrigatórios de um projeto de pesquisa no âmbito das 
+escolas técnicas do Centro Paula Souza: 
+a) Apresentação das situações-problema, justificativa, hipóteses e embasamento 
+bibliográfico do tema; 
+b) Objetivos e metas a serem alcançados no prazo de execução do projeto; 
+c) Metodologia: abordagem teórico -metodológica adotada e descrição sobre as 
+técnicas de pesquisa utilizadas para obtenção e tratamento dos dados; 
+d) Principais resultados e produtos esperados no prazo de execução do projeto, 
+incluindo contribuições científicas e/ou tecnológicas da proposta; 
+e) Cronograma das atividades a serem desenvolvidas ao longo do períod o de 
+execução do projeto. 
+
+--- PAGINA 59 DE 65 ---
+56 
+ 
+2.5.4 Elementos pós-textuais 
+ 
+2.5.4.1 Referências 
+Deve-se seguir o item 2.1.15 deste manual. 
+ 
+2.6 Relatório Técnico 
+ 
+Documento que descreve formalmente o progresso ou resultado de pesquisa 
+científica e/ou técnica ( ASSOCIAÇÃO BRASILEIR A DE NORMAS TÉCNICAS, 2011 a,          
+p.2) 
+ 
+2.6.1 Estrutura do relatório técnico 
+ 
+Elementos pré-textuais Obrigatório Opcional 
+Capa     
+Folha de rosto     
+Resumo na língua vernácula     
+Lista de ilustrações      
+Lista de tabelas     
+Lista de abreviaturas e siglas     
+Lista de símbolos     
+Sumário     
+Elementos textuais     
+Introdução     
+Desenvolvimento     
+Conclusão ou considerações finais     
+   
+   
+
+--- PAGINA 60 DE 65 ---
+57 
+ 
+   
+Elementos pós-textuais Obrigatório Opcional 
+Referências     
+Glossário      
+Apêndice     
+Anexo(s)     
+Índice     
+ 
+2.6.2 Elementos pré-textuais 
+ 
+2.6.2.1 Capa (Elemento opcional) 
+ 
+Deve-se seguir o item 2.1.1.1 deste manual. 
+ 
+2.6.2.2 Folha de rosto (Elemento obrigatório) 
+ 
+Deve-se seguir o item 2.1.1.2 deste manual. 
+ 
+2.6.2.3 Resumo na língua vernácula (Elemento obrigatório) 
+ 
+Deve-se seguir o item 2.1.1.7 deste manual. 
+ 
+2.6.2.4 Lista de ilustrações (Elemento opcional) 
+ 
+Deve-se seguir o item 2.1.18 deste manual. 
+
+--- PAGINA 61 DE 65 ---
+58 
+ 
+2.6.2.5 Lista de tabelas (Elemento opcional) 
+ 
+Deve-se seguir o item 2.1.1.9 deste manual. 
+ 
+2.6.2.6 Lista de abreviaturas e siglas (Elemento opcional) 
+ 
+Deve-se seguir o item 2.1.1.10 deste manual. 
+ 
+2.6.2.7 Lista de símbolos (Elemento opcional) 
+ 
+Deve-se seguir o item 2.1.1.11 deste manual. 
+ 
+2.6.2.8 Sumário (Elemento obrigatório) 
+ 
+Deve-se seguir o item 2.1.1.12 deste manual. 
+ 
+2.6.3 Elementos textuais 
+ 
+2.6.3.1 Introdução (Elemento obrigatório) 
+ 
+Delimitação do tema.  Deve apresentar os objetivos do relatório e as razões de sua 
+elaboração. 
+ 
+2.6.3.2 Desenvolvimento (Elemento obrigatório) 
+ 
+É a part e principal do relatório técnico, onde serão apresentados os objetivos da 
+pesquisa (geral e específico), resultados esperados, metodologia, principais 
+
+--- PAGINA 62 DE 65 ---
+59 
+ 
+obstáculos ou dificuldades encontradas, procedimentos adotados no experimento 
+(equipamentos, técnicas e p rocessos utilizados) e os resultados e progressos 
+obtidos a partir dos experimentos e estudos realizados. 
+ 
+2.6.3.3 Considerações finais ou conclusão (Elemento obrigatório) 
+ 
+Serão relatadas, a partir das discussões e experimentos realizados no decorrer da 
+pesquisa, as principais conclusões e contribuições das atividades para o 
+desenvolvimento científico e tecnológico, quando necessário, recomendações de 
+ações futuras. 
+ 
+2.6.4 Elementos pós-textuais 
+ 
+2.6.4.1 Referências 
+ 
+Deve-se seguir o item 2.1.15 deste manual. 
+ 
+2.7 Outros 
+ 
+Considerando a diversidade de cursos oferecidos pelo Centro Paula Souza, há 
+produtos diversos que podem ser apresentados, desde que associados a um dos 
+produtos, quais sejam: 
+a) Monografia; 
+b) Protótipo com Manual Técnico; 
+c) Maquete com Memorial Descritivo; 
+d) Artigo científico; 
+e) Projeto de pesquisa; 
+f) Relatório Técnico. 
+Como exemplos de possíveis produtos apresentamos:  
+
+--- PAGINA 63 DE 65 ---
+60 
+ 
+ Novas técnicas e procedimentos; 
+ Preparações de pratos e alimentos; 
+ Modelos de Cardápios – Ficha técnica de alimentos e bebidas; 
+ Softwares, aplicativos e EULA (End Use License Agreement); 
+ Áreas de cultivo; 
+ Áudios e vídeos; 
+ Resenhas de vídeos; 
+ Apresentações musicais, de dança e teatrais; 
+ Exposições fotográficas; 
+ Memorial fotográfico; 
+ Desfiles ou exposições de roupas, calçados e acessórios; 
+ Modelo de Manuais; 
+ Parecer Técnico; 
+ Esquemas e diagramas; 
+ Diagramação gráfica; 
+ Projeto técnico com memorial descritivo; 
+ Portfólio; 
+ Modelagem de Negócios; 
+ Plano de Negócios. 
+ 
+ 
+
+--- PAGINA 64 DE 65 ---
+61 
+ 
+REFERÊNCIAS 
+ 
+ASSOCIAÇÃO BRASILEIRA DE NORMAS TÉCNICAS. NBR 6022: informação e 
+documentação: artigo em publicação periódica científica impressa: apresentação. 
+Rio de Janeiro, 2003.  
+ 
+______. NBR 6023: informação e documentação: referências: elaboração. Rio de 
+Janeiro, 2002.  
+ 
+______. NBR 6024: informação e documentação: numeração progressiva das 
+seções de um documento: apresentação, 2012. 
+ 
+______. NBR 6027: informação e documentação: sumário: apresentação. Rio de 
+Janeiro, 2003. 
+  
+______. NBR 6028: informação e documentação: resumo: apresentação. Rio de 
+Janeiro, 2003. 
+ 
+______. NBR 10520: informação e documentação: citações em documentos: 
+apresentação. Rio de Janeiro, 2002.  
+ 
+______. NBR 10719: informação e documentação: relatório técnico e/ou científico: 
+apresentação. Rio de Janeiro, 2011a. 
+ 
+______. NBR 14724: informação e documentação: trabalhos acadêmicos; 
+apresentação. Rio de Janeiro, 2002.  
+ 
+______. NBR 15287: informação e documento: projeto de pesquisa: apresentação. 
+Rio de Janeiro, 2011b.  
+ 
+AZEVEDO, I. B. O prazer da produção científica: descubra como é fácil e 
+agradável elaborar trabalhos acadêmicos. 10.ed. São Paulo: Hagnos, 2001. 
+  
+BELEZIA, E. C.; RAMOS, I. M. L. Núcleo Básico: planejamento e desenvolvimento 
+do TCC. São Paulo: Fundação Padre Anchieta, 2011. (Núcleo Básico, v.3).  
+ 
+INSTITUTO BRASILEIRO DE GEOGRAFIA E ESTATÍSTICA. Normas de 
+apresentação tabular. 3. ed. Rio de Janeiro, 1993.  
+ 
+
+--- PAGINA 65 DE 65 ---
+62 
+ 
+LAKATOS, E. M.; MARCONI, M. A. Fundamentos de metodologia científica. 3 ed. 
+São Paulo: Atlas, 1991.  
+ 
+PÁDUA, E. Metodologia de pesquisa: abordagem teórico-prática. Campinas: 
+Papirus, 1996.  
+ 

@@ -1,0 +1,20 @@
+{
+  "name": "ck-promptmaker",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Assistente local para transformar atividades em prompts completos.",
+  "scripts": {
+    "dev": "node scripts/serve.mjs",
+    "build": "node scripts/build.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "test:e2e": "playwright test"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.56.1"
+  },
+  "packageManager": "pnpm@11.25.0"
+}
