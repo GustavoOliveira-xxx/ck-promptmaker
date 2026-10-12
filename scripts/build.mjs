@@ -2,13 +2,15 @@ import {mkdir,cp,readFile,writeFile,readdir} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 await mkdir('dist',{recursive:true});
 for(const f of ['index.html','manifest.webmanifest','src','assets'])await cp(f,'dist/'+f,{recursive:true});
-await mkdir('dist/vendor',{recursive:true});
+await mkdir('dist/vendor/fonts',{recursive:true});
 for(const [from,to] of [
  ['node_modules/pdfjs-dist/build/pdf.min.mjs','pdf.min.mjs'],
  ['node_modules/pdfjs-dist/build/pdf.worker.min.mjs','pdf.worker.min.mjs'],
  ['node_modules/pdfjs-dist/LICENSE','PDFJS-LICENSE.txt'],
  ['node_modules/mammoth/mammoth.browser.min.js','mammoth.browser.js'],
- ['node_modules/mammoth/LICENSE','MAMMOTH-LICENSE.txt']
+ ['node_modules/mammoth/LICENSE','MAMMOTH-LICENSE.txt'],
+ ['node_modules/@fontsource-variable/sora/files/sora-latin-wght-normal.woff2','fonts/sora-latin-wght-normal.woff2'],
+ ['node_modules/@fontsource-variable/sora/LICENSE','fonts/SORA-OFL-LICENSE.txt']
 ])await cp(from,'dist/vendor/'+to);
 try{await cp('public','dist',{recursive:true});}catch(error){if(error.code!=='ENOENT')throw error;}
 async function walk(dir){const entries=await readdir('dist/'+dir,{withFileTypes:true});const out=[];for(const e of entries){const p=dir+'/'+e.name;if(e.isDirectory())out.push(...await walk(p));else out.push('./'+p);}return out;}

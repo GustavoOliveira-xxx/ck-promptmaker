@@ -63,7 +63,7 @@ test('steps require context, profile, delivery and material review; edits relock
  await expect(page.locator('#stage-errors')).toContainText('confirme a conferência');
  await page.getByLabel('Conferi os materiais e os PTDs desta atividade').check();
  await page.getByRole('button',{name:'Continuar',exact:true}).click();
- await expect(page.getByLabel('Prompt gerado')).toContainText('Individual — autoria: Gustavo Oliveira');
+ await expect(page.getByLabel('Prompt gerado')).toContainText('Individual (autoria: Gustavo Oliveira)');
  await page.locator('[data-step="0"]').click();await page.getByLabel('Título da atividade').fill('');
  await page.locator('[data-step="3"]').click({force:true});await expect(page.locator('#stage-errors')).toContainText('Dê um título');
  await page.getByLabel('Título da atividade').fill('Biomas revisados');
@@ -98,6 +98,7 @@ test('manual transfer merges two devices, preserves exclusive data, and does not
   await expect(phone.getByRole('heading',{name:'Receber dados deste arquivo'})).toBeVisible();
   if(keepProfile)await phone.locator('#transfer-profile').uncheck();
   await phone.getByRole('button',{name:'Importar dados',exact:true}).click();
+  await expect(phone.locator('#dialog')).not.toBeVisible();
   await expect(phone.getByLabel('Seu nome',{exact:true})).toHaveValue(keepProfile?'Nome do celular':'Gustavo Oliveira');
  }
  const data=await phone.evaluate(async()=>{const {getAll}=await import('./src/db.js');return {activities:await getAll('activities'),files:(await getAll('files')).map(f=>({name:f.name,size:f.blob.size})),subjects:await getAll('subjects')};});
@@ -151,4 +152,40 @@ test('closing a subject does not erase text entered while storage is still savin
  await expect.poll(()=>page.evaluate(async()=>{const {getAll}=await import('./src/db.js');return (await getAll('activities'))[0]?.title;})).toBe('Digitado durante salvamento');
  await expect(page.getByLabel('Título da atividade')).toHaveValue('Digitado durante salvamento');
  await page.reload();await expect(page.getByLabel('Título da atividade')).toHaveValue('Digitado durante salvamento');
+});
+
+test('AI autofill reads a photo, lets the student review and fills the activity',async({page})=>{
+ const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ let sent;
+ await page.route('**/api/assist',async route=>{
+  sent=route.request().postDataJSON();
+  if(!route.request().headers()['x-ck-code'])return route.fulfill({status:401,contentType:'application/json',body:JSON.stringify({error:'Informe o código de acesso da IA.',code:'ACCESS_CODE'})});
+  await route.fulfill({contentType:'application/json',body:JSON.stringify({title:'Biomas brasileiros e ameaças',date:'',due:'2027-10-24',subjectName:'biologia',professor:'Profa. Ana',period:'',mode:'group',groupSize:3,members:['Gustavo','Maria','João'],description:'Comparar os biomas brasileiros e suas ameaças.',objectives:'',criteria:'Pesquisa e fontes',length:'10 minutos',deliveries:[{category:'abnt',format:'PDF'}],customFormat:'',customDescription:'',website:{interaction:'',threeD:'',details:''},observations:'',baseText:'Texto do quadro transcrito.',links:'',uncertain:['due'],notes:['A foto 2 estava ilegível.'],model:'gemini-test'})});
+ });
+ await boot(page);await subject(page);await page.getByRole('button',{name:'Concluir',exact:true}).click();
+ await page.getByLabel('Título da atividade').fill('Rascunho meu');
+ await page.getByRole('button',{name:'Enviar materiais',exact:true}).click();
+ await expect(page.locator('#dialog').getByRole('heading',{name:'Preencher com IA'})).toBeVisible();
+ await page.locator('#ai-file-input').setInputFiles({name:'quadro.png',mimeType:'image/png',buffer:Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==','base64')});
+ await expect(page.locator('.ai-source')).toContainText('quadro.png');
+ await page.locator('#ai-note').fill('é em grupo');
+ await page.getByRole('button',{name:'Analisar com IA',exact:true}).click();
+ await expect(page.locator('.ai-notes')).toContainText('código de acesso');
+ await page.locator('#ai-code').fill('ck-123');
+ await page.getByRole('button',{name:'Analisar com IA',exact:true}).click();
+ await expect(page.getByRole('heading',{name:/A IA encontrou/})).toBeVisible();
+ expect(sent.note).toBe('é em grupo');expect(sent.subjects.map(s=>s.name)).toEqual(['Biologia']);expect(sent.sources[0].mime).toBe('image/jpeg');
+ await expect(page.locator('.ai-notes')).toContainText('ilegível');
+ const title=page.locator('.ai-item',{hasText:'Biomas brasileiros e ameaças'}).locator('input');
+ await expect(title).not.toBeChecked();await title.check();
+ await page.getByRole('button',{name:'Aplicar selecionados',exact:true}).click();
+ await expect(page.locator('#dialog')).not.toBeVisible();
+ await expect(page.getByLabel('Título da atividade')).toHaveValue('Biomas brasileiros e ameaças');
+ await expect(page.getByLabel('Data de entrega')).toHaveValue('2027-10-24');
+ await expect(page.locator('#activity-subjectId option:checked')).toHaveText('Biologia');
+ await expect(page.locator('#activity-member-2')).toHaveValue('João');
+ await expect(page.getByLabel('Enunciado da atividade')).toHaveValue('Comparar os biomas brasileiros e suas ameaças.');
+ const saved=await page.evaluate(async()=>{const {getAll}=await import('./src/db.js');return {files:(await getAll('files')).map(f=>f.name),profile:(await getAll('settings')).find(s=>s.id==='profile')};});
+ expect(saved.files).toContain('quadro.png');expect(saved.profile.aiCode).toBe('ck-123');
+ expect(errors).toEqual([]);
 });

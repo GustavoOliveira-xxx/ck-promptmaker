@@ -36,7 +36,6 @@ export async function publishPage({repo,token,bundle},progress=()=>{},request=fe
  }
  const newTree=await api('/git/trees','POST',{base_tree:commit.tree.sha,tree});
  const newCommit=await api('/git/commits','POST',{message:'Publish CK activity briefing '+id,tree:newTree.sha,parents:[head.object.sha]});
- // Non-forced fast-forward: concurrent changes can never be overwritten.
  await api('/git/refs/heads/'+branch.split('/').map(encodeURIComponent).join('/'),'PATCH',{sha:newCommit.sha,force:false});
  return {url:new URL(folder,pages.html_url.replace(/\/?$/,'/')).href,commit:newCommit.sha,repo,folder:prefix+folder};
 }

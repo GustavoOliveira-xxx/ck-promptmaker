@@ -12,8 +12,8 @@
     "minimal-ui"
   ],
   "orientation": "any",
-  "background_color": "#131019",
-  "theme_color": "#131019",
+  "background_color": "#06030b",
+  "theme_color": "#06030b",
   "categories": [
     "education",
     "productivity"
@@ -40,7 +40,19 @@
   ],
   "shortcuts": [
     {
+      "name": "Fotografar e preencher com IA",
+      "short_name": "Preencher com IA",
+      "url": "./?ai=1",
+      "icons": [
+        {
+          "src": "./assets/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
       "name": "Nova atividade",
+      "short_name": "Nova",
       "url": "./?new=1",
       "icons": [
         {
@@ -51,6 +63,7 @@
     },
     {
       "name": "Fotografar atividade",
+      "short_name": "Câmera",
       "url": "./?camera=1",
       "icons": [
         {
@@ -59,5 +72,30 @@
         }
       ]
     }
-  ]
+  ],
+  "share_target": {
+    "action": "./share-target",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url",
+      "files": [
+        {
+          "name": "files",
+          "accept": [
+            "image/*",
+            "application/pdf",
+            ".pdf",
+            ".docx",
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            "text/plain",
+            ".txt",
+            ".md"
+          ]
+        }
+      ]
+    }
+  }
 }

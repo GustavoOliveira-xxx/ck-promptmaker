@@ -1,5 +1,3 @@
-// Dependency-free ZIP writer (STORE), UTF-8 names, CRC32, classic ZIP limits.
-// Files remain byte-for-byte identical. No decompression or untrusted code execution.
 const enc=new TextEncoder();
 const table=Uint32Array.from({length:256},(_,i)=>{let c=i;for(let j=0;j<8;j++)c=(c&1)?0xedb88320^(c>>>1):c>>>1;return c>>>0;});
 export function crc32(bytes){let c=0xffffffff;for(const b of bytes)c=table[(c^b)&255]^(c>>>8);return (c^0xffffffff)>>>0;}

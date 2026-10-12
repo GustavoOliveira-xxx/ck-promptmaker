@@ -2,18 +2,35 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#131019"><meta name="description" content="Transforme suas atividades em prompts completos. Seus PTDs, referências e ideias, juntos e salvos no seu aparelho.">
-<meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' blob: data:; media-src 'self' blob:; connect-src 'self' https://api.github.com; object-src 'none'; base-uri 'self'; form-action 'none'; worker-src 'self'">
+<meta name="theme-color" content="#06030b"><meta name="description" content="Transforme suas atividades em prompts completos. Seus PTDs, referências e ideias, juntos e salvos no seu aparelho.">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="CK">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' blob: data:; media-src 'self' blob:; connect-src 'self' https://api.github.com https://ck-promptmaker.vercel.app; object-src 'none'; base-uri 'self'; form-action 'none'; worker-src 'self'">
 <link rel="manifest" href="./manifest.webmanifest"><link rel="icon" href="./assets/icon-192.png"><link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
+<link rel="preload" href="./vendor/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="./src/styles.css"><title>CK Promptmaker</title>
 </head>
 <body>
-<div id="intro" class="intro" aria-hidden="true"><div class="intro-ring"></div><img src="./assets/ck-logo.webp" alt="" width="240" height="240"><span>CONSCIOUS KNOWLEDGE</span><div class="intro-line"></div></div>
+<div class="cosmos" aria-hidden="true"><div class="aurora a1"></div><div class="aurora a2"></div><div class="aurora a3"></div><div class="stars"></div><div class="stars s2"></div><div class="grid-floor"><i></i></div></div>
+<div id="intro" class="intro" aria-hidden="true">
+ <div class="intro-core">
+  <div class="intro-stage">
+   <div class="intro-gyro"><i></i><i></i><i></i></div>
+   <svg class="intro-bolt" viewBox="0 0 400 400"><path d="M206 18 172 150l52-6-40 120 70-150-56 8 34-104Z"/><path d="M60 230l70-22-26 48 84-34"/></svg>
+   <div class="intro-logo"><img class="ghost-a" src="./assets/ck-logo.webp" alt=""><img class="ghost-b" src="./assets/ck-logo.webp" alt=""><img class="main" src="./assets/ck-logo.webp" alt="" width="240" height="240"><span class="intro-shine"></span></div>
+  </div>
+  <div class="intro-word">CONSCIOUS KNOWLEDGE</div>
+  <div class="intro-tag">PROMPTMAKER</div>
+ </div>
+ <div class="intro-flash"></div>
+ <span class="intro-skip">TOQUE PARA ENTRAR</span>
+</div>
 <div id="app"><p class="loading">Preparando seu espaço…</p></div>
 <div id="toast" role="status" aria-live="polite"></div>
 <dialog id="dialog"></dialog>
 <input id="camera-input" class="visually-hidden" type="file" accept="image/*" capture="environment" tabindex="-1" aria-label="Fotografar atividade">
+<input id="ai-camera-input" class="visually-hidden" type="file" accept="image/*" capture="environment" tabindex="-1" aria-label="Fotografar para a IA">
+<input id="ai-file-input" class="visually-hidden" type="file" accept="image/*,.pdf,.docx,.txt,.md,.csv,.json,.html,.sql,application/pdf" multiple tabindex="-1" aria-label="Escolher materiais para a IA">
+<input id="voice-input" class="visually-hidden" type="file" accept=".docx,.pdf,.txt,.md,image/*,application/pdf" multiple tabindex="-1" aria-label="Escolher trabalhos que você escreveu">
 <input id="transfer-input" class="visually-hidden" type="file" accept=".json,application/json" tabindex="-1" aria-label="Receber dados de outro aparelho">
 <input id="backup-input" class="visually-hidden" type="file" accept=".json,application/json" tabindex="-1" aria-label="Restaurar backup">
 <script type="module" src="./src/app.js"></script>

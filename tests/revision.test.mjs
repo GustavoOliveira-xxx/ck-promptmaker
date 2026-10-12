@@ -24,11 +24,11 @@ test('website media and custom identity requirements do not leak into non-websit
 });
 test('individual authorship uses profile name while group credits use named members',()=>{
  const a=valid();const prompt=buildPrompt(a,{name:'Biologia'},profile);
- assert.match(prompt,/Individual — autoria: Gustavo Oliveira/);
+ assert.match(prompt,/Individual \(autoria: Gustavo Oliveira\)/);
  assert.match(prompt,/capa|créditos/);
  a.mode='group';a.groupSize=2;a.members=['Maria','João'];
  const group=buildPrompt(a,{name:'Biologia'},profile);
- assert.match(group,/Grupo de 2 integrantes: Maria; João/);assert.doesNotMatch(group,/Individual — autoria/);
+ assert.match(group,/Grupo de 2 integrantes: Maria; João/);assert.doesNotMatch(group,/Individual \(autoria/);
  assert.deepEqual(stageErrors(a,DEFAULT_PROFILE,[],0),[]);
 });
 test('public HTML contains complete escaped text and original download references without scripts',async()=>{
