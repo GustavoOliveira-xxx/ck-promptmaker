@@ -176,3 +176,13 @@ test('device check reports capabilities and the keyboard hides the bottom bar',a
  await page.evaluate(()=>{document.body.classList.add('keyboard-open');});
  await expect(page.locator('.camera-fab')).toHaveCSS('opacity','0');
 });
+
+test('activation link saves the AI code on this device',async({page})=>{
+ await open(page);
+ await page.goto('/ck-promptmaker/?codigo=ck-teste-123');
+ await expect(page.locator('#toast')).toContainText('Código da IA salvo');
+ expect(new URL(page.url()).search).toBe('');
+ await page.getByRole('button',{name:'Meu perfil',exact:true}).click();
+ await expect(page.getByLabel('Código de acesso da IA')).toHaveValue('ck-teste-123');
+ await expect(page.getByRole('button',{name:'Copiar link de ativação'})).toBeVisible();
+});
