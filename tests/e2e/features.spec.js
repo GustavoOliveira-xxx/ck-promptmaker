@@ -76,7 +76,7 @@ test('private link is created, stored in the history and can be deleted',async({
   return route.fulfill({contentType:'application/json',body:JSON.stringify({deleted:3})});
  });
  await open(page);await named(page);
- await page.getByRole('button',{name:'Meu perfil',exact:true}).click();await page.getByLabel('Código de acesso da IA').fill('ck-code');await page.locator('[data-view="activity"]').first().click();
+ await page.getByRole('button',{name:'Meu perfil',exact:true}).click();await page.getByLabel('Senha da sua conta').fill('ck-code');await page.locator('[data-view="activity"]').first().click();
  await ready(page);await toReview(page);
  await page.getByRole('button',{name:'Página para IA',exact:true}).click();
  await expect(page.getByRole('heading',{name:'Página para IA',exact:true})).toBeVisible({timeout:45000});
@@ -180,9 +180,32 @@ test('device check reports capabilities and the keyboard hides the bottom bar',a
 test('activation link saves the AI code on this device',async({page})=>{
  await open(page);
  await page.goto('/ck-promptmaker/?codigo=ck-teste-123');
- await expect(page.locator('#toast')).toContainText('Código da IA salvo');
+ await expect(page.locator('#toast')).toContainText('Senha salva');
  expect(new URL(page.url()).search).toBe('');
  await page.getByRole('button',{name:'Meu perfil',exact:true}).click();
- await expect(page.getByLabel('Código de acesso da IA')).toHaveValue('ck-teste-123');
+ await expect(page.getByLabel('Senha da sua conta')).toHaveValue('ck-teste-123');
  await expect(page.getByRole('button',{name:'Copiar link de ativação'})).toBeVisible();
+});
+
+test('cloud account carries activities, subjects and files to another device',async({page,browser})=>{
+ const {handle:cloud}=await import('../../api/cloud.js');const {memoryBlob}=await import('../fixtures/memory-blob.mjs');
+ const blob=memoryBlob(),env={BLOB_READ_WRITE_TOKEN:'vercel_blob_rw_e2e_secret',CK_ACCESS_CODE:'minha-senha'};
+ const server=async route=>{const r=route.request();const response=await cloud(new Request(r.url(),{method:r.method(),headers:r.headers(),body:r.postDataBuffer()}),{env,blob,fetch:blob.fetch});route.fulfill({status:response.status,headers:Object.fromEntries(response.headers),body:Buffer.from(await response.arrayBuffer())});};
+ const login=async(target,password)=>{await target.getByRole('button',{name:'Meu perfil',exact:true}).click();await target.locator('#cloud-pass').fill(password);await target.getByRole('button',{name:'Entrar',exact:true}).click();};
+ await page.context().route('**/api/cloud**',server);
+ await open(page);await named(page);await ready(page,'Trabalho na nuvem','2027-05-02');
+ await page.evaluate(async()=>{const {getAll,addFiles}=await import('./src/db.js');const a=(await getAll('activities'))[0];await addFiles([new File(['conteúdo do anexo'],'anexo.txt',{type:'text/plain'})],'activity',a.id);});
+ await login(page,'errada');
+ await expect(page.locator('#toast')).toContainText('Senha incorreta');await expect(page.locator('#cloud-pass')).toBeVisible();
+ await page.locator('#cloud-pass').fill('minha-senha');await page.getByRole('button',{name:'Entrar',exact:true}).click();
+ await expect(page.locator('#toast')).toContainText('Sincronizado');await expect(page.locator('#cloud-status')).toContainText('Tudo salvo na nuvem');
+ expect([...blob.store.keys()].some(k=>k.includes('/files/'))).toBe(true);
+ const other=await browser.newContext();const phone=await other.newPage();await other.route('**/api/cloud**',server);
+ await open(phone);await login(phone,'minha-senha');
+ await expect(phone.locator('#toast')).toContainText('recebeu as novidades');
+ await phone.getByRole('button',{name:'Minhas atividades',exact:true}).click();
+ await expect(phone.locator('.draft-card h3')).toContainText(['Trabalho na nuvem']);
+ const received=await db(phone,'files');expect(received.map(f=>[f.name,f.blobSize])).toEqual([['anexo.txt',18]]);
+ expect((await db(phone,'subjects')).map(s=>s.name)).toEqual(['Biologia']);
+ await other.close();
 });

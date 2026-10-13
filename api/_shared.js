@@ -36,7 +36,7 @@ export function guard(request, env, {methods='POST, OPTIONS', code=true, max=30}
  if(request.method==='GET') return {cors};
  if(!methods.includes(request.method)) return {response:json({error:'Método não permitido.'}, 405, cors)};
  if(!allowed) return {response:json({error:'Origem não autorizada.'}, 403)};
- if(code && env.CK_ACCESS_CODE && !sameSecret(request.headers.get('x-ck-code')||'', env.CK_ACCESS_CODE)) return {response:json({error:'Informe o código de acesso da IA.', code:'ACCESS_CODE'}, 401, cors)};
+ if(code && env.CK_ACCESS_CODE && !sameSecret(request.headers.get('x-ck-code')||'', env.CK_ACCESS_CODE)) return {response:json({error:'Senha incorreta.', code:'ACCESS_CODE'}, 401, cors)};
  const ip = (request.headers.get('x-forwarded-for')||'').split(',')[0].trim() || request.headers.get('x-real-ip') || 'local';
  if(limited(new URL(request.url).pathname+'|'+ip, max)) return {response:json({error:'Muitas solicitações em pouco tempo. Aguarde alguns minutos.'}, 429, cors)};
  return {cors};

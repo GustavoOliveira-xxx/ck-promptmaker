@@ -96,7 +96,7 @@ const req=(body,{query='',headers={}}={})=>new Request('https://ck.test/api/publ
 const env={BLOB_READ_WRITE_TOKEN:'vercel_blob_rw_abc123_secret',CK_ACCESS_CODE:'code'};
 
 test('private links: ids carry their expiry and only signed uploads are accepted',async()=>{
- const now=Date.parse('2026-10-12T12:00:00Z');
+ const now=Date.now();
  const id=newId(7,now);assert.match(id,/^e[0-9a-z]+-[A-Za-z0-9_-]{22}$/);assert.ok(expiryOf(id)>=now+7*86400000);assert.equal(expiryOf(newId(0)),null);
  const blob=fakeBlob();
  assert.equal((await publish(req({action:'start',days:7},{headers:{'x-ck-code':'wrong'}}),{env,blob})).status,401);

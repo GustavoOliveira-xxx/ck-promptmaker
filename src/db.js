@@ -29,15 +29,24 @@ export async function deleteWorkspace(id) {
 }
 export async function getAll(store) {const db=await openDB();return new Promise((resolve,reject)=>{const r=db.transaction(store).objectStore(store).getAll();r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error);});}
 export async function get(store,id) {const db=await openDB();return new Promise((resolve,reject)=>{const r=db.transaction(store).objectStore(store).get(id);r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error);});}
-export async function batch(operations) {
+const writers=new Set();
+export const onWrite = fn => writers.add(fn);
+export async function batch(operations,{quiet=false}={}) {
  const db=await openDB();if(!operations.length)return;
+ const at=Date.now();
+ operations=[...operations,...operations.filter(o=>o.type==='delete'&&STORES.includes(o.store)&&o.store!=='settings').map(o=>({store:'device',value:{id:'gone:'+o.id,at}}))];
  return new Promise((resolve,reject)=>{
  const tx=db.transaction([...new Set(operations.map(o=>o.store))],'readwrite');
  for(const op of operations) {const s=tx.objectStore(op.store);if(op.type==='delete')s.delete(op.id);else if(op.type==='clear')s.clear();else s.put(op.value);}
- tx.oncomplete=()=>resolve();tx.onerror=()=>reject(tx.error);tx.onabort=()=>reject(tx.error||new Error('Não foi possível salvar.'));
+ tx.oncomplete=()=>{resolve();if(!quiet)for(const fn of writers)fn();};tx.onerror=()=>reject(tx.error);tx.onabort=()=>reject(tx.error||new Error('Não foi possível salvar.'));
  });
 }
 export const put = (store,value)=>batch([{store,value}]);
+export async function goneIds() {
+ const out=new Map();
+ for(const r of await getAll('device'))if(r.id.startsWith('gone:'))out.set(r.id.slice(5),r.at);
+ return out;
+}
 const storeOf = type => type==='subject' ? 'subjects' : type==='activity' ? 'activities' : 'files';
 export async function removeOwner(type,id) {
  const files=await getAll('files');

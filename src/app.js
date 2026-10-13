@@ -1,5 +1,5 @@
 import {CATEGORIES,STATUSES,TEMPLATES,DEFAULT_PROFILE,CPS_URL,TRASH_DAYS,uid,today,esc,bytes,MAX_TOTAL,safeName,newActivity,hasSite,isAbnt,relevantFiles,pathForFile,buildPrompt,statusOf,isClosed,templateOf,daysUntil,snapshotOf,icsFor} from './core.js';
-import {getAll,get,put,batch,addFiles,removeOwner,trash,untrash,purgeTrash,exportBackup,restoreBackup,readBackup,useWorkspace,deleteWorkspace} from './db.js';
+import {getAll,get,put,batch,addFiles,removeOwner,trash,untrash,purgeTrash,exportBackup,restoreBackup,readBackup,useWorkspace,deleteWorkspace,onWrite} from './db.js';
 import {runExport} from './tasks.js';
 import {stageErrors,firstIncompleteStage} from './stages.js';
 import {initMotion,logoTransition,viewSweep,pauseOffscreen,haptic} from './motion.js';
@@ -77,7 +77,7 @@ function saveActivity(force=false){
  return saving;
 }
 function scheduleSave(){setSaved('Salvando…');clearTimeout(saveTimer);saveTimer=setTimeout(()=>saveActivity().catch(()=>{}),450);}
-async function saveProfile(){await put('settings',{...profile,id:'profile'});clearTimeout(saveProfile.timer);saveProfile.timer=setTimeout(()=>announce({type:'profile'}),300);}
+async function saveProfile(){profile.updatedAt=Date.now();await put('settings',{...profile,id:'profile'});clearTimeout(saveProfile.timer);saveProfile.timer=setTimeout(()=>announce({type:'profile'}),300);}
 function field(label,name,value='',options={}){
  const {type='text',placeholder='',required=false,full=false,rows=4,scope='activity',hint='',list}=options;
  const data=scope==='activity'?'data-field':scope==='profile'?'data-profile':'data-subject';
@@ -254,9 +254,9 @@ function profileView(){
  '<section class="settings-card voice-card spot"><div class="section-heading"><div><span class="overline">SUA VOZ</span><h2>Para soar como você</h2><p>Envie 2 ou 3 trabalhos que você mesmo escreveu. A IA descreve seu jeito de escrever e esse guia entra em todos os prompts.</p></div>'+icon('chat','heading-icon')+'</div>'+field('Guia da sua voz','voiceGuide',p.voiceGuide,{scope:'profile',type:'textarea',full:true,rows:6,placeholder:'Ainda vazio. Gere com seus trabalhos ou escreva do seu jeito.'})+'<div class="button-wrap">'+button(p.voiceGuide?'Gerar de novo com meus trabalhos':'Gerar com meus trabalhos','voice-ai','wand','primary')+'</div></section>'+
  '<section class="settings-card spot"><div class="section-heading"><div><h2>Identidade &amp; regras</h2><p>Adapte o app para você, sua turma ou sua marca.</p></div>'+icon('spark','heading-icon')+'</div><div class="form-grid">'+field('Nome da marca','brand',p.brand,{scope:'profile',full:true})+field('Link do manual de formatação','manualUrl',p.manualUrl,{scope:'profile',full:true,type:'url',hint:'O manual CPS que acompanha o app é a versão de 2015 fornecida pelo criador. Um arquivo enviado abaixo substitui o manual do pacote.'})+'</div><div class="settings-uploads"><div><h3>Manual da instituição</h3>'+uploadBox('manual','Anexar manual próprio','.pdf,.docx',false)+fileList(files.filter(f=>f.kind==='manual'))+'</div><div><h3>Logo da sua marca</h3>'+uploadBox('brand','Usar outra logo','image/png,image/jpeg,image/webp',false)+fileList(files.filter(f=>f.kind==='brand'))+'</div></div>'+field('Regras adicionais para os prompts','extraRules',p.extraRules,{scope:'profile',type:'textarea',rows:3,placeholder:'Preferências da escola, estrutura padrão, orientações recorrentes…'})+'</section>'+
  '<section class="settings-card spot"><div class="section-heading"><div><span class="overline">EXPERIÊNCIA</span><h2>Movimento e desempenho</h2><p>O modo automático reduz efeitos em aparelhos mais simples.</p></div>'+icon('gauge','heading-icon')+'</div><div class="form-grid">'+field('Efeitos visuais','effects',p.effects,{scope:'profile',type:'select',list:[{value:'auto',label:'Automático'},{value:'full',label:'Completos'},{value:'lite',label:'Econômicos'}],hint:document.body.classList.contains('lite')?'Modo econômico ativo neste aparelho.':'Efeitos completos ativos neste aparelho.'})+'</div><label class="toggle"><input type="checkbox" data-profile="motion" '+(p.motion?'checked':'')+'><span>Animações da interface<small>A preferência de movimento reduzido do aparelho também é respeitada.</small></span></label><label class="toggle"><input type="checkbox" data-profile="compressPhotos" '+(p.compressPhotos?'checked':'')+'><span>Comprimir fotos ao anexar<small>Fotos grandes viram JPEG de alta qualidade com até 2400 px e ocupam até 10 vezes menos espaço.</small></span></label></section>'+
- '<section class="settings-card spot"><div class="section-heading"><div><span class="overline">ASSISTENTE CK</span><h2>IA que preenche por você</h2><p>Fotos e documentos só saem do aparelho quando você toca em Analisar com IA. A chave da IA fica no servidor do app, nunca no seu aparelho ou no backup.</p></div>'+icon('wand','heading-icon')+'</div><div class="form-grid">'+field('Código de acesso da IA','aiCode',p.aiCode,{scope:'profile',type:'password',full:true,placeholder:'Peça a quem hospeda o app',hint:'Protege a cota da IA e dos links. Digite uma vez ou abra o link de ativação em cada aparelho.'})+'</div>'+(p.aiCode?'<div class="button-wrap">'+button('Copiar link de ativação','copy-code-link','link','secondary')+'</div>':'')+'</section>'+
+ '<section class="settings-card spot"><div class="section-heading"><div><span class="overline">ASSISTENTE CK</span><h2>IA que preenche por você</h2><p>Fotos e documentos só saem do aparelho quando você toca em Analisar com IA. A chave da IA fica no servidor do app, nunca no seu aparelho ou no backup.</p></div>'+icon('wand','heading-icon')+'</div><div class="form-grid">'+field('Senha da sua conta','aiCode',p.aiCode,{scope:'profile',type:'password',full:true,placeholder:'A senha definida na Vercel',hint:'A mesma senha libera a IA, os links e a nuvem. Digite uma vez ou abra o link de ativação em cada aparelho.'})+'</div></section>'+
  workspacesCard()+
- '<section class="settings-card spot"><div class="section-heading"><div><h2>Seu aparelho, seu espaço</h2><p>Salvamento local, sem envio automático para servidores.</p></div>'+icon('shield','heading-icon')+'</div><div class="storage-row"><span>'+bytes(total)+' de 120 MB em anexos'+(inTrash?' · '+bytes(inTrash)+' na lixeira':'')+'</span>'+button('Proteger armazenamento','persist','shield','ghost')+'</div><p class="muted">'+(p.lastBackupAt?'Último backup: '+fmtTime(p.lastBackupAt)+'. ':'Nenhum backup ainda. ')+'Limpar os dados do navegador, remover o app ou trocar de aparelho pode apagar seus materiais.</p><div class="button-wrap">'+button('Exportar backup','backup','download','secondary')+button('Salvar no Drive ou na nuvem','backup-share','upload','secondary')+button('Restaurar backup','restore','undo','secondary')+button('Instalar app','install','plus','primary')+(updatingWorker?button('Atualizar aplicativo','update','download','secondary'):'')+'</div>'+('showSaveFilePicker' in window?'<div class="auto-backup">'+icon('history')+'<p><strong>Backup automático no computador</strong>'+(backupHandle?'Salvando em '+esc(backupHandle.name)+'. Escolha um arquivo dentro da pasta do Google Drive ou OneDrive para ter cópia na nuvem.':'Escolha um arquivo, de preferência numa pasta sincronizada com o Google Drive. O CK atualiza esse arquivo com um toque.')+'</p>'+button(backupHandle?'Atualizar agora':'Escolher arquivo','backup-file','folder','ghost')+'</div>':'')+'</section>'+transferSection()+diagnosticsCard();
+ '<section class="settings-card spot"><div class="section-heading"><div><h2>Seu aparelho, seu espaço</h2><p>Salvamento local, sem envio automático para servidores.</p></div>'+icon('shield','heading-icon')+'</div><div class="storage-row"><span>'+bytes(total)+' de 120 MB em anexos'+(inTrash?' · '+bytes(inTrash)+' na lixeira':'')+'</span>'+button('Proteger armazenamento','persist','shield','ghost')+'</div><p class="muted">'+(p.lastBackupAt?'Último backup: '+fmtTime(p.lastBackupAt)+'. ':'Nenhum backup ainda. ')+'Limpar os dados do navegador, remover o app ou trocar de aparelho pode apagar seus materiais.</p><div class="button-wrap">'+button('Exportar backup','backup','download','secondary')+button('Salvar no Drive ou na nuvem','backup-share','upload','secondary')+button('Restaurar backup','restore','undo','secondary')+button('Instalar app','install','plus','primary')+(updatingWorker?button('Atualizar aplicativo','update','download','secondary'):'')+'</div>'+('showSaveFilePicker' in window?'<div class="auto-backup">'+icon('history')+'<p><strong>Backup automático no computador</strong>'+(backupHandle?'Salvando em '+esc(backupHandle.name)+'. Escolha um arquivo dentro da pasta do Google Drive ou OneDrive para ter cópia na nuvem.':'Escolha um arquivo, de preferência numa pasta sincronizada com o Google Drive. O CK atualiza esse arquivo com um toque.')+'</p>'+button(backupHandle?'Atualizar agora':'Escolher arquivo','backup-file','folder','ghost')+'</div>':'')+'</section>'+cloudCard()+transferSection()+diagnosticsCard();
 }
 function workspacesCard(){
  const all=[{id:'default',name:'Principal'},...workspaces];
@@ -457,6 +457,9 @@ async function route(t){
  case 'persist':{const granted=await navigator.storage?.persist?.();toast(granted?'Armazenamento persistente concedido. Continue fazendo backups.':'O navegador decide a proteção do armazenamento. Mantenha seu backup em dia.');break;}
  case 'install':await installApp();break;
  case 'update':await saveActivity();updatingWorker?.postMessage('SKIP_WAITING');break;
+ case 'cloud-login':{const code=$('#cloud-pass')?.value.trim();if(!code){toast('Digite sua senha.');break;}profile.aiCode=code;await saveProfile();if(!await cloudSync({manual:true})&&cloud.error==='ACCESS_CODE'){profile.aiCode='';await saveProfile();}render();break;}
+ case 'cloud-sync':await cloudSync({manual:true});break;
+ case 'cloud-auto':local.set('ck-cloud-auto',t.checked);if(t.checked)cloudSync();render();break;
  case 'copy-code-link':{const url=new URL('./?codigo='+encodeURIComponent(profile.aiCode||''),location.href).href;try{await navigator.clipboard.writeText(url);toast('Link copiado. Abra no outro aparelho e a IA já fica liberada.');}catch{toast(url);}break;}
  case 'new-workspace':promptDialog('Novo perfil','Nome de quem vai usar',profile.name?'':'Perfil 2',async name=>{const id=uid().slice(0,8);workspaces.push({id,name});local.set('ck-workspaces',workspaces);await switchWorkspace(id);});break;
  case 'diagnose':{t.disabled=true;toast('Testando este aparelho por alguns segundos…');try{diagnostics=await diagnose();render();}finally{t.disabled=false;}break;}
@@ -563,7 +566,7 @@ async function onSync(message){
   else if(view!=='activity'||fresh.id!==activity.id)render();
   return;
  }
- if(message.type==='data'){await refreshData();const fresh=activities.find(a=>a.id===activity.id);if(!fresh&&!saveTimer){activity=newActivity();lastSaved='';}render();}
+ if(message.type==='data'){await refreshData();applyEffects(profile.effects);const fresh=activities.find(a=>a.id===activity.id);if(!saveTimer){if(!fresh||fresh.deletedAt){activity=newActivity();lastSaved='';}else if(fresh.updatedAt>activity.updatedAt){activity=structuredClone(fresh);lastSaved=JSON.stringify({...activity,updatedAt:0});}}if(!document.activeElement?.matches?.('input,textarea,select'))render();}
 }
 initMotion(()=>profile.motion);
 async function readShared(){
@@ -597,7 +600,8 @@ async function init(){
  if(params.has('share')){const shared=await readShared();if(shared.files.length||shared.note){aiDraft=newAiDraft();aiDraft.files=shared.files.slice(0,12);aiDraft.note=shared.note;aiRenderPick('Recebido pelo menu Compartilhar. Toque em Analisar com IA ou feche para só guardar depois.');}}
  if(params.has('ai'))setTimeout(()=>scan('ai').catch(fail),params.has('share')?0:600);
  const linkCode=(params.get('codigo')||params.get('code')||'').trim();
- if(linkCode){profile.aiCode=linkCode;await saveProfile();if(view==='profile')render();toast('Código da IA salvo neste aparelho. Já pode usar Preencher com IA.');}
+ if(linkCode){profile.aiCode=linkCode;await saveProfile();if(view==='profile')render();toast('Senha salva neste aparelho. A IA e a nuvem já estão liberadas.');}
+ if(cloudOn())cloudSync();
  history.replaceState(null,'',location.pathname);
  if('serviceWorker' in navigator){
  try{const reg=await navigator.serviceWorker.register('./sw.js');const apply=async()=>{if(!updatingWorker||document.querySelector('dialog[open]')||busy)return false;await saveActivity();updatingWorker.postMessage('SKIP_WAITING');return true;};
@@ -626,8 +630,51 @@ async function goStep(target){
  if(target>step){const missing=firstIncompleteStage(activity,profile,files,target);if(missing){step=missing.stage;stageMessages=missing.errors;render();showStageErrors();return;}}
  await saveActivity();stageMessages=[];step=target;render();logoTransition();$('.editor').scrollIntoView({behavior:profile.motion?'smooth':'instant',block:'start'});
 }
+const cloud={busy:false,error:'',message:'',timer:null};
+const cloudKey=()=>'ck-cloud-at:'+workspace;
+const cloudOn=()=>!!profile.aiCode&&local.get('ck-cloud-auto',true)!==false;
+function cloudLine(){
+ if(cloud.busy)return cloud.message||'Sincronizando…';
+ if(cloud.error)return cloud.message;
+ const at=local.get(cloudKey(),0);
+ return at?'Tudo salvo na nuvem. Última sincronização: '+fmtTime(at)+'.':'Ainda não sincronizado neste aparelho.';
+}
+function setCloud(message){cloud.message=message;const el=$('#cloud-status');if(el)el.textContent=cloudLine();}
+function cloudCard(){
+ const head='<section class="settings-card spot"><div class="section-heading"><div><span class="overline">SUA CONTA</span><h2>Tudo salvo na nuvem</h2><p>Atividades, '+lower(tpl().subjects)+', anexos e perfil ficam guardados no seu servidor e aparecem em qualquer aparelho em que você entrar.</p></div>'+icon('upload','heading-icon')+'</div>';
+ if(!profile.aiCode)return head+'<div class="form-grid"><div class="field full"><label for="cloud-pass">Senha</label><input id="cloud-pass" type="password" autocomplete="current-password" placeholder="A senha definida na Vercel"><small>Ao entrar, este aparelho recebe tudo o que já está na nuvem.</small></div></div><div class="button-wrap">'+button('Entrar','cloud-login','check','primary')+'</div></section>';
+ return head+'<p class="muted" id="cloud-status" aria-live="polite">'+esc(cloudLine())+'</p><label class="toggle full"><input type="checkbox" data-action="cloud-auto" '+(cloudOn()?'checked':'')+'><span>Sincronizar sozinho neste aparelho<small>Salva na nuvem alguns segundos depois de cada mudança e busca novidades ao abrir o app</small></span></label><div class="button-wrap">'+button('Sincronizar agora','cloud-sync','history','secondary')+button('Copiar link de ativação','copy-code-link','link','ghost')+'</div></section>';
+}
+async function cloudSync({manual=false}={}){
+ clearTimeout(cloud.timer);cloud.timer=null;
+ if(cloud.busy){if(manual)toast('Já estou sincronizando.');return false;}
+ if(!profile.aiCode){if(manual)toast('Entre com sua senha em Meu perfil para usar a nuvem.');return false;}
+ if(!navigator.onLine){if(manual)toast('Sem internet agora. Sincronizo quando a conexão voltar.');return false;}
+ cloud.busy=true;cloud.error='';setCloud('Sincronizando…');
+ try{
+  if(saveTimer)await saveActivity();
+  const {syncCloud}=await import('./cloud.js');
+  const result=await syncCloud({code:profile.aiCode,space:workspace,progress:setCloud});
+  local.set(cloudKey(),result.at);cloud.busy=false;cloud.message='';
+  if(result.changed){await onSync({type:'data'});announce({type:'data'});}else setCloud('');
+  if(manual)toast(result.downloaded||result.changed?'Sincronizado. Este aparelho recebeu as novidades da nuvem.':'Sincronizado. Tudo igual nos seus aparelhos.');
+  return true;
+ }catch(error){
+  cloud.busy=false;cloud.error=error.code||'ERROR';
+  setCloud(error.code==='ACCESS_CODE'?'Senha incorreta. Confira em Meu perfil.':error.message);
+  if(manual)toast(cloud.message);
+  return false;
+ }
+}
+onWrite(()=>{if(!cloudOn())return;clearTimeout(cloud.timer);cloud.timer=setTimeout(()=>cloudSync(),15000);});
+document.addEventListener('visibilitychange',()=>{
+ if(!cloudOn())return;
+ if(document.hidden){if(cloud.timer)cloudSync();}
+ else if(Date.now()-local.get(cloudKey(),0)>60000)cloudSync();
+});
+addEventListener('online',()=>{if(cloudOn())cloudSync();});
 function transferSection(){
- return '<section class="settings-card transfer-card spot"><div class="section-heading"><div><span class="overline">COMPUTADOR ↔ CELULAR</span><h2>Levar meus dados</h2><p>Atividades, '+lower(tpl().subjects)+', '+tpl().plans+', perfil e anexos em um arquivo.</p></div>'+icon('copy','heading-icon')+'</div><ol class="transfer-steps"><li>Neste aparelho, toque em <strong>Exportar transferência</strong>.</li><li>Envie o arquivo por cabo, AirDrop, Quick Share, Drive ou outro meio de sua preferência.</li><li>Abra o CK no outro aparelho e use <strong>Receber dados</strong>.</li></ol><p class="muted">Sem banco de dados na nuvem e sem conta. Em cada item, fica a versão editada por último, venha de onde vier. Exclusões também são levadas. O arquivo contém seus dados pessoais e documentos.</p><div class="button-wrap">'+button('Exportar transferência','transfer-out','download','primary')+button('Receber dados','transfer-in','upload','secondary')+'</div></section>';
+ return '<section class="settings-card transfer-card spot"><div class="section-heading"><div><span class="overline">COMPUTADOR ↔ CELULAR</span><h2>Levar meus dados</h2><p>Atividades, '+lower(tpl().subjects)+', '+tpl().plans+', perfil e anexos em um arquivo.</p></div>'+icon('copy','heading-icon')+'</div><ol class="transfer-steps"><li>Neste aparelho, toque em <strong>Exportar transferência</strong>.</li><li>Envie o arquivo por cabo, AirDrop, Quick Share, Drive ou outro meio de sua preferência.</li><li>Abra o CK no outro aparelho e use <strong>Receber dados</strong>.</li></ol><p class="muted">Para levar sem internet. Em cada item, fica a versão editada por último, venha de onde vier. Exclusões também são levadas. O arquivo contém seus dados pessoais e documentos.</p><div class="button-wrap">'+button('Exportar transferência','transfer-out','download','primary')+button('Receber dados','transfer-in','upload','secondary')+'</div></section>';
 }
 $('#transfer-input').addEventListener('change',async event=>{
  const file=event.target.files[0];event.target.value='';if(!file)return;
@@ -683,7 +730,7 @@ async function publishVercelPage(){
   if(!activity.snapshot)activity.snapshot=snapshotOf(currentSubject(),profile);
   if(statusOf(activity)==='draft')activity.status='sent';
   await saveActivity();linkResult(result,'link');render();
- }catch(error){pageProgress(error.code==='ACCESS_CODE'?'Este servidor pede o código de acesso. Digite-o em Meu perfil, no campo Código de acesso da IA.':error.message,'#link-progress');}
+ }catch(error){pageProgress(error.code==='ACCESS_CODE'?'Este servidor pede a sua senha. Digite-a em Meu perfil, no campo Senha da sua conta.':error.message,'#link-progress');}
  finally{busy=false;d.dataset.publishing='false';for(const el of d.querySelectorAll('button,input,select'))el.disabled=false;}
 }
 async function removePublishedLink(index){
@@ -733,7 +780,7 @@ async function scan(target){
 function newAiDraft(){return {files:[],urls:new Map(),existing:new Set(),existingReady:false,note:'',attach:true,code:profile.aiCode||'',needCode:false,result:null,items:[],skipped:[]};}
 function aiOpen(){aiDraft||=newAiDraft();aiRenderPick();}
 function aiSourceRow(name,detail,thumb,control){return '<div class="ai-source">'+thumb+'<div><strong>'+esc(name)+'</strong><small>'+esc(detail)+'</small></div>'+control+'</div>';}
-function codeField(){return aiDraft.needCode?'<label for="ai-code">Código de acesso da IA</label><input id="ai-code" type="password" autocomplete="off" value="'+esc(aiDraft.code)+'">':'';}
+function codeField(){return aiDraft.needCode?'<label for="ai-code">Senha da sua conta</label><input id="ai-code" type="password" autocomplete="off" value="'+esc(aiDraft.code)+'">':'';}
 function aiRenderPick(message=''){
  const d=$('#dialog'),base=files.filter(f=>f.ownerType==='activity'&&f.ownerId===activity.id&&f.kind==='base');
  if(!aiDraft.existingReady){aiDraft.existing=new Set(base.map(f=>f.id));aiDraft.existingReady=true;}
@@ -812,7 +859,7 @@ async function aiReview(){
    (r.issues.length?'<ul class="review-issues">'+r.issues.map(i=>'<li class="'+i.level+'"><b>'+({alta:'Importante',media:'Recomendado',baixa:'Detalhe'}[i.level])+'</b><span>'+esc(i.text)+'</span></li>').join('')+'</ul>':'<p>Nenhum problema relevante encontrado.</p>')+
    (r.questions.length?'<h3>Responda para completar</h3><p class="muted">As respostas vão para as observações da entrega.</p>'+r.questions.map((q,i)=>'<div class="field"><label for="review-answer-'+i+'">'+esc(q)+'</label><textarea id="review-answer-'+i+'" data-review-question="'+esc(q)+'" rows="2"></textarea></div>').join(''):'')+
    '</div><div class="dialog-footer">'+button('Fechar','close-dialog',null,'ghost')+(r.questions.length?button('Adicionar respostas','review-apply','check','primary'):'')+'</div>';
- }catch(error){d.dataset.publishing='false';d.close();if(error.code==='ACCESS_CODE')toast('Digite o código de acesso da IA em Meu perfil.');else fail(error);}
+ }catch(error){d.dataset.publishing='false';d.close();if(error.code==='ACCESS_CODE')toast('Digite a senha da sua conta em Meu perfil.');else fail(error);}
  finally{busy=false;d.dataset.publishing='false';}
 }
 async function applyReviewAnswers(){
@@ -833,7 +880,7 @@ async function voiceAi(list){
   voiceResult=await aiCall({task:'voice',sources},profile.aiCode);
   d.dataset.publishing='false';
   d.innerHTML='<div class="dialog-head"><div><span class="overline">SUA VOZ</span><h2>Assim você escreve</h2></div><button class="icon-btn" data-action="close-dialog" aria-label="Fechar">'+icon('close')+'</button></div><div class="dialog-body"><div class="voice-traits">'+voiceResult.traits.map(t=>tag(esc(t),'gold')).join('')+'</div><div class="voice-preview">'+esc(voiceResult.guide)+'</div>'+([...voiceResult.notes,...skipped].length?'<ul class="ai-notes">'+[...voiceResult.notes,...skipped].map(n=>'<li>'+esc(n)+'</li>').join('')+'</ul>':'')+'<p class="muted">Você pode editar o guia depois no perfil.</p></div><div class="dialog-footer">'+button('Descartar','close-dialog',null,'ghost')+button('Usar este guia','voice-apply','check','primary')+'</div>';
- }catch(error){d.dataset.publishing='false';d.close();if(error.code==='ACCESS_CODE')toast('Digite o código de acesso da IA em Meu perfil.');else fail(error);}
+ }catch(error){d.dataset.publishing='false';d.close();if(error.code==='ACCESS_CODE')toast('Digite a senha da sua conta em Meu perfil.');else fail(error);}
  finally{busy=false;d.dataset.publishing='false';}
 }
 async function applyVoice(){if(!voiceResult)return;profile.voiceGuide=voiceResult.guide;voiceResult=null;await saveProfile();$('#dialog').close();render();toast('Guia da sua voz salvo. Ele entra em todos os prompts.');}
@@ -851,7 +898,7 @@ async function ptdAi(){
   ptdResult={id,...await aiCall({task:'ptd',sources,periods:t.periods.map(t.periodName)},profile.aiCode)};
   d.dataset.publishing='false';
   d.innerHTML='<div class="dialog-head"><div><span class="overline">'+esc(s.name)+'</span><h2>Conteúdo organizado</h2></div></div><div class="dialog-body">'+(ptdResult.periods.length?'<div class="ai-review">'+ptdResult.periods.map((p,i)=>'<label class="toggle ai-item"><input type="checkbox" data-ptd-item="'+i+'" checked><span><b>'+(p.period==='anual'?'Anual':t.periodName(p.period))+(s.notes?.[p.period]?' '+tag('substitui o texto atual','gold'):'')+'</b><span class="val">'+esc(p.content)+'</span></span></label>').join('')+'</div>':'<p>Não encontrei conteúdo por período nesses arquivos.</p>')+([...ptdResult.notes,...skipped].length?'<ul class="ai-notes">'+[...ptdResult.notes,...skipped].map(n=>'<li>'+esc(n)+'</li>').join('')+'</ul>':'')+'</div><div class="dialog-footer">'+button('Voltar','ptd-back-dummy',null,'ghost','data-edit-subject="'+id+'"')+(ptdResult.periods.length?button('Salvar nas notas','ptd-apply','check','primary'):'')+'</div>';
- }catch(error){d.dataset.publishing='false';subjectDialog(id);if(error.code==='ACCESS_CODE')toast('Digite o código de acesso da IA em Meu perfil.');else fail(error);}
+ }catch(error){d.dataset.publishing='false';subjectDialog(id);if(error.code==='ACCESS_CODE')toast('Digite a senha da sua conta em Meu perfil.');else fail(error);}
  finally{busy=false;d.dataset.publishing='false';}
 }
 async function applyPtd(){

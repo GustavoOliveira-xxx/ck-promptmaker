@@ -7,7 +7,8 @@
     "api/assist.js": {"maxDuration": 60},
     "api/publish.js": {"maxDuration": 60},
     "api/page.js": {"maxDuration": 15},
-    "api/purge.js": {"maxDuration": 60}
+    "api/purge.js": {"maxDuration": 60},
+    "api/cloud.js": {"maxDuration": 60}
   },
   "rewrites": [
     {"source": "/p/:id", "destination": "/api/page?id=:id"}

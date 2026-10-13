@@ -57,7 +57,7 @@ O `vercel.json` gera o build, publica `dist/` e cria as funções em `api/`.
 | Variável | Para quê |
 | --- | --- |
 | `GEMINI_API_KEY` | Chave do Google AI Studio. Fica só no servidor. |
-| `CK_ACCESS_CODE` | Código pedido pelo app para usar a IA e criar links. |
+| `CK_ACCESS_CODE` | Senha da conta. Libera a IA, os links e a nuvem. Sem ela a nuvem fica desligada. |
 | `BLOB_READ_WRITE_TOKEN` | Criada ao conectar o Blob Store ao projeto. Guarda as páginas com link. |
 | `CRON_SECRET` | Protege a limpeza diária dos links vencidos. |
 | `GEMINI_MODELS` | Opcional. Ordem dos modelos, separados por vírgula. |
@@ -90,6 +90,7 @@ pnpm run test:e2e
 ```text
 api/assist.js        IA: preencher, voz, PTDs e revisão
 api/publish.js       Links privados (envio e exclusão)
+api/cloud.js         Conta na nuvem (sincronização entre aparelhos)
 api/page.js          Exibe a página de um link
 api/purge.js         Limpeza diária dos links vencidos
 src/app.js           Telas e fluxos
