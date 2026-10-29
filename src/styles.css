@@ -956,3 +956,6 @@ body.lite .tilt{transform:none!important}
  .auto-backup{flex-wrap:wrap}
  .publish-box{padding:16px}
 }
+
+.activity-tools{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0 0 16px}
+.activity-tools p{margin:0;font-size:.85rem;color:var(--muted)}

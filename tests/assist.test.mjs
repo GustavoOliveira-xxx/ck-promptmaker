@@ -83,3 +83,11 @@ test('subject matching ignores case and accents; GitHub Pages copies call the Ve
  assert.equal(apiUrl('assist',new URL('https://gustavooliveira-xxx.github.io/ck-promptmaker/')),REMOTE_ORIGIN+'/api/assist');
  assert.equal(apiUrl('publish',new URL('https://ck-promptmaker.vercel.app/')),'https://ck-promptmaker.vercel.app/api/publish');
 });
+
+test('AI group replacement never fills missing names from the previous team',()=>{
+ const a={...newActivity(),mode:'group',groupSize:4,members:['Antigo A','Antigo B','Antigo C','Antigo D']};
+ applySuggestions(a,[{key:'mode',value:{mode:'group',size:3,members:['Novo A']}}],[],()=>{});
+ assert.equal(a.groupSize,3);assert.deepEqual(a.members,['Novo A','','']);
+ applySuggestions(a,[{key:'mode',value:{mode:'individual'}}],[],()=>{});
+ assert.equal(a.groupSize,2);assert.deepEqual(a.members,[]);
+});

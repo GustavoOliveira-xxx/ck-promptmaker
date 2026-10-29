@@ -139,10 +139,32 @@ function dueStrip(){
  if(!list.length)return '';
  return '<section class="due-strip" aria-label="Próximas entregas"><div class="due-head"><h2>'+icon('clock')+' Próximas entregas</h2><button class="btn ghost" data-view="drafts">Ver todas</button></div><div class="due-list">'+list.map(a=>{const c=countdown(a),s=subjects.find(x=>x.id===a.subjectId);return '<button class="due-card '+c.cls+'" data-open-activity="'+a.id+'" data-key="due-'+a.id+'"><span class="due-when">'+c.text+'</span><strong>'+esc(a.title||'Atividade sem título')+'</strong><small>'+esc(s?.name||'Sem '+lower(tpl().subject))+' · '+fmtDate(a.due)+'</small><i class="due-status">'+STATUSES.find(x=>x.id===statusOf(a)).label+'</i></button>';}).join('')+'</div></section>';
 }
+function clearActivitySession(){
+ for(const url of aiDraft?.urls?.values()||[])URL.revokeObjectURL(url);
+ aiDraft=null;preparedPage=null;stageMessages=[];
+ document.querySelectorAll('input[type="file"]').forEach(input=>{input.value='';});
+}
+async function openActivity(next){
+ if(busy){toast('Aguarde a operação atual terminar antes de trocar de atividade.');return;}
+ await saveActivity();
+ await batch([{store:'activities',value:next},{store:'settings',value:{id:'active',activityId:next.id}}]);
+ clearActivitySession();activity=structuredClone(next);replaceIn(activities,activity);
+ lastSaved=JSON.stringify({...activity,updatedAt:0});view='activity';step=0;
+ render();window.scrollTo(0,0);logoTransition();
+}
+async function startFreshActivity(){
+ if(busy){toast('Aguarde a operação atual terminar antes de limpar.');return;}
+ const previous=activity.id;
+ await openActivity(newActivity());
+ toast('Formulário limpo. A atividade anterior está em Minhas atividades.',{label:'Voltar à anterior',run:async()=>{
+  const old=activities.find(a=>a.id===previous);if(old)await openActivity(structuredClone(old));
+ }});
+ requestAnimationFrame(()=>$('#activity-title')?.focus({preventScroll:true}));
+}
 function activityView(){
  const a=activity;
  return '<section class="hero"><div class="hero-copy"><div class="eyebrow"><span></span> DA IDEIA À ENTREGA</div><h1>Sua ideia.<br><span>Um prompt completo.</span></h1><p>Organize a atividade. Conecte suas referências. Leve o contexto certo para qualquer IA.</p><div class="hero-tags">'+tag(icon('shield')+' Dados locais')+tag(icon('wifi')+' Funciona offline')+tag(icon('wand')+' IA que preenche','gold')+'</div></div><div class="hero-art" aria-hidden="true"><div class="holo"><div class="holo-floor"></div><div class="holo-beam"></div><div class="holo-ring r3"></div><div class="holo-ring r1"></div><div class="holo-ring r2"></div><div class="holo-orbit"><b></b></div><div class="holo-orbit o2"><b></b></div><img class="holo-logo" src="./assets/ck-logo.webp" alt="" width="236" height="236"></div><span class="art-star star-one">✦</span><span class="art-star star-two">✧</span><span class="art-caption">YOUR KNOWLEDGE. AMPLIFIED.</span></div></section>'+dueStrip()+
- '<div class="activity-layout"><section class="editor"><div class="stepper" data-progress="'+step+'" aria-label="Etapas da atividade"><div class="step-rail" aria-hidden="true"><i></i></div>'+steps.map((s,i)=>'<button class="step '+(step===i?'current':step>i?'passed':'')+'" data-step="'+i+'" '+(step===i?'aria-current="step"':'')+' '+(i>step&&firstIncompleteStage(a,profile,files,i)?'aria-disabled="true"':'')+'><span>'+(step>i?icon('check'):String(i+1).padStart(2,'0'))+'</span><b>'+s+'</b></button>').join('')+'</div><div class="editor-body"><div class="section-heading"><div><span class="overline">ETAPA '+String(step+1).padStart(2,'0')+' / 04</span><h2>'+['Vamos dar contexto.','Como vamos entregar?','As referências fazem a diferença.','Pronto para a próxima etapa.'][step]+'</h2><p>'+['Conte o que você precisa fazer. Os detalhes mudam o resultado.','Escolha um ou mais formatos. Nós cuidamos das instruções.','Enunciados, fotos, textos e seus '+tpl().plans+'. Tudo no mesmo lugar.','Confira o briefing e leve o pacote para a IA de sua escolha.'][step]+'</p></div>'+icon(['edit','package','folder','spark'][step],'heading-icon')+'</div>'+stageFeedback()+(step===0?contextForm():step===1?deliveryForm():step===2?materialsForm():reviewForm())+'</div><div class="editor-footer"><div class="save-status">'+icon('check')+'<span id="save-state">Salvo neste aparelho</span></div><div class="row">'+(step>0?button('Voltar','previous','back','ghost'):'')+(step<3?button('Continuar','next','arrow','primary'):button('Baixar pacote ZIP','export-zip','download','primary'))+'</div></div></section><aside class="brief-card tilt"><div class="brief-top">'+icon('spark')+'<span>SEU BRIEFING, AO VIVO</span></div><div id="brief-content">'+briefContent()+'</div><div class="brief-tip"><span>✦</span><p>Um bom prompt começa<br>com um bom contexto.</p></div></aside></div>';
+ '<div class="activity-tools"><p>Comece outra atividade sem misturar informações.</p>'+button('Limpar formulário','clear-activity','rotate','secondary')+'</div><div class="activity-layout"><section class="editor"><div class="stepper" data-progress="'+step+'" aria-label="Etapas da atividade"><div class="step-rail" aria-hidden="true"><i></i></div>'+steps.map((s,i)=>'<button class="step '+(step===i?'current':step>i?'passed':'')+'" data-step="'+i+'" '+(step===i?'aria-current="step"':'')+' '+(i>step&&firstIncompleteStage(a,profile,files,i)?'aria-disabled="true"':'')+'><span>'+(step>i?icon('check'):String(i+1).padStart(2,'0'))+'</span><b>'+s+'</b></button>').join('')+'</div><div class="editor-body"><div class="section-heading"><div><span class="overline">ETAPA '+String(step+1).padStart(2,'0')+' / 04</span><h2>'+['Vamos dar contexto.','Como vamos entregar?','As referências fazem a diferença.','Pronto para a próxima etapa.'][step]+'</h2><p>'+['Conte o que você precisa fazer. Os detalhes mudam o resultado.','Escolha um ou mais formatos. Nós cuidamos das instruções.','Enunciados, fotos, textos e seus '+tpl().plans+'. Tudo no mesmo lugar.','Confira o briefing e leve o pacote para a IA de sua escolha.'][step]+'</p></div>'+icon(['edit','package','folder','spark'][step],'heading-icon')+'</div>'+stageFeedback()+(step===0?contextForm():step===1?deliveryForm():step===2?materialsForm():reviewForm())+'</div><div class="editor-footer"><div class="save-status">'+icon('check')+'<span id="save-state">Salvo neste aparelho</span></div><div class="row">'+(step>0?button('Voltar','previous','back','ghost'):'')+(step<3?button('Continuar','next','arrow','primary'):button('Baixar pacote ZIP','export-zip','download','primary'))+'</div></div></section><aside class="brief-card tilt"><div class="brief-top">'+icon('spark')+'<span>SEU BRIEFING, AO VIVO</span></div><div id="brief-content">'+briefContent()+'</div><div class="brief-tip"><span>✦</span><p>Um bom prompt começa<br>com um bom contexto.</p></div></aside></div>';
 }
 function briefContent(){
  const a=activity,s=currentSubject(),n=relevantFiles(a,effectiveFiles()).length,t=tpl();
@@ -274,7 +296,7 @@ function subjectDialog(id){
 }
 async function createSubject(){await saveActivity();const s={id:uid(),name:tpl().new==='Novo'?'Novo projeto':'Nova '+lower(tpl().subject),professor:'',notes:{},createdAt:Date.now(),updatedAt:Date.now()};await put('subjects',s);subjects.push(s);announce({type:'data'});if(view==='activity'){activity.subjectId=s.id;await saveActivity();}libraryPeriod=tpl().periods[0];render();subjectDialog(s.id);$('#subject-name').focus();$('#subject-name').select();}
 function confirmDialog(title,message,onConfirm){
- const d=$('#dialog');d.innerHTML='<div class="dialog-head"><h2>'+esc(title)+'</h2></div><div class="dialog-body"><p>'+esc(message)+'</p></div><div class="dialog-footer">'+button('Cancelar','close-dialog',null,'secondary')+'<button class="btn primary" id="confirm-action">Confirmar</button></div>';if(!d.open)d.showModal();$('#confirm-action').onclick=async()=>{try{await onConfirm();d.close();}catch(e){fail(e);}};
+ const d=$('#dialog');d.innerHTML='<div class="dialog-head"><h2>'+esc(title)+'</h2></div><div class="dialog-body"><p>'+esc(message)+'</p></div><div class="dialog-footer">'+button('Cancelar','close-dialog',null,'secondary')+'<button class="btn primary" id="confirm-action">Confirmar</button></div>';if(!d.open)d.showModal();$('#confirm-action').onclick=async event=>{const button=event.currentTarget;if(button.disabled)return;button.disabled=true;try{await onConfirm();d.close();}catch(e){fail(e);}finally{button.disabled=false;}};
 }
 function promptDialog(title,label,value,onSave){
  const d=$('#dialog');d.innerHTML='<div class="dialog-head"><h2>'+esc(title)+'</h2></div><div class="dialog-body"><label for="prompt-value">'+esc(label)+'</label><input id="prompt-value" value="'+esc(value)+'" maxlength="40" autocomplete="off"></div><div class="dialog-footer">'+button('Cancelar','close-dialog',null,'secondary')+'<button class="btn primary" id="prompt-save">Salvar</button></div>';if(!d.open)d.showModal();
@@ -389,7 +411,17 @@ async function route(t){
  if(t.dataset.view){await go(t.dataset.view);return;}
  if(t.dataset.aiRemove!==undefined){const [file]=aiDraft.files.splice(Number(t.dataset.aiRemove),1);const url=aiDraft.urls.get(file);if(url)URL.revokeObjectURL(url);aiDraft.urls.delete(file);aiRenderPick();return;}
  if(t.dataset.step!==undefined){await goStep(Number(t.dataset.step));return;}
- if(t.dataset.mode){invalidateMaterials();activity.mode=t.dataset.mode;await saveActivity();render();return;}
+ if(t.dataset.mode){
+ if(activity.mode===t.dataset.mode)return;
+ const old={mode:activity.mode,groupSize:activity.groupSize,members:[...activity.members]},id=activity.id;
+ invalidateMaterials();activity.mode=t.dataset.mode;activity.groupSize=2;
+ activity.members=activity.mode==='group'?['','']:[];
+ await saveActivity();render();
+ if(old.members.some(m=>m.trim()))toast('Modalidade alterada. Os integrantes anteriores foram limpos.',{label:'Desfazer',run:async()=>{
+  if(activity.id!==id)return;Object.assign(activity,old);invalidateMaterials();await saveActivity();render();
+ }});
+ return;
+ }
  if(t.dataset.category){invalidateMaterials();const c=CATEGORIES.find(c=>c.id===t.dataset.category);if(activity.deliveries.some(d=>d.category===c.id))activity.deliveries=activity.deliveries.filter(d=>d.category!==c.id);else activity.deliveries.push({category:c.id,format:c.formats[0]});await saveActivity();render();return;}
  if(t.dataset.format){invalidateMaterials();const i=activity.deliveries.findIndex(d=>d.category===t.dataset.cat&&d.format===t.dataset.format);if(i>=0)activity.deliveries.splice(i,1);else activity.deliveries.push({category:t.dataset.cat,format:t.dataset.format});await saveActivity();render();return;}
  if(t.dataset.websiteChoice){invalidateMaterials();activity.website[t.dataset.websiteChoice]=t.dataset.value;await saveActivity();render();return;}
@@ -408,7 +440,7 @@ async function route(t){
  if(t.dataset.period){libraryPeriod=t.dataset.period;subjectDialog(editingSubjectId);return;}
  if(t.dataset.deleteFile){await trashFile(t.dataset.deleteFile);return;}
  if(t.dataset.downloadFile){const f=files.find(f=>f.id===t.dataset.downloadFile);download(f.blob,f.name);return;}
- if(t.dataset.openActivity){await saveActivity();activity=structuredClone(activities.find(a=>a.id===t.dataset.openActivity));lastSaved=JSON.stringify({...activity,updatedAt:0});await put('settings',{id:'active',activityId:activity.id});view='activity';step=0;stageMessages=[];render();window.scrollTo(0,0);return;}
+ if(t.dataset.openActivity){const next=activities.find(a=>a.id===t.dataset.openActivity);if(next)await openActivity(structuredClone(next));return;}
  if(t.dataset.duplicate){const original=activities.find(a=>a.id===t.dataset.duplicate);const clone={...structuredClone(original),id:uid(),title:original.title+' (cópia)',status:'draft',grade:'',history:[],snapshot:undefined,createdAt:Date.now(),updatedAt:Date.now()};const copies=files.filter(f=>f.ownerType==='activity'&&f.ownerId===original.id).map(f=>({...f,id:uid(),ownerId:clone.id}));if([...files,...trashed.files].reduce((n,f)=>n+f.size,0)+copies.reduce((n,f)=>n+f.size,0)>MAX_TOTAL)throw new Error('Não há espaço para duplicar os anexos. Esvazie a lixeira ou exporte um backup e libere espaço.');await batch([{store:'activities',value:clone},...copies.map(value=>({store:'files',value}))]);activities.push(clone);files.push(...copies);announce({type:'data'});render();toast('Atividade duplicada com os anexos.');return;}
  if(t.dataset.deleteActivity){await trashActivity(t.dataset.deleteActivity);return;}
  const action=t.dataset.action;
@@ -420,7 +452,10 @@ async function route(t){
  case 'edit-current-subject':libraryPeriod=activity.period;subjectDialog(activity.subjectId);break;
  case 'close-dialog':{const s=subjects.find(s=>s.id===editingSubjectId);if($('#dialog [data-subject]')&&s&&!s.name.trim()){toast('Informe um nome.');return;}const copyProfessor=s&&activity.subjectId===s.id&&!activity.professor.trim();if(copyProfessor)activity.professor=s.professor||'';$('#dialog').close();editingSubjectId=null;render();if(copyProfessor)await saveActivity();break;}
  case 'delete-subject':{const id=editingSubjectId;if(activities.some(a=>a.subjectId===id)){toast('Em uso por atividades. Troque nas atividades antes de excluir.');return;}$('#dialog').close();editingSubjectId=null;await trash('subject',id);await refreshData();render();announce({type:'data'});toast('Movido para a lixeira.',{label:'Desfazer',run:()=>restoreItem('subject',id)});break;}
- case 'new':await saveActivity();activity=newActivity();lastSaved='';await put('settings',{id:'active',activityId:activity.id});view='activity';step=0;stageMessages=[];await saveActivity();render();window.scrollTo(0,0);break;
+ case 'new':await startFreshActivity();break;
+ case 'clear-activity':
+ if(busy){toast('Aguarde a operação atual terminar antes de limpar.');break;}
+ confirmDialog('Limpar formulário?', 'Vamos abrir uma atividade vazia, sem membros, anexos ou sugestões anteriores. A atividade atual fica salva em Minhas atividades. Seu perfil, acesso à IA e biblioteca continuam disponíveis.',startFreshActivity);break;
  case 'camera':await scan(view==='activity'&&step===0?'ai':'materials');break;
  case 'scan-materials':await scan('materials');break;
  case 'ai-camera':await scan('ai');break;
@@ -470,7 +505,7 @@ async function trashActivity(id){
  clearTimeout(saveTimer);await saving;await trash('activity',id);
  const wasOpen=activity.id===id;
  await refreshData();
- if(wasOpen){activity=newActivity();lastSaved='';await put('settings',{id:'active',activityId:activity.id});}
+ if(wasOpen){clearActivitySession();step=0;activity=newActivity();lastSaved='';await put('settings',{id:'active',activityId:activity.id});}
  render();announce({type:'data'});
  toast('Atividade movida para a lixeira.',{label:'Desfazer',run:()=>restoreItem('activity',id)});
 }
@@ -501,7 +536,8 @@ async function makeBackup(mode){
  toast(mode==='file'?'Backup salvo em '+(backupHandle?.name||name)+'.':'Backup completo pronto. Guarde-o em um lugar seguro.');
 }
 async function switchWorkspace(id,silent=false){
- await saveActivity();
+ if(busy){toast('Aguarde a operação atual terminar.');return;}
+ await saveActivity();clearActivitySession();
  workspace=id;local.set('ck-workspace',id);useWorkspace(id);
  diagnostics=null;showTrash=false;search='';filterStatus='all';filterSubject='';lastSaved='';
  await loadData();connect(id,onSync);applyEffects(profile.effects);view=silent?view:'activity';step=0;stageMessages=[];render();
@@ -843,7 +879,7 @@ async function aiApply(){
   if(created){await put('subjects',created);subjects.push(created);}
   if(newFiles.length){const saved=await addFiles(newFiles,'activity',activity.id,{kind:'base'});files.push(...saved);}
   invalidateMaterials();await saveActivity();announce({type:'data'});
-  $('#dialog').close();view='activity';step=0;stageMessages=[];render();
+  clearActivitySession();$('#dialog').close();view='activity';step=0;stageMessages=[];render();
   flash(document.querySelector('.editor-body'),'fx-reveal');window.scrollTo(0,0);logoTransition();
   toast(chosen.length?chosen.length+(chosen.length>1?' campos preenchidos':' campo preenchido')+' pela IA. Confira e continue.':'Nada foi alterado.');
  }finally{busy=false;}

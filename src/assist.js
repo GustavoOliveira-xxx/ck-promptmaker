@@ -119,7 +119,8 @@ export function applySuggestions(a,items,subjects,newSubject){
     break;}
    case 'mode':
     a.mode=v.mode;
-    if(v.mode==='group'){a.groupSize=v.size;a.members=Array.from({length:v.size},(_,i)=>v.members[i]||a.members[i]||'');}
+    if(v.mode==='group'){a.groupSize=v.size;a.members=Array.from({length:v.size},(_,i)=>v.members[i]||'');}
+    else{a.groupSize=2;a.members=[];}
     break;
    case 'deliveries':for(const d of v)if(!a.deliveries.some(x=>x.category===d.category&&x.format===d.format))a.deliveries.push({category:d.category,format:d.format});break;
    case 'website':if(v.interaction)a.website.interaction=v.interaction;if(v.threeD)a.website.threeD=v.threeD;if(v.details)a.website.details=join(a.website.details,v.details);break;

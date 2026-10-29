@@ -209,3 +209,55 @@ test('cloud account carries activities, subjects and files to another device',as
  expect((await db(phone,'subjects')).map(s=>s.name)).toEqual(['Biologia']);
  await other.close();
 });
+
+test('clear form preserves the previous activity and library but isolates members, files and AI draft',async({page})=>{
+ await open(page);await named(page);await ready(page,'Atividade anterior');
+ await page.getByRole('button',{name:'Em grupo',exact:true}).click();
+ await page.getByLabel('Quantidade de integrantes').fill('3');
+ await page.getByRole('button',{name:'Confirmar',exact:true}).click();
+ for(let i=1;i<=3;i++)await page.locator('#activity-member-'+(i-1)).fill('Pessoa '+i);
+ await page.locator('[data-action="ai-open"]').click();
+ await page.locator('#ai-note').fill('Notas antigas da IA');
+ await page.locator('#ai-file-input').setInputFiles({name:'anterior.txt',mimeType:'text/plain',buffer:Buffer.from('Enunciado anterior')});
+ await page.getByRole('button',{name:'Fechar',exact:true}).click();
+ await page.getByRole('button',{name:'Limpar formulário',exact:true}).click();
+ await page.getByRole('button',{name:'Cancelar',exact:true}).click();
+ await expect(page.getByLabel('Título da atividade')).toHaveValue('Atividade anterior');
+ await page.getByRole('button',{name:'Limpar formulário',exact:true}).click();
+ await page.locator('#confirm-action').click();
+ await expect(page.getByLabel('Título da atividade')).toHaveValue('');
+ await expect(page.getByLabel('Enunciado da atividade')).toHaveValue('');
+ await expect(page.locator('#activity-subjectId')).toHaveValue('');
+ await page.locator('[data-action="ai-open"]').click();
+ await expect(page.locator('#ai-note')).toHaveValue('');
+ await expect(page.locator('.ai-sources')).not.toContainText('anterior.txt');
+ await page.getByRole('button',{name:'Fechar',exact:true}).click();
+ await page.reload();
+ await expect(page.getByLabel('Título da atividade')).toHaveValue('');
+ await page.getByRole('button',{name:'Em grupo',exact:true}).click();
+ await expect(page.getByLabel('Quantidade de integrantes')).toHaveValue('2');
+ await expect(page.locator('#activity-member-0')).toHaveValue('');
+ await expect(page.locator('#activity-member-1')).toHaveValue('');
+ await page.locator('[data-action="ai-open"]').click();
+ await expect(page.locator('#ai-note')).toHaveValue('');
+ await expect(page.locator('.ai-sources')).not.toContainText('anterior.txt');
+ await page.getByRole('button',{name:'Fechar',exact:true}).click();
+ await page.getByRole('button',{name:'Minhas atividades',exact:true}).click();
+ await page.locator('[data-open-activity]').filter({hasText:'Atividade anterior'}).first().click();
+ await expect(page.locator('#activity-member-2')).toHaveValue('Pessoa 3');
+ expect((await db(page,'subjects')).some(s=>s.name==='Biologia')).toBeTruthy();
+ expect((await db(page,'settings')).find(s=>s.id==='profile').name).toBe('Gustavo Oliveira');
+});
+
+test('changing to individual clears team and undo restores it',async({page})=>{
+ await open(page);
+ await page.getByRole('button',{name:'Em grupo',exact:true}).click();
+ await page.locator('#activity-member-0').fill('Ana');
+ await page.locator('#activity-member-1').fill('Leo');
+ await page.getByRole('button',{name:'Individual',exact:true}).click();
+ await page.locator('#toast').getByRole('button',{name:'Desfazer'}).click();
+ await expect(page.locator('#activity-member-0')).toHaveValue('Ana');
+ await page.getByRole('button',{name:'Individual',exact:true}).click();
+ await page.getByRole('button',{name:'Em grupo',exact:true}).click();
+ await expect(page.locator('#activity-member-0')).toHaveValue('');
+});
